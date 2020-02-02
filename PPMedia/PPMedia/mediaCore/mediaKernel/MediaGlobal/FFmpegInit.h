@@ -12,7 +12,6 @@
 #include "MediaCommon.h"
 NS_MEDIA_BEGIN
 
-#define Debug 0
 class FFmpegInit {
 public:
     FFmpegInit();
@@ -24,6 +23,7 @@ public:
     static void release();
     
     static bool Inited();
+    
     static AVPacket         *flushPkt;
 private:
     static bool             isInited;

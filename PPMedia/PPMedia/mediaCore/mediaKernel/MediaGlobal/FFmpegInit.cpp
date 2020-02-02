@@ -46,6 +46,15 @@ static int ff_lockmgr_callback(void**mutex, enum AVLockOp op)
     return 0;
 }
 
+//ffmpeg log打印
+
+static void ff_log_callback(void*avcl, int level, const char*fmt, va_list vl)
+{
+    char log[1024];
+    vsnprintf(log,sizeof(log),fmt,vl);
+    printf("%s\n",log);
+}
+
 FFmpegInit::FFmpegInit()
 {
 }
@@ -66,6 +75,7 @@ void FFmpegInit::init()
     }
     av_register_all();
     avformat_network_init();
+    av_log_set_callback(ff_log_callback);
     av_lockmgr_register(ff_lockmgr_callback);
     isInited = true;
 }
@@ -85,7 +95,10 @@ void FFmpegInit::release()
     isInited = false;
 }
 
-
+bool FFmpegInit::Inited()
+{
+    return isInited;
+}
 
 NS_MEDIA_END
 
