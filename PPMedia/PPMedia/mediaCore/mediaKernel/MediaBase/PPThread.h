@@ -12,6 +12,8 @@
 #include "MediaCommon.h"
 NS_MEDIA_BEGIN
 
+// 对线程的简单封装使用
+
 typedef void *(*ThreadFunc)(void *);
 enum THreadState {
     THREAD_STATE_INIT = 1,    //线程初始化状态
