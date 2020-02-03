@@ -21,8 +21,10 @@ typedef struct P_AVPacket_T {
     {
         serial = 0;
     }
-    AVPacket pkt;           //demuxer parse出来的包信息
-    int serial;             //序号信息
+    // demuxer parse出来的包信息
+    AVPacket pkt;
+    // 序号信息
+    int serial;
 } P_AVPacket;
 
 class PacketQueue

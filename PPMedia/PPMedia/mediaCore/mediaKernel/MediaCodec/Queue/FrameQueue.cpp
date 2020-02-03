@@ -15,28 +15,19 @@ NS_MEDIA_BEGIN
 //frame_queue_unref_item释放的内存都是关联的内存，而非结构体自身内存。
 //AVFrame内部有许多的AVBufferRef类型字段，而AVBufferRef只是AVBuffer的引用，AVBuffer通过引用计数自动管理内存（简易垃圾回收机制）。因此AVFrame在不需要的时候，需要通过av_frame_unref减少引用计数。
 
-FrameQueue::FrameQueue()
+FrameQueue::FrameQueue():
+queue(NULL),
+rindex(0),
+windex(0),
+size(0),
+max_size(0),
+keep_last(0),
+rindex_shown(0),
+cond(NULL),
+mutex(NULL),
+pktq(NULL)
 {
-    // 帧队列
-    queue = NULL;
-    // 读索引
-    rindex = 0;
-    // 写索引
-    windex = 0;
-    // 总帧数
-    size = 0;
-    // 最大缓存大小
-    max_size = 0;
-    // keep_last是一个bool值，表示是否在环形缓冲区的读写过程中保留最后一个读节点不被覆写
-    keep_last = 0;
-    // 当前显示这一帧的读索引
-    rindex_shown = 0;
-    // 条件cond
-    cond = NULL;
-    // 锁
-    mutex = NULL;
-    // packet Queue指针
-    pktq = NULL;
+    
 }
 
 FrameQueue::~FrameQueue()

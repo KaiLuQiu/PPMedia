@@ -77,7 +77,8 @@ int PacketQueue::packet_queue_get(AVPacket *pkt, int block, int *serial)
     P_AVPacket  *p_pkt;
     pthread_mutex_lock(this->mutex);
 
-    if(pkt == NULL)        //添加容错处理
+    // 添加容错处理
+    if(pkt == NULL)
     {
         pthread_mutex_unlock(this->mutex);
         return -1;
@@ -120,23 +121,28 @@ int PacketQueue::packet_queue_get(AVPacket *pkt, int block, int *serial)
 
 int PacketQueue::packet_queue_put_private(AVPacket *pkt)
 {
-    if (this->abort_request)//如果已中止，则放入失败
+    // 如果已中止，则放入失败
+    if (this->abort_request)
         return -1;
     
     this->AvPacketList;
-    P_AVPacket *p_pkt = new P_AVPacket();       //创建一个新的P_AVPacket节点
+    // 创建一个新的P_AVPacket节点
+    P_AVPacket *p_pkt = new P_AVPacket();
     if(!p_pkt)
         return -1;
     p_pkt->pkt = *pkt;
-    if(pkt == FFmpegInit::flushPkt)                        //
+    // 如果这个包是flushPkt，则让那个serial++,表示不连续
+    if(pkt == FFmpegInit::flushPkt)
         this->serial++;
-    p_pkt->serial = this->serial;              //使用同一个序列号
-    
-    this->AvPacketList.push_back(p_pkt);       //把当前的这个P_AVPacket丢进队列中
-    this->nb_packets++;                        //添加节点数据
-    this->size += p_pkt->pkt.size + sizeof(*p_pkt);  // 计算包的size大小以及p_pkt结构大小
+    // 使用同一个序列号
+    p_pkt->serial = this->serial;
+    // 把当前的这个P_AVPacket丢进队列中
+    this->AvPacketList.push_back(p_pkt);
+    // 添加节点数据
+    this->nb_packets++;
+    // 计算包的size大小以及p_pkt结构大小
+    this->size += p_pkt->pkt.size + sizeof(*p_pkt);
     this->duration += p_pkt->pkt.duration;
-    
     pthread_cond_signal(this->cond);
     return 0;
 }
@@ -145,10 +151,13 @@ int PacketQueue::packet_queue_put(AVPacket *pkt)
 {
     int ret;
     pthread_mutex_lock(this->mutex);
-    ret = packet_queue_put_private(pkt);//主要实现在这里
+    // 主要实现在这里
+    ret = packet_queue_put_private(pkt);
     pthread_mutex_unlock(this->mutex);
-    if (pkt != FFmpegInit::flushPkt && ret < 0)
-        av_packet_unref(pkt);//放入失败，释放AVPacket
+    if (pkt != FFmpegInit::flushPkt && ret < 0) {
+        // 放入失败，释放AVPacket
+        av_packet_unref(pkt);
+    }
     return ret;
     
 }
@@ -171,7 +180,8 @@ void PacketQueue::packet_queue_flush()
     for(; item != this->AvPacketList.end(); )
     {
         std::list<P_AVPacket *>::iterator item_e = item++;
-        av_packet_unref(&(*item_e)->pkt);           //先释放avpacket
+        // 先释放avpacket
+        av_packet_unref(&(*item_e)->pkt);
         av_freep(&(*item_e));
         this->AvPacketList.erase(item_e);
     }
@@ -194,6 +204,5 @@ void PacketQueue::packet_queue_abort()
     pthread_mutex_unlock(this->mutex);
     pthread_cond_signal(this->cond);
 }
-
 
 NS_MEDIA_END
