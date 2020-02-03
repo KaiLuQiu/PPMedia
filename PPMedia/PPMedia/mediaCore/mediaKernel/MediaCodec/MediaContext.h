@@ -10,6 +10,7 @@
 #define MediaContext_H
 #include <string>
 #include "MediaCommon.h"
+#include "PacketQueue.h"
 NS_MEDIA_BEGIN
 
 class MediaContext {
@@ -18,12 +19,16 @@ public:
     
     ~MediaContext();
     
+    bool CreatePacketQueue(int streamIndex);
     
+    bool ReleasePacketQueue(int streamIndex);
+    
+    PacketQueue *GetPacketQueue(int streamIndex);
+
 public:
     // FFmpeg上下文
     AVFormatContext     *formatContext;
-    // 媒体流的数量
-    int                 nbStreams;
+
     AVInputFormat       *avInformat;
     // 标识一次SEEK请求
     int                 seek_request;
@@ -49,14 +54,18 @@ public:
     // 记录drop video的数量
     int                 frame_drops_late;
     int                 frame_drops_early;
-    // 流的总数量
-    int                 nb_streams;
+    // 媒体流的数量
+    int                 nbStreams;
     // audio流的数量
     int                 audio_streams;
     // video流的数量
     int                 video_streams;
     // SDL音频缓冲区大小(单位字节)
     int                 audio_hw_buf_size;
+    // 最大的流数量
+    int                 max_stream_num;
+    // 不同流对应的流packetQueue
+    std::vector<PacketQueue *> PacketQueueArray;
 private:
 };
 
