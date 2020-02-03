@@ -9,6 +9,8 @@
 #ifndef FrameQueue_H
 #define FrameQueue_H
 #include "MediaCommon.h"
+#include "PacketQueue.h"
+
 NS_MEDIA_BEGIN
 
 //解码帧信息
@@ -118,6 +120,11 @@ public:
      * 取消帧引用的所有缓冲区并重置帧字段，释放给定字幕结构中的所有已分配数据。
      */
     void frame_queue_unref_item(Frame *vp);
+    
+    /*
+     * 释放Frame，释放互斥锁和互斥量
+     */
+    void frame_queue_destory();
     
 private:
     // 帧队列

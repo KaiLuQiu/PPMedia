@@ -55,30 +55,32 @@ int FrameQueue::frame_queue_init(PacketQueue *pktq, int max_size, int keep_last)
 {
     int ret;
     // 创建互斥量
-    if(NULL == mutex) {
-        mutex = (pthread_mutex_t *)av_malloc(sizeof(pthread_mutex_t));
-        if (NULL == mutex) {
+    if(NULL == this->mutex) {
+        this->mutex = (pthread_mutex_t *)av_malloc(sizeof(pthread_mutex_t));
+        if (NULL == this->mutex) {
             printf("FrameQueue init malloc mutex fail\n");
             return -1;
         }
     }
     // 初始化mutex
-    ret = pthread_mutex_init(mutex, NULL);
+    ret = pthread_mutex_init(this->mutex, NULL);
     if (ret < 0) {
-        SAFE_AV_FREE(mutex);
+        av_free(&this->mutex);
+        this->mutex = NULL;
         return ret;
     }
     // 创建条件变量
-    if(NULL == cond) {
-        cond = (pthread_cond_t *)av_malloc(sizeof(pthread_cond_t));
-        if (NULL == cond) {
+    if(NULL == this->cond) {
+        this->cond = (pthread_cond_t *)av_malloc(sizeof(pthread_cond_t));
+        if (NULL == this->cond) {
             printf("FrameQueue init malloc cond fail\n");
             return -1;
         }
     }
-    ret = pthread_cond_init(cond, NULL);
+    ret = pthread_cond_init(this->cond, NULL);
     if (ret < 0) {
-        SAFE_AV_FREE(cond);
+        av_free(&this->cond);
+        this->cond = NULL;
         return ret;
     }
     this->pktq = pktq;
@@ -88,8 +90,10 @@ int FrameQueue::frame_queue_init(PacketQueue *pktq, int max_size, int keep_last)
     this->queue = (Frame *)av_malloc(this->max_size * sizeof(Frame));
     if (NULL == this->queue) {
         printf("FrameQueue queue malloc fail\n");
-        SAFE_AV_FREE(mutex);
-        SAFE_AV_FREE(cond);
+        av_free(&this->mutex);
+        this->mutex = NULL;
+        av_free(&this->cond);
+        this->cond = NULL;
         return -1;
     }
     for (int i = 0; i < this->max_size; i++)
@@ -107,8 +111,15 @@ void FrameQueue::frame_queue_destory()
         frame_queue_unref_item(vp);
         av_frame_free(&vp->frame);      // 释放AVFrame.
     }
-    SDL_DestroyCond(this->cond);
-    SDL_DestroyMutex(this->mutex);
+    if (this->cond) {
+        pthread_cond_destroy(this->cond);
+        av_free(&this->cond);
+    }
+    if(this->mutex) {
+        pthread_mutex_unlock(this->mutex);
+        pthread_mutex_destroy(this->mutex);
+        av_free(&this->mutex);
+    }
 }
 
 // 获取待显示的第一个帧 ,rindex 表示当前的显示的帧，rindex_shown表示当前带显示的是哪一帧
@@ -176,7 +187,7 @@ void FrameQueue::frame_queue_push()
         this->windex = 0;
     pthread_mutex_lock(this->mutex);
     this->size++;
-    pthread_cond_singal(this->cond);
+    pthread_cond_signal(this->cond);
     pthread_mutex_unlock(this->mutex);
 }
 
@@ -187,12 +198,12 @@ void FrameQueue::frame_queue_next()
         this->rindex_shown = 1;
         return;
     }
-    frame_queue_unref_item(&this->queue[f->rindex]);
+    frame_queue_unref_item(&this->queue[this->rindex]);
     if (++this->rindex == this->max_size)
         this->rindex = 0;
     pthread_mutex_lock(this->mutex);
     this->size--;
-    pthread_cond_singal(this->cond);
+    pthread_cond_signal(this->cond);
     pthread_mutex_unlock(this->mutex);
 }
 
@@ -213,3 +224,5 @@ int64_t FrameQueue::frame_queue_last_pos()
 }
 
 NS_MEDIA_END
+
+
