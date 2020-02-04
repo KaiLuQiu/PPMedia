@@ -13,6 +13,7 @@
 #include "MediaContext.h"
 #include "MediaFrame.h"
 #include "MediaStream.h"
+#include "PPThread.h"
 #include "MediaBaseController.h"
 NS_MEDIA_BEGIN
 
@@ -68,9 +69,11 @@ private:
      */
     int streamOpen();
     // 指针数组
-    MediaStream* mediaStream[MAX_DCODEC_STREAM_NUM];
+    MediaStream*    mediaStream[MAX_DCODEC_STREAM_NUM];
     // 流索引数组
-    int stream_index[AVMEDIA_TYPE_NB];
+    int             stream_index[AVMEDIA_TYPE_NB];
+    // PPThread是对线程创建的封装
+    PPThread*       demuxerThread;
 
 };
 

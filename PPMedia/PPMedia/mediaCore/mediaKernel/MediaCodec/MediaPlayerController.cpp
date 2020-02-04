@@ -7,9 +7,11 @@
 //
 
 #include "MediaPlayerController.h"
+#include "DemuxdeThread.h"
 NS_MEDIA_BEGIN
 
-MediaPlayerController::MediaPlayerController()
+MediaPlayerController::MediaPlayerController():
+demuxerThread(NULL)
 {
     memset(stream_index, -1, sizeof(stream_index));
     for(int i = 0; i < MAX_DCODEC_STREAM_NUM; i++) {
@@ -97,28 +99,75 @@ int MediaPlayerController::prepareAsync()
     // 流的总数量
     int nb_streams = mediaContext->nbStreams;
     for (int i = 0; i < nb_streams; i++) {
-        AVCodecContext *CodecContex = avformatContext->streams[i]->codec;
+        AVCodecContext *CodecContext = avformatContext->streams[i]->codec;
         avStream = avformatContext->streams[i];
         // 如果当前的流是video or audio的话则创建对应的packetQueue
-        if (CodecContex->codec_type == AVMEDIA_TYPE_VIDEO ||
-            CodecContex->codec_type == AVMEDIA_TYPE_AUDIO) {
+        if (CodecContext->codec_type == AVMEDIA_TYPE_VIDEO ||
+            CodecContext->codec_type == AVMEDIA_TYPE_AUDIO) {
             if (false == mediaContext->CreatePacketQueue(i)) {
                 printf("MediaPlayerController: CreatePacketQueue fail\n");
                 return -1;
             }
         }
         // 视频流
-        if ((CodecContex->codec_type == AVMEDIA_TYPE_VIDEO) && (stream_index[AVMEDIA_TYPE_VIDEO] >= 0)) {
-            mediaStream[i] = new MediaStream();
+        if ((CodecContext->codec_type == AVMEDIA_TYPE_VIDEO) && (stream_index[AVMEDIA_TYPE_VIDEO] >= 0)) {
+            // 创建对应的mediaStream类
+            mediaStream[i] = new (std::nothrow)MediaStream();
+            if(NULL == mediaStream[i]) {
+                printf("MediaPlayerController: new mediaStream fail\n");
+                continue;
+            }
+            // 设置对应media的索引
+            mediaStream[i]->setStreamInfo(i);
+            // 视频流数++
+            mediaContext->video_streams++;
         }
         // 音频流
-        else if ((CodecContex->codec_type == AVMEDIA_TYPE_AUDIO) && (stream_index[AVMEDIA_TYPE_AUDIO] >= 0)) {
-
+        else if ((CodecContext->codec_type == AVMEDIA_TYPE_AUDIO) && (stream_index[AVMEDIA_TYPE_AUDIO] >= 0)) {
+            // 创建对应的mediaStream类
+            mediaStream[i] = new (std::nothrow)MediaStream();
+            if(NULL == mediaStream[i]) {
+                printf("MediaPlayerController: new mediaStream fail\n");
+                continue;
+            }
+            // 设置对应media的索引
+            mediaStream[i]->setStreamInfo(i);
+            // 音频流数++
+            mediaContext->audio_streams++;
         }
-
+        // 初始化当前流的解码器
+        ret = mediaStream[i]->initDecoder(mediaContext);
+        if (ret < 0) {
+            printf("MediaPlayerController: initDecoder fail\n");
+            SAFE_DELETE(mediaStream[i]);
+            continue;
+        }
+        // 内部会创建decode线程
+        ret = mediaStream[i]->openDecoder();
+        if (ret < 0) {
+            printf("MediaPlayerController: openDecoder fail\n");
+            SAFE_DELETE(mediaStream[i]);
+            continue;
+        }
     }
-
-    return ret;
+    
+    // 启动demuxer
+    SAFE_DELETE(demuxerThread);
+    // 创建线程封装对象
+    demuxerThread = new (std::nothrow)PPThread();
+    if(NULL == demuxerThread) {
+        printf("MediaPlayerController: new demuxerThread fail\n");
+        memset(stream_index, -1, sizeof(stream_index));
+        for(int i = 0; i < MAX_DCODEC_STREAM_NUM; i++) {
+            SAFE_DELETE(mediaStream[i]);
+        }
+        return -1;
+    }
+    // 设置demuxer线程的参数信息
+    demuxerThread->setFunc(DemuxerThread, mediaContext, "demuxerThread");
+    // 启动demuxer
+    demuxerThread->start();
+    return 1;
 }
 
 /*
