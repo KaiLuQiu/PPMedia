@@ -24,6 +24,12 @@ void MediaEncoderController::setSaveUrl(std::string savePath)
     this->savePath = savePath;
 }
 
+
+int MediaEncoderController::init()
+{
+    return 0;
+}
+
 int MediaEncoderController::prepareAsync()
 {
     return 0;

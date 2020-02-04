@@ -23,12 +23,18 @@ public:
     
     virtual ~MediaBaseController();
     
-     /*
-      * 设置媒体播放路径
-      */
+    /*
+     * 初始化操作
+     */
+    virtual int init() {return 0;}
+
+    /*
+     * 设置媒体播放路径
+     */
     virtual void setUrl(std::string mediaPath) {
         this->mediaPath = mediaPath;
     }
+    
     /*
      * 进入准备状态
      */

@@ -9,7 +9,8 @@
 #include "MediaBaseController.h"
 NS_MEDIA_BEGIN
 
-MediaBaseController::MediaBaseController()
+MediaBaseController::MediaBaseController():
+mediaContext(NULL)
 {
     
 }

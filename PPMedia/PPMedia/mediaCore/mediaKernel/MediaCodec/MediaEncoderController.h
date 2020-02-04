@@ -29,6 +29,10 @@ public:
       */
     void setSaveUrl(std::string savePath);
     
+    /*
+     * 初始化操作
+     */
+    virtual int init();
     
     /*
      * 进入准备状态

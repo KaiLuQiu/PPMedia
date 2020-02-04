@@ -14,9 +14,9 @@
 #include "MediaFrame.h"
 #include "MediaStream.h"
 #include "MediaBaseController.h"
-
 NS_MEDIA_BEGIN
 
+#define Debug 0
 class MediaPlayerController : public MediaBaseController
 {
 public:
@@ -24,6 +24,10 @@ public:
     
     virtual ~MediaPlayerController();
     
+    /*
+     * 初始化操作
+     */
+    virtual int init();
      /*
       * 进入准备状态
       */
@@ -59,6 +63,14 @@ public:
      */
     MediaFrame *getFrame(int64_t syncTime);
 private:
+    /*
+     * 打开流
+     */
+    int streamOpen();
+    // 指针数组
+    MediaStream* mediaStream[MAX_DCODEC_STREAM_NUM];
+    // 流索引数组
+    int stream_index[AVMEDIA_TYPE_NB];
 
 };
 
