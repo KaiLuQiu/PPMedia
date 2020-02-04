@@ -29,7 +29,11 @@ frame_drops_early(0),
 audio_streams(0),
 video_streams(0),
 audio_hw_buf_size(0),
-max_stream_num(MAX_DCODEC_STREAM_NUM)
+max_stream_num(MAX_DCODEC_STREAM_NUM),
+audioCodecName(NULL),
+videoCodecName(NULL),
+lowres(0),
+fast(false);
 {
     PacketQueueArray.reserve(8);
     for(int i = 0; i < max_stream_num ;i++) {

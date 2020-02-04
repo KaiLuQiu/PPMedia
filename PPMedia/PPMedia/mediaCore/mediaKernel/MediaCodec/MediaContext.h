@@ -27,9 +27,9 @@ public:
 
 public:
     // FFmpeg上下文
-    AVFormatContext     *formatContext;
+    AVFormatContext*    formatContext;
 
-    AVInputFormat       *avInformat;
+    AVInputFormat*      Informat;
     // 标识一次SEEK请求
     int                 seek_request;
     // SEEK标志，诸如AVSEEK_FLAG_BYTE等
@@ -66,6 +66,18 @@ public:
     int                 max_stream_num;
     // 不同流对应的流packetQueue
     std::vector<PacketQueue *> PacketQueueArray;
+    // 参考https://www.jianshu.com/p/8de0fc796ef9
+    // 指定音频解码器
+    const char*         audioCodecName;
+    // 指定视频解码器
+    const char*         videoCodecName;
+    // 以下设置播放的一些参数
+    // 分辨率参数
+    int                 lowres;
+    // Allow non spec compliant speedup tricks.
+    bool                fast;
+    
+    
 private:
 };
 
