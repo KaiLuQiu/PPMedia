@@ -9,12 +9,12 @@
 #include "MediaBaseController.h"
 NS_MEDIA_BEGIN
 
-MediaEncoderController::MediaEncoderController()
+MediaBaseController::MediaBaseController()
 {
     
 }
 
-MediaEncoderController::~MediaEncoderController()
+MediaBaseController::~MediaBaseController()
 {
     
 }
