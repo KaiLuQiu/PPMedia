@@ -95,6 +95,7 @@ int MediaPlayerController::prepareAsync()
     int ret;
     AVFormatContext*        avformatContext;
     AVStream*               avStream;
+    StreamType              streamType;
     avformatContext = mediaContext->formatContext;
     // 流的总数量
     int nb_streams = mediaContext->nbStreams;
@@ -117,8 +118,8 @@ int MediaPlayerController::prepareAsync()
                 printf("MediaPlayerController: new mediaStream fail\n");
                 continue;
             }
-            // 设置对应media的索引
-            mediaStream[i]->setStreamInfo(i);
+            // 设置对应stream类型
+            streamType = PP_STREAM_VIDEO;
             // 视频流数++
             mediaContext->video_streams++;
         }
@@ -130,13 +131,13 @@ int MediaPlayerController::prepareAsync()
                 printf("MediaPlayerController: new mediaStream fail\n");
                 continue;
             }
-            // 设置对应media的索引
-            mediaStream[i]->setStreamInfo(i);
+            // 设置对应stream类型
+            streamType = PP_STREAM_AUDIO;
             // 音频流数++
             mediaContext->audio_streams++;
         }
         // 初始化当前流的解码器
-        ret = mediaStream[i]->initDecoder(mediaContext);
+        ret = mediaStream[i]->initDecoder(mediaContext, i, streamType);
         if (ret < 0) {
             printf("MediaPlayerController: initDecoder fail\n");
             SAFE_DELETE(mediaStream[i]);
