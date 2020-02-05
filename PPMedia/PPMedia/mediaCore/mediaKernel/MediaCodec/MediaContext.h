@@ -76,8 +76,9 @@ public:
     int                 lowres;
     // Allow non spec compliant speedup tricks.
     bool                fast;
-    
-    
+    // 时钟信息设置
+    Clock*              audioClock;
+    Clock*              videoClock;
 private:
 };
 

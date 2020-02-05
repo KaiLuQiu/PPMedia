@@ -33,7 +33,9 @@ max_stream_num(MAX_DCODEC_STREAM_NUM),
 audioCodecName(NULL),
 videoCodecName(NULL),
 lowres(0),
-fast(false);
+fast(false),
+audioClock(NULL),
+videoClock(NULL)
 {
     PacketQueueArray.reserve(8);
     for(int i = 0; i < max_stream_num ;i++) {
