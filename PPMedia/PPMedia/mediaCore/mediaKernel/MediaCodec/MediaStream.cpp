@@ -207,7 +207,30 @@ int MediaStream::openDecoder()
   
 int MediaStream::closeDecoder()
 {
-    int ret = 0;
+    int ret = 1;
+    if (NULL == mediaContext) {
+        printf("MediaStream: closeDecoder mediaContext is NULL fail\n");
+        return -1;
+    }
+    // 销毁frameQueue
+    if (frameQueue) {
+        frameQueue->frame_queue_destory();
+        delete frameQueue;
+        frameQueue = NULL;
+    }
+    // 销毁packetQueue
+    if(mediaContext->GetPacketQueue(curStreamIndex)) {
+        mediaContext->GetPacketQueue(curStreamIndex)->packet_queue_abort();
+        // 销毁当前的这个packetQueue
+        mediaContext->ReleasePacketQueue(curStreamIndex);
+    }
+    // 销毁线程
+    if(decodeThread) {
+        decodeThread->exit();
+        decodeThread->join();
+        delete decodeThread;
+        decodeThread = NULL;
+    }
     return ret;
 }
   

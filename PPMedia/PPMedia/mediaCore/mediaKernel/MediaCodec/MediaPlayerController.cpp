@@ -99,6 +99,9 @@ int MediaPlayerController::prepareAsync()
     avformatContext = mediaContext->formatContext;
     // 流的总数量
     int nb_streams = mediaContext->nbStreams;
+    // flag标志位设置初始值
+    mediaContext->stopCodecThread = false;
+    
     for (int i = 0; i < nb_streams; i++) {
         AVCodecContext *CodecContext = avformatContext->streams[i]->codec;
         avStream = avformatContext->streams[i];
@@ -151,7 +154,7 @@ int MediaPlayerController::prepareAsync()
             continue;
         }
     }
-    
+
     // 启动demuxer
     SAFE_DELETE(demuxerThread);
     // 创建线程封装对象
@@ -184,7 +187,33 @@ int MediaPlayerController::start()
  */
 int MediaPlayerController::stop()
 {
-    return 0;
+    // flag标志位设置
+    mediaContext->stopCodecThread = true;
+    // 如果创建了demuxer线程 则销毁
+    if (demuxerThread) {
+        demuxerThread->exit();
+        demuxerThread->join();
+        delete demuxerThread;
+        demuxerThread = NULL;
+    }
+    
+    int nb_streams = mediaContext->nbStreams;
+    // 销毁当前播放这个文件的每条stream
+    for (int i = 0; i < nb_streams; i++) {
+        if (mediaStream[i]) {
+            mediaStream[i]->closeDecoder();
+            delete mediaStream[i];
+            mediaStream[i] = NULL;
+        }
+    }
+    
+    // 销毁mediaContext中的avformatContext
+    if (mediaContext->formatContext) {
+        avformat_close_input(&mediaContext->formatContext);
+    }
+    delete mediaContext;
+    mediaContext = NULL;
+    return 1;
 }
 
 /*
