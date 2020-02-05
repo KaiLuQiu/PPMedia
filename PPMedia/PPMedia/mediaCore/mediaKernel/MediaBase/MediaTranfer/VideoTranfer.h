@@ -39,7 +39,7 @@ public:
     /*
      * 初始化
      */
-    virtual void release();
+    virtual int release();
 
     /*
      * 格式转换者

@@ -27,7 +27,7 @@ public:
     /*
      * 初始化
      */
-    virtual void release() {return 0;}
+    virtual int release() {return 0;}
 
     /*
      * 格式转换者

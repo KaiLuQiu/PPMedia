@@ -51,12 +51,13 @@ int VideoTranfer::init()
 /*
  * 初始化
  */
-void VideoTranfer::release()
+int VideoTranfer::release()
 {
     if (swsContex) {
         sws_freeContext(swsContex);
         swsContex = NULL;
     }
+    return 1;
 }
 
 /*

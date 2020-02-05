@@ -51,12 +51,13 @@ int AudioResSample::init()
 /*
  * 初始化
  */
-void AudioResSample::release()
+int AudioResSample::release()
 {
     if(swrContex) {
         swr_free(&swrContex);
         swrContex = NULL;
     }
+    return 1;
 }
 
 /*
@@ -95,7 +96,7 @@ int AudioResSample::tranfer(uint8_t **out, int out_samples, AVFrame* frame)
 }
 
 /*
- * 格式转换者
+ * 格式转换者(这个用于编码)
  */
 int AudioResSample::tranfer(AVFrame *inframe, AVFrame *outframe)
 {
