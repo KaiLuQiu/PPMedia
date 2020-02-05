@@ -51,6 +51,8 @@ public:
     int join();
     
     int detach();
+    
+    int exit();
 private:
     ThreadInfo          *pThreadInfo;        // 线程信息私有变量
 };

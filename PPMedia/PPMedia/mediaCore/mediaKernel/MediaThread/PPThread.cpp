@@ -67,5 +67,14 @@ int PPThread::detach()
     return ret;
 }
 
+int PPThread::exit()
+{
+    if (NULL == pThreadInfo) {
+        return -1;
+    }
+    pThreadInfo->state = THREAD_STATE_EXIT;
+    return 1;
+}
+
 NS_MEDIA_END
 
