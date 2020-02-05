@@ -15,7 +15,26 @@ NS_MEDIA_BEGIN
 // 音频重采样&视频格式转换的基类
 class TranferBase
 {
+public:
+    TranferBase();
+    virtual ~TranferBase();
     
+    /*
+     * 初始化
+     */
+    virtual int init() {return 0;}
+    
+    /*
+     * 初始化
+     */
+    virtual void release() {return 0;}
+
+    /*
+     * 格式转换者
+     */
+    virtual int tranfer(AVFrame *inframe, AVFrame *outframe)  {return 0;}
+
+private:
 };
 
 NS_MEDIA_END
