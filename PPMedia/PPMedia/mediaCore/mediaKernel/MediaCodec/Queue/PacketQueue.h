@@ -82,13 +82,13 @@ public:
     int abort_request;
     // 播放序列，所谓播放序列就是一段连续的播放动作，一个seek操作会启动一段新的播放序列
     int serial;
+    // 队列所占内存空间大小
+    int size;
 private:
     // packet链表
     std::list<P_AVPacket *> AvPacketList;
     // 队列中packet的数量
     int nb_packets;
-    // 队列所占内存空间大小
-    int size;
     // 队列中所有packet总的播放时长
     int64_t duration;
     // 条件cond
