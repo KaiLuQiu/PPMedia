@@ -54,7 +54,7 @@ void AvSyncClock::set_clock_speed(Clock *c, double speed)
 // 因为是视频同步音频，因此获取的要是音频的时钟
 double AvSyncClock::get_master_clock(MediaContext *mediaContext)
 {
-    double val = get_clock(&mediaContext->audioClock);
+    double val = get_clock(mediaContext->audioClock);
     return val;
 }
 
