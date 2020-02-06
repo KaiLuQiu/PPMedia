@@ -14,6 +14,7 @@
 #include "MediaFrame.h"
 #include "PPThread.h"
 #include "FrameQueue.h"
+#include <pthread.h>
 
 NS_MEDIA_BEGIN
 enum StreamType {
@@ -22,6 +23,44 @@ enum StreamType {
     PP_STREAM_AUDIO,
     PP_STREAM_SUBTITLE,
 };
+
+// 解码上下文的封装 参考ffplay
+typedef struct MediaDecoderContext_T {
+    MediaDecoderContext_T()
+    {
+        avctx = NULL;
+        pkt_serial = -1;
+        finished = 0;
+        packet_pending = 0;
+        start_pts = 0;
+        next_pts = 0;
+        // 创建条件变量
+        if(NULL == this->empty_queue_cond) {
+            this->empty_queue_cond = (pthread_cond_t *)av_malloc(sizeof(pthread_cond_t));
+            if (NULL == this->empty_queue_cond) {
+                printf("FrameQueue init malloc cond fail\n");
+            }
+        }
+        pthread_cond_init(this->empty_queue_cond, NULL);
+    }
+    ~MediaDecoderContext_T()
+    {
+        if (this->empty_queue_cond) {
+            pthread_cond_destroy(this->empty_queue_cond);
+            av_free(&this->empty_queue_cond);
+        }
+    }
+    AVCodecContext *avctx;
+    AVPacket pkt;
+    int pkt_serial;
+    int finished;
+    int packet_pending;
+    int64_t start_pts;
+    AVRational start_pts_tb;
+    int64_t next_pts;
+    AVRational next_pts_tb;
+    pthread_cond_t *empty_queue_cond;
+} MediaDecoderContext;
 
 class MediaStream
 {
@@ -59,24 +98,24 @@ public:
      * 获取当前帧
      */
     MediaFrame* getFrame();
-    
-private:
-    // 当前流的索引
-    int             curStreamIndex;
-    // 当前流的解码线程
-    PPThread*       decodeThread;
-    // 当前的流索引对应的流
-    AVStream*       stream;
-    // 对应解码器
-    AVCodec*        codec;
+public:
     // 媒体上下文
-    MediaContext*   mediaContext;
-    // 解码器上下文
-    AVCodecContext* CodecContext;
-    // 解码后存放frame的队列
-    FrameQueue*     frameQueue;
+    MediaContext*           mediaContext;
     // 当前这个stream是的类型（audio / video）
-    StreamType      streamType;
+    StreamType              streamType;
+    // 当前流的索引
+    int                     curStreamIndex;
+    // 解码器上下文
+    MediaDecoderContext*    codecContext;
+    // 当前的流索引对应的流
+    AVStream*               stream;
+private:
+    // 当前流的解码线程
+    PPThread*               decodeThread;
+    // 对应解码器
+    AVCodec*                codec;
+    // 解码后存放frame的队列
+    FrameQueue*             frameQueue;
 };
 
 NS_MEDIA_END

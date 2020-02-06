@@ -16,7 +16,7 @@ decodeThread(NULL),
 stream(NULL),
 codec(NULL),
 mediaContext(NULL),
-CodecContext(NULL),
+codecContext(NULL),
 frameQueue(NULL),
 streamType(PP_STREAM_NONE)
 {
@@ -46,25 +46,31 @@ int MediaStream::initDecoder(MediaContext *MediaCtx, int streamIndex, StreamType
         return -1;
     }
     
-    // 申请AVCodecContext空间,可以选择性传递一个解码器，不传直接NULL
-    CodecContext = avcodec_alloc_context3(NULL);
-    if (NULL == CodecContext) {
+    // 创建一个解码器上下文
+    codecContext = new MediaDecoderContext();
+    if (NULL == codecContext) {
         printf("MediaStream: CodecContext is NULL fail!\n");
         return -1;
     }
+    // 申请AVCodecContext空间,可以选择性传递一个解码器，不传直接NULL
+    codecContext->avctx = avcodec_alloc_context3(NULL);
+    if (NULL == codecContext->avctx) {
+        printf("MediaStream: codecContext->avctx is NULL fail!\n");
+        return -1;
+    }
     // 将流的信息直接复制到解码器上
-    ret = avcodec_parameters_to_context(CodecContext, stream->codecpar);
+    ret = avcodec_parameters_to_context(codecContext->avctx, stream->codecpar);
     if(ret < 0) {
         printf("MediaStream: avcodec_parameters_to_context is fail!\n");
         return -1;
     }
     // 设置流时钟基准
-    av_codec_set_pkt_timebase(CodecContext, stream->time_base);
+    av_codec_set_pkt_timebase(codecContext->avctx, stream->time_base);
     
     // 查找解码器
-    codec = avcodec_find_decoder(CodecContext->codec_id);
+    codec = avcodec_find_decoder(codecContext->avctx->codec_id);
     // 指定解码器
-    switch(CodecContext->codec_type) {
+    switch(codecContext->avctx->codec_type) {
         case AVMEDIA_TYPE_AUDIO:
             forcedCodecName = mediaContext->audioCodecName;
         break;
@@ -82,19 +88,19 @@ int MediaStream::initDecoder(MediaContext *MediaCtx, int streamIndex, StreamType
     if (NULL == codec) {
         // 如果指定了这个codec，但是由于这个codec是有问题的，导致codec为空，那么就需要重新再一次find decoder根据codec_id
         if (NULL != forcedCodecName) {
-            codec = avcodec_find_decoder(CodecContext->codec_id);
+            codec = avcodec_find_decoder(codecContext->avctx->codec_id);
             if (NULL == codec) {
                 printf("MediaStream: codec is NULL\n");
-                avcodec_free_context(&CodecContext);
+                avcodec_free_context(&codecContext->avctx);
                 return AVERROR(EINVAL);
             }
         } else {
             printf("MediaStream: codec is NULL\n");
-            avcodec_free_context(&CodecContext);
+            avcodec_free_context(&codecContext->avctx);
             return AVERROR(EINVAL);
         }
     }
-    CodecContext->codec_id = codec->id;
+    codecContext->avctx->codec_id = codec->id;
     // 设置一些播放参数
     int stream_lowres = mediaContext->lowres;
     if (stream_lowres > av_codec_get_max_lowres(codec)) {
@@ -102,14 +108,14 @@ int MediaStream::initDecoder(MediaContext *MediaCtx, int streamIndex, StreamType
                av_codec_get_max_lowres(codec));
         stream_lowres = av_codec_get_max_lowres(codec);
     }
-    av_codec_set_lowres(CodecContext, stream_lowres);
+    av_codec_set_lowres(codecContext->avctx, stream_lowres);
 #if FF_API_EMU_EDGE
     if (stream_lowres) {
         CodecContext->flags |= CODEC_FLAG_EMU_EDGE;
     }
 #endif
     if (mediaContext->fast) {
-        CodecContext->flags2 |= AV_CODEC_FLAG2_FAST;
+        codecContext->avctx->flags2 |= AV_CODEC_FLAG2_FAST;
     }
 #if FF_API_EMU_EDGE
     if (codec->capabilities & AV_CODEC_CAP_DR1) {
@@ -125,21 +131,21 @@ int MediaStream::initDecoder(MediaContext *MediaCtx, int streamIndex, StreamType
         av_dict_set_int(&opts, "lowres", stream_lowres, 0);
     }
 
-    if (CodecContext->codec_type == AVMEDIA_TYPE_VIDEO || CodecContext->codec_type == AVMEDIA_TYPE_AUDIO) {
+    if (codecContext->avctx->codec_type == AVMEDIA_TYPE_VIDEO || codecContext->avctx->codec_type == AVMEDIA_TYPE_AUDIO) {
         av_dict_set(&opts, "refcounted_frames", "1", 0);
     }
 
     // 打开解码器
-    if ((ret = avcodec_open2(CodecContext, codec, &opts)) < 0) {
+    if ((ret = avcodec_open2(codecContext->avctx, codec, &opts)) < 0) {
         printf("MediaStream: avcodec_open2 is fail\n");
-        avcodec_free_context(&CodecContext);
+        avcodec_free_context(&codecContext->avctx);
         av_dict_free(&opts);
         return -1;
     }
     //
     if (av_dict_get(opts, "", NULL, AV_DICT_IGNORE_SUFFIX)) {
         printf("MediaStream: av_dict_get is fail\n");
-        avcodec_free_context(&CodecContext);
+        avcodec_free_context(&codecContext->avctx);
         av_dict_free(&opts);
         return AVERROR_OPTION_NOT_FOUND;
     }
@@ -180,7 +186,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(DecoderThread, mediaContext, "decodeThread");
+            decodeThread->setFunc(DecoderThread, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
@@ -190,7 +196,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(DecoderThread, mediaContext, "decodeThread");
+            decodeThread->setFunc(DecoderThread, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
