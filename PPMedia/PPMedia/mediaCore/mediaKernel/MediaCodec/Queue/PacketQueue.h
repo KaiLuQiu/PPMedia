@@ -84,13 +84,13 @@ public:
     int serial;
     // 队列所占内存空间大小
     int size;
-private:
-    // packet链表
-    std::list<P_AVPacket *> AvPacketList;
     // 队列中packet的数量
     int nb_packets;
     // 队列中所有packet总的播放时长
     int64_t duration;
+private:
+    // packet链表
+    std::list<P_AVPacket *> AvPacketList;
     // 条件cond
     pthread_cond_t      *cond;
     // 锁
