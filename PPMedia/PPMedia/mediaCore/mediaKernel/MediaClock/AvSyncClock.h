@@ -18,6 +18,7 @@ NS_MEDIA_BEGIN
 #define AV_SYNC_THRESHOLD_MIN 0.04
 #define AV_SYNC_THRESHOLD_MAX 0.1
 #define AV_SYNC_FRAMEDUP_THRESHOLD 0.1
+// 定义avsync不同步的阈值
 #define AV_NOSYNC_THRESHOLD 10.0
 // 音视频同步模式
 enum AV_SYNC_MODE{
@@ -62,10 +63,10 @@ public:
 //     */
 //    static void sync_clock_to_slave(Clock *c, Clock *slave);
 
-//    /*
-//     * 设置播放速度，更新clock
-//     */
-//    static int get_master_sync_type();
+    /*
+     * 设置播放速度，更新clock
+     */
+    static int get_master_sync_type(MediaContext *mediaContext);
     
     /*
      * 获取当前的主时钟（目前只支持视频同步音频）

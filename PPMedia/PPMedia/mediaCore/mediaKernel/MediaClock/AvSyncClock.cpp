@@ -58,6 +58,10 @@ double AvSyncClock::get_master_clock(MediaContext *mediaContext)
     return val;
 }
 
+static int get_master_sync_type(MediaContext *mediaContext) {
+    // 目前默认采用视频sync音频
+    return SYNC_AUDIO_CLOCK;
+}
 
 
 NS_MEDIA_END
