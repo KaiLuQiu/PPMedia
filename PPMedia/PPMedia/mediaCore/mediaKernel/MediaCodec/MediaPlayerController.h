@@ -15,6 +15,7 @@
 #include "MediaStream.h"
 #include "PPThread.h"
 #include "MediaBaseController.h"
+#include "ThreadController.h"
 NS_MEDIA_BEGIN
 
 #define Debug 0
@@ -69,12 +70,13 @@ private:
      */
     int streamOpen();
     // 指针数组
-    MediaStream*    mediaStream[MAX_DCODEC_STREAM_NUM];
+    MediaStream*                mediaStream[MAX_DCODEC_STREAM_NUM];
     // 流索引数组
-    int             stream_index[AVMEDIA_TYPE_NB];
+    int                         stream_index[AVMEDIA_TYPE_NB];
     // PPThread是对线程创建的封装
-    PPThread*       demuxerThread;
-
+    PPThread*                   demuxerThread;
+    // 多线程同步相关（控制demuxer线程）
+    ThreadController*           demuxerThreadController;
 };
 
 NS_MEDIA_END

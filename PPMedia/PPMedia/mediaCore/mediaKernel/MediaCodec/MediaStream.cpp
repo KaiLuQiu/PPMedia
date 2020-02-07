@@ -18,7 +18,8 @@ codec(NULL),
 mediaContext(NULL),
 codecContext(NULL),
 frameQueue(NULL),
-streamType(PP_STREAM_NONE)
+streamType(PP_STREAM_NONE),
+decodeThreadController(NULL)
 {
 
 }
@@ -165,7 +166,18 @@ int MediaStream::openDecoder()
         printf("MediaStream: openDecoder decodeThread is fail\n");
         return -1;
     }
-
+    
+    decodeThreadController = new (std::nothrow)ThreadController();
+    if(NULL == decodeThreadController) {
+        printf("MediaStream: openDecoder decodeThreadController is fail\n");
+        return -1;
+    }
+    if(decodeThreadController->init()) {
+        printf("MediaStream: openDecoder decodeThreadController init fail\n");
+        return -1;
+    }
+    mediaContext->decodeThreadController = decodeThreadController;
+    
     frameQueue = new (std::nothrow)FrameQueue();
     if(NULL == frameQueue) {
         SAFE_DELETE(decodeThread);
@@ -230,8 +242,15 @@ int MediaStream::closeDecoder()
         // 销毁当前的这个packetQueue
         mediaContext->ReleasePacketQueue(curStreamIndex);
     }
+
     // 销毁线程
     if(decodeThread) {
+        // 释放信号量
+        if (decodeThreadController) {
+            decodeThreadController->singal();
+            delete decodeThreadController;
+            decodeThreadController = NULL;
+        }
         decodeThread->exit();
         decodeThread->join();
         delete decodeThread;

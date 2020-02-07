@@ -35,7 +35,11 @@ videoCodecName(NULL),
 lowres(0),
 fast(false),
 audioClock(NULL),
-videoClock(NULL)
+videoClock(NULL),
+stopCodecThread(false),
+isLoop(false),
+demuxerThreadController(NULL),
+decodeThreadController(NULL)
 {
     PacketQueueArray.reserve(8);
     for(int i = 0; i < max_stream_num ;i++) {

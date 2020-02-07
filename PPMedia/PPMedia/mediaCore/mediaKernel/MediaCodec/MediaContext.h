@@ -11,6 +11,8 @@
 #include <string>
 #include "MediaCommon.h"
 #include "PacketQueue.h"
+#include "ThreadController.h"
+
 NS_MEDIA_BEGIN
 
 class MediaContext {
@@ -79,6 +81,14 @@ public:
     // 时钟信息设置
     Clock*              audioClock;
     Clock*              videoClock;
+    // 线程控制标志位
+    bool                stopCodecThread;
+    // 是否需要循环播放这个媒体文件
+    bool                isLoop;
+    // 多线程同步相关（控制demuxer线程）
+    ThreadController*           demuxerThreadController;
+    // 多线程同步相关（控制decode线程）
+    ThreadController*           decodeThreadController;
 private:
 };
 

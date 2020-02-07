@@ -109,6 +109,8 @@ public:
     MediaDecoderContext*    codecContext;
     // 当前的流索引对应的流
     AVStream*               stream;
+    // 多线程同步相关（控制decode线程）
+    ThreadController*       decodeThreadController;
 private:
     // 当前流的解码线程
     PPThread*               decodeThread;

@@ -11,7 +11,8 @@
 NS_MEDIA_BEGIN
 
 MediaPlayerController::MediaPlayerController():
-demuxerThread(NULL)
+demuxerThread(NULL),
+demuxerThreadController(NULL)
 {
     memset(stream_index, -1, sizeof(stream_index));
     for(int i = 0; i < MAX_DCODEC_STREAM_NUM; i++) {
@@ -102,6 +103,13 @@ int MediaPlayerController::prepareAsync()
     // flag标志位设置初始值
     mediaContext->stopCodecThread = false;
     
+    demuxerThreadController = new ThreadController();
+    if(demuxerThreadController->init()) {
+        printf("MediaStream: openDecoder decodeThreadController init fail\n");
+        return -1;
+    }
+    mediaContext->demuxerThreadController = demuxerThreadController;
+    
     for (int i = 0; i < nb_streams; i++) {
         AVCodecContext *CodecContext = avformatContext->streams[i]->codec;
         avStream = avformatContext->streams[i];
@@ -191,6 +199,13 @@ int MediaPlayerController::stop()
     mediaContext->stopCodecThread = true;
     // 如果创建了demuxer线程 则销毁
     if (demuxerThread) {
+        // 销毁线程同步控制器
+        if (demuxerThreadController) {
+            // 释放信号量
+            demuxerThreadController->singal();
+            delete demuxerThreadController;
+            demuxerThreadController = NULL;
+        }
         demuxerThread->exit();
         demuxerThread->join();
         delete demuxerThread;
