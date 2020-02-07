@@ -64,7 +64,7 @@ public:
 //    static void sync_clock_to_slave(Clock *c, Clock *slave);
 
     /*
-     * 设置播放速度，更新clock
+     * 获取时钟同步方式
      */
     static int get_master_sync_type(MediaContext *mediaContext);
     

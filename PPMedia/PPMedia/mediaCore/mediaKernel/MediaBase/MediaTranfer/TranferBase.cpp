@@ -9,5 +9,15 @@
 #include "TranferBase.h"
 NS_MEDIA_BEGIN
 
+TranferBase::TranferBase()
+{
+    
+}
+
+TranferBase::~TranferBase()
+{
+    
+}
+
 NS_MEDIA_END
 

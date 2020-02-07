@@ -8,20 +8,29 @@
 
 #ifndef AudioParamInfo_H
 #define AudioParamInfo_H
+
 #include <string>
 #include "MediaCommon.h"
 NS_MEDIA_BEGIN
 
-class AudioParamInfo
+typedef struct AudioParamInfo_T
 {
-public:
-    AudioParamInfo();
-    ~AudioParamInfo();
+    AudioParamInfo_T():
+    channels(0),
+    channel_layout(0),
+    fmt(AV_SAMPLE_FMT_NONE),
+    frame_size(0),
+    bytes_per_sec(0),
+    sample_rate(0) {
+    }
     
-public:
+    ~AudioParamInfo_T()
+    {
+    
+    }
     // 通道数
     int                 channels;
-    // 数据的排放方式
+    // 音频声道布局
     int64_t             channel_layout;
     // 音频格式
     enum AVSampleFormat fmt;
@@ -31,7 +40,7 @@ public:
     int                 bytes_per_sec;
     // 采样率
     int                 sample_rate;
-};
+} AudioParamInfo;
 // 音频码率计算 = 音频的采样率 * 通道数 * 格式位数；
 // 文件大小（M） = 时间 * 码率 / 8 / 1024；
 // 每一帧数据 = 音频码率计算 / 8 * 25;
