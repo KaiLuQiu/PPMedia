@@ -12,6 +12,7 @@
 #include "MediaContext.h"
 #include "PacketQueue.h"
 #include "FFmpegInit.h"
+#include "ThreadController.h"
 
 NS_MEDIA_BEGIN
 
@@ -25,6 +26,11 @@ void *DemuxerThread(void *arg)
     int64_t allPacketQueueSize = 0;
     AVPacket pkt;
     memset(&pkt, 0, sizeof(AVPacket));
+    ThreadController* demuxerThreadController = mediaContext->demuxerThreadController;
+    if (NULL == demuxerThreadController) {
+        printf("demuxerThreadController is NULL fail\n");
+        return NULL;
+    }
     while(false == mediaContext->stopCodecThread) {
         // 如果有seek请求则执行以下操作
 //        if (seek) {
@@ -88,6 +94,7 @@ void *DemuxerThread(void *arg)
                 } else {
                     //TODO
                     //挂起当前线程
+                    demuxerThreadController->wait();
                 }
             }
             continue;

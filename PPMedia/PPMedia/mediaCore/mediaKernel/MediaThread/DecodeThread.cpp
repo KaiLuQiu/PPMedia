@@ -13,6 +13,7 @@
 #include "PacketQueue.h"
 #include "FFmpegInit.h"
 #include "AvSyncClock.h"
+#include "ThreadController.h"
 
 NS_MEDIA_BEGIN
 
@@ -98,6 +99,12 @@ static int decoder_decode_frame(MediaStream *mediaStream, AVFrame *frame)
     AVCodecContext* avctx = codecContext->avctx;
     // 获取当前的packetQueue
     PacketQueue* packetQueue = mediaContext->GetPacketQueue(streamIndex);
+    ThreadController* demuxerThreadController = mediaContext->demuxerThreadController;
+    ThreadController* decodeThreadController = mediaContext->demuxerThreadController;
+    if (NULL == demuxerThreadController || NULL == decodeThreadController) {
+        printf("demuxerThreadController or decodeThreadController is NULL fail\n");
+        return NULL;
+    }
     for (;;) {
         AVPacket pkt;
         // 只有当serial才去解码获取帧
@@ -142,8 +149,11 @@ static int decoder_decode_frame(MediaStream *mediaStream, AVFrame *frame)
         
         // 从packetQueue中读取包
         do {
-            if (packetQueue->nb_packets == 0)
-                pthread_cond_signal(codecContext->empty_queue_cond);
+            if (packetQueue->nb_packets == 0) {
+                // 释放信号量，让demuxer开始解封装
+                demuxerThreadController->singal();
+//                pthread_cond_signal(codecContext->empty_queue_cond);
+            }
             if (codecContext->packet_pending) {
                 av_packet_move_ref(&pkt, &codecContext->pkt);
                 codecContext->packet_pending = 0;
@@ -176,6 +186,10 @@ static int decoder_decode_frame(MediaStream *mediaStream, AVFrame *frame)
                 av_packet_unref(&pkt);
                 if (ret < 0 && ret != AVERROR(EAGAIN)) {
                     //TODO 挂起线程
+                    // 释放信号量，让demuxer开始解封装
+                    demuxerThreadController->singal();
+                    // 让decode线程开始等待
+                    decodeThreadController->wait();
                 }
             }
         }
