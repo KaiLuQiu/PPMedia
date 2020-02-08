@@ -115,6 +115,8 @@ int MediaPCMBuffer::write(uint8_t* data, int64_t dataSize)
     while (this->size >= this->maxSize) {
         pthread_cond_wait(this->cond, this->mutex);
     }
+    pthread_mutex_unlock(this->mutex);
+
     // 获取循环队列的写索引位置
     int writeIndex = this->windex;
     int pcmBufferSize = pcmSize[writeIndex];
@@ -137,12 +139,13 @@ int MediaPCMBuffer::write(uint8_t* data, int64_t dataSize)
     
     // cp数据到pcmBuffer队列中
     memcpy(pcmData[writeIndex], data, dataSize);
-    // 队列中可读数据++
-    this->size++;
     // 写索引+++,如果大于maxSize则为0
     if (++this->windex == this->maxSize) {
         this->windex = 0;
     }
+    pthread_mutex_lock(this->mutex);
+    // 队列中可读数据++
+    this->size++;
     pthread_cond_signal(this->cond);
     pthread_mutex_unlock(this->mutex);
     return 0;
@@ -159,10 +162,11 @@ int64_t MediaPCMBuffer::read(uint8_t* data, int64_t dataSize)
     while (this->size < 0) {
       pthread_cond_wait(this->cond, this->mutex);
     }
+    pthread_mutex_unlock(this->mutex);
+
     // 获取循环队列的读索引位置
     int readIndex = this->rindex;
     if (NULL == pcmData[readIndex]) {
-        pthread_mutex_unlock(this->mutex);
         return -1;
     }
     // 获取当前这笔数据的size
@@ -174,11 +178,12 @@ int64_t MediaPCMBuffer::read(uint8_t* data, int64_t dataSize)
         memcpy(data, pcmData[readIndex], dataSize);
         readSize = dataSize;
     }
-    this->size--;
     //    (rindex + 1) % this->maxSize
     if (++this->rindex == this->maxSize) {
         this->rindex= 0;
     }
+    pthread_mutex_lock(this->mutex);
+    this->size--;
     pthread_cond_signal(this->cond);
     pthread_mutex_unlock(this->mutex);
     return readSize;
