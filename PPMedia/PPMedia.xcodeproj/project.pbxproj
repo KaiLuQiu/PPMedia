@@ -49,6 +49,7 @@
 		369686FC23EA97560022BB91 /* AudioRefresh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369686FB23EA97560022BB91 /* AudioRefresh.cpp */; };
 		3696870023EBF7EA0022BB91 /* ThreadController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369686FF23EBF7EA0022BB91 /* ThreadController.cpp */; };
 		3696870223EC10DD0022BB91 /* TranferBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3696870123EC10DD0022BB91 /* TranferBase.cpp */; };
+		3696870623ED1E540022BB91 /* MediaPCMBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3696870523ED1E540022BB91 /* MediaPCMBuffer.cpp */; };
 		369BDD08237FAE68001A9EBC /* PPMedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369BDCFE237FAE68001A9EBC /* PPMedia.cpp */; };
 		36C7A73D238C0C14003250C1 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C7A73C238C0C14003250C1 /* OpenGLView.m */; };
 		36C7A743238C0C6D003250C1 /* render_frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C7A740238C0C6C003250C1 /* render_frame.m */; };
@@ -248,6 +249,8 @@
 		369686FF23EBF7EA0022BB91 /* ThreadController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadController.cpp; sourceTree = "<group>"; };
 		3696870123EC10DD0022BB91 /* TranferBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranferBase.cpp; sourceTree = "<group>"; };
 		3696870323ED0DF50022BB91 /* AudioParamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioParamInfo.h; sourceTree = "<group>"; };
+		3696870423ED1E540022BB91 /* MediaPCMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPCMBuffer.h; sourceTree = "<group>"; };
+		3696870523ED1E540022BB91 /* MediaPCMBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPCMBuffer.cpp; sourceTree = "<group>"; };
 		369BDCFD237FAE68001A9EBC /* PPMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMedia.h; sourceTree = "<group>"; };
 		369BDCFE237FAE68001A9EBC /* PPMedia.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPMedia.cpp; sourceTree = "<group>"; };
 		36C7A73B238C0C14003250C1 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
@@ -763,6 +766,8 @@
 		369686C123E7EDF50022BB91 /* MediaData */ = {
 			isa = PBXGroup;
 			children = (
+				3696870523ED1E540022BB91 /* MediaPCMBuffer.cpp */,
+				3696870423ED1E540022BB91 /* MediaPCMBuffer.h */,
 				3696870323ED0DF50022BB91 /* AudioParamInfo.h */,
 				369686C523E7EE320022BB91 /* MediaFrame.cpp */,
 				369686C623E7EE320022BB91 /* MediaFrame.h */,
@@ -1282,6 +1287,7 @@
 				3696870023EBF7EA0022BB91 /* ThreadController.cpp in Sources */,
 				369686E823E95E220022BB91 /* AudioResSample.cpp in Sources */,
 				369686D323E9119D0022BB91 /* MediaFactory.cpp in Sources */,
+				3696870623ED1E540022BB91 /* MediaPCMBuffer.cpp in Sources */,
 				197EF9A4221AAF850015F02F /* PPMediaController.m in Sources */,
 				369686C723E7EE320022BB91 /* MediaFrame.cpp in Sources */,
 				36FAD2CF23B89A66007B4144 /* myPhotoCell.m in Sources */,
