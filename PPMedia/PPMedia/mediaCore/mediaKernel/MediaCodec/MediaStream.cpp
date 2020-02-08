@@ -273,6 +273,10 @@ int MediaStream::resume()
   
 MediaFrame* MediaStream::getFrame()
 {
+    // 释放解码器信号量，让解码器开始解码
+    if (decodeThreadController) {
+        decodeThreadController->singal();
+    }
     return NULL;
 }
 
