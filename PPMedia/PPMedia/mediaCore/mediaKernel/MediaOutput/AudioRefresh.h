@@ -11,7 +11,7 @@
 #include <string>
 #include "MediaCommon.h"
 #include "MediaContext.h"
-#include "AudioParamInfo.h"
+#include "MediaParamInfo.h"
 NS_MEDIA_BEGIN
 
 #define SDL_AUDIO_MIN_BUFFER_SIZE 512

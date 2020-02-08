@@ -11,7 +11,7 @@
 #include <string>
 #include "MediaCommon.h"
 #include "TranferBase.h"
-#include "AudioParamInfo.h"
+#include "MediaParamInfo.h"
 
 NS_MEDIA_BEGIN
 

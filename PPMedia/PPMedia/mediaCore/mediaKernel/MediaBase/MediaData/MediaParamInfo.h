@@ -6,8 +6,8 @@
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#ifndef AudioParamInfo_H
-#define AudioParamInfo_H
+#ifndef MediaParamInfo_H
+#define MediaParamInfo_H
 
 #include <string>
 #include "MediaCommon.h"
@@ -55,5 +55,22 @@ typedef struct AudioParamInfo_T
 
 // 每个通道样本数 = 320/2 = 160（Byte）
 
+typedef struct VideoParamInfo_T
+{
+    VideoParamInfo_T()
+    {
+        pixelFormat = AV_PIX_FMT_NONE;
+        srcWidth = 0;
+        srcHeight = 0;
+        codecId = AV_CODEC_ID_NONE;
+        frameRate = 0;
+    }
+    AVPixelFormat   pixelFormat;
+    int             srcWidth;
+    int             srcHeight;
+    AVCodecID       codecId;
+    int             frameRate;
+}videoParamInfo;
+
 NS_MEDIA_END
-#endif // AudioParamInfo_H
+#endif // MediaParamInfo_H
