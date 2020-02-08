@@ -1,15 +1,15 @@
 //
-//  AyncClock.cpp
+//  MediaClock.cpp
 //  PPMedia
 //
 //  Created by 邱开禄 on 2019/11/14.
 //  Copyright © 2019 邱开禄. All rights reserved.
 //
 
-#include "AvSyncClock.h"
+#include "MediaClock.h"
 
 NS_MEDIA_BEGIN
-void AvSyncClock::init_clock(Clock *c, int *queue_serial)
+void MediaClock::init_clock(Clock *c, int *queue_serial)
 {
     c->speed = 1.0;
     c->paused = 0;
@@ -17,7 +17,7 @@ void AvSyncClock::init_clock(Clock *c, int *queue_serial)
     set_clock(c, NAN, -1);
 }
 
-double AvSyncClock::get_clock(Clock *c)
+double MediaClock::get_clock(Clock *c)
 {
     if (*c->queue_serial != c->serial)
         return NAN;
@@ -31,7 +31,7 @@ double AvSyncClock::get_clock(Clock *c)
     }
 }
  
-void AvSyncClock::set_clock_at(Clock *c, double pts, int serial, double time)
+void MediaClock::set_clock_at(Clock *c, double pts, int serial, double time)
 {
     c->pts = pts;
     c->last_updated = time;
@@ -39,29 +39,25 @@ void AvSyncClock::set_clock_at(Clock *c, double pts, int serial, double time)
     c->serial = serial;
 }
 
-void AvSyncClock::set_clock(Clock *c, double pts, int serial)
+void MediaClock::set_clock(Clock *c, double pts, int serial)
 {
     double time = av_gettime_relative() / 1000000.0;
     set_clock_at(c, pts, serial, time);
 }
 
-void AvSyncClock::set_clock_speed(Clock *c, double speed)
+void MediaClock::set_clock_speed(Clock *c, double speed)
 {
     set_clock(c, get_clock(c), c->serial);
     c->speed = speed;
 }
 
 // 因为是视频同步音频，因此获取的要是音频的时钟
-double AvSyncClock::get_master_clock(MediaContext *mediaContext)
+double MediaClock::get_master_clock(MediaContext *mediaContext)
 {
     double val = get_clock(mediaContext->audioClock);
     return val;
 }
 
-int AvSyncClock::get_master_sync_type(MediaContext *mediaContext) {
-    // 目前默认采用视频sync音频
-    return SYNC_AUDIO_CLOCK;
-}
-
 
 NS_MEDIA_END
+
