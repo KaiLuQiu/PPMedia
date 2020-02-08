@@ -11,6 +11,7 @@
 #include <string>
 #include "MediaCommon.h"
 #include "PacketQueue.h"
+#include "AudioParamInfo.h"
 #include "ThreadController.h"
 
 NS_MEDIA_BEGIN
@@ -29,66 +30,69 @@ public:
 
 public:
     // FFmpeg上下文
-    AVFormatContext*    formatContext;
+    AVFormatContext*                formatContext;
 
-    AVInputFormat*      Informat;
+    AVInputFormat*                  Informat;
     // 标识一次SEEK请求
-    int                 seek_request;
+    int                             seek_request;
     // SEEK标志，诸如AVSEEK_FLAG_BYTE等
-    int                 seek_flags;
+    int                             seek_flags;
     // SEEK的目标位置(当前位置+增量)
-    int64_t             seek_pos;
+    int64_t                         seek_pos;
     // 本次SEEK的位置增量
-    int64_t             seek_rel;
+    int64_t                         seek_rel;
     // 是否保存最后一帧
-    bool                keep_last;
+    bool                            keep_last;
     // 视频宽高信息
-    int                 width;
-    int                 height;
+    int                             width;
+    int                             height;
     // 是否parse到类eof标识位
-    int                 eof;
+    int                             eof;
     // 上一次的播放时间
-    int                 last_vis_time;
+    int                             last_vis_time;
     // 当前frame对应实际时间的累积值
-    double              frame_timer;
+    double                          frame_timer;
     // maximum duration of a frame - above this, we consider the jump a  timestamp discontinuity
-    double              max_frame_duration;
+    double                          max_frame_duration;
     // 记录drop video的数量
-    int                 frame_drops_late;
-    int                 frame_drops_early;
+    int                             frame_drops_late;
+    int                             frame_drops_early;
     // 媒体流的数量
-    int                 nbStreams;
+    int                             nbStreams;
     // audio流的数量
-    int                 audio_streams;
+    int                             audio_streams;
     // video流的数量
-    int                 video_streams;
+    int                             video_streams;
     // SDL音频缓冲区大小(单位字节)
-    int                 audio_hw_buf_size;
+    int                             audio_hw_buf_size;
     // 最大的流数量
-    int                 max_stream_num;
+    int                             max_stream_num;
     // 不同流对应的流packetQueue
-    std::vector<PacketQueue *> PacketQueueArray;
+    std::vector<PacketQueue *>      PacketQueueArray;
     // 参考https://www.jianshu.com/p/8de0fc796ef9
     // 指定音频解码器
-    const char*         audioCodecName;
+    const char*                     audioCodecName;
     // 指定视频解码器
-    const char*         videoCodecName;
+    const char*                     videoCodecName;
     // 以下设置播放的一些参数
     // 分辨率参数
-    int                 lowres;
+    int                             lowres;
     // Allow non spec compliant speedup tricks.
-    bool                fast;
+    bool                            fast;
     // 时钟信息设置
-    Clock*              audioClock;
-    Clock*              videoClock;
+    Clock*                          audioClock;
+    Clock*                          videoClock;
     // 线程控制标志位
-    bool                stopCodecThread;
+    bool                            stopCodecThread;
     // 是否需要循环播放这个媒体文件
-    bool                isLoop;
+    bool                            isLoop;
     // 多线程同步相关（控制demuxer线程）
-    ThreadController*           demuxerThreadController;
+    ThreadController*               demuxerThreadController;
     // 多线程同步相关（控制decode线程）
-    ThreadController*           decodeThreadController;
+    ThreadController*               decodeThreadController;
+    
+    AudioParamInfo                  srcAudioParam;
+    AudioParamInfo                  dstAudioParam;
 private:
 };
 
