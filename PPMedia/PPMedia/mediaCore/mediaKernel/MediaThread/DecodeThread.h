@@ -13,8 +13,16 @@
 NS_MEDIA_BEGIN
 
 /*
- * demuxer解封装线程
+ * 软解
  */
-void *DecoderThread(void *arg);
+int DecoderThreadBySoft(void *arg);
+
+/*
+ * 硬解
+ */
+int DecoderThreadByIosVideotoolbox(void *arg);
+
+
+
 NS_MEDIA_END
 #endif // DecodeThread_H

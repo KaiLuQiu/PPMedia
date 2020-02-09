@@ -14,6 +14,6 @@ NS_MEDIA_BEGIN
 /*
  * demuxer解封装线程
  */
-void *DemuxerThread(void *arg);
+int DemuxerThread(void *arg);
 NS_MEDIA_END
 #endif // DemuxdeThread_H

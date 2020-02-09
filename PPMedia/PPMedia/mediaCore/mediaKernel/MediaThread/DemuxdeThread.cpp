@@ -16,7 +16,7 @@
 
 NS_MEDIA_BEGIN
 
-void *DemuxerThread(void *arg)
+int DemuxerThread(void *arg)
 {
     MediaContext *mediaContext = (MediaContext *)arg;
     AVFormatContext* formatContext = mediaContext->formatContext;
@@ -29,7 +29,7 @@ void *DemuxerThread(void *arg)
     ThreadController* demuxerThreadController = mediaContext->demuxerThreadController;
     if (NULL == demuxerThreadController) {
         printf("demuxerThreadController is NULL fail\n");
-        return NULL;
+        return -1;
     }
     while(false == mediaContext->stopCodecThread) {
         // 如果有seek请求则执行以下操作
@@ -109,7 +109,7 @@ void *DemuxerThread(void *arg)
             continue;
         }
     }
-    return NULL;
+    return 1;
 }
 
 NS_MEDIA_END

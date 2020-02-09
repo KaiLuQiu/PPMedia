@@ -12,7 +12,8 @@
 #include "FrameQueue.h"
 #include "PacketQueue.h"
 #include "FFmpegInit.h"
-#include "AvSyncClock.h"
+#include "MediaSync.h"
+#include "MediaClock.h"
 #include "ThreadController.h"
 
 NS_MEDIA_BEGIN
@@ -219,9 +220,9 @@ static int get_video_frame(MediaStream *mediaStream, AVFrame *frame)
         frame->sample_aspect_ratio = av_guess_sample_aspect_ratio(mediaContext->formatContext, videoStream, frame);
 
         // 默认都是丢帧处理
-        if (AvSyncClock::get_master_sync_type(mediaContext) != SYNC_AUDIO_CLOCK) {
+        if (MediaSync::get_master_sync_type(mediaContext) != SYNC_AUDIO_CLOCK) {
             if (frame->pts != AV_NOPTS_VALUE) {
-                double diff = dpts - AvSyncClock::get_master_clock(mediaContext);
+                double diff = dpts - MediaClock::get_master_clock(mediaContext);
                 if (!isnan(diff) && fabs(diff) < AV_NOSYNC_THRESHOLD &&
                     codecContext->pkt_serial == videoClock->serial &&
                     videoPacketQueue->nb_packets) {
@@ -254,7 +255,7 @@ static int get_subtitle_frame(MediaStream *mediaStream, AVFrame *frame)
     return ret;
 }
 
-void *DecoderThread(void *arg)
+int DecoderThreadBySoft(void *arg)
 {
     // 获取当前的媒体流
     MediaStream *mediaStream = (MediaStream *)arg;
@@ -309,7 +310,12 @@ void *DecoderThread(void *arg)
     if (frame) {
         av_frame_free(&frame);
     }
-    return NULL;
+    return 1;
+}
+
+int DecoderThreadByIosVideotoolbox(void *arg)
+{
+    return 0;
 }
 
 NS_MEDIA_END

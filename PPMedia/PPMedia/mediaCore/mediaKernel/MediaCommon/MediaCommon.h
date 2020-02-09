@@ -49,7 +49,7 @@ extern "C"{
 #define MAX_PACKET_QUEUE_SIZE (15 * 512 *1024)
 
 #ifndef SAFE_AV_FREE
-#define SAFE_AV_FREE(p) if(p != NULL) {av_free(p); p = NULL;}
+#define SAFE_AV_FREE(p) if(p != NULL) {av_free(&p); p = NULL;}
 #endif
 
 #ifndef SAFE_DELETE
@@ -99,6 +99,10 @@ typedef struct Clock_T {
     // 指向packet_serial
     int *queue_serial;
 } Clock;
+
+typedef struct SDL_Class {
+    const char *name;
+} SDL_Class;
 
 
 #endif
