@@ -25,6 +25,12 @@ MediaPlayerController::~MediaPlayerController()
     
 }
 
+static int decode_interrupt_cb(void *ctx)
+{
+    MediaContext *mediaContext = (MediaContext *)ctx;
+    return mediaContext->abort_request;
+}
+
 /*
  * 初始化操作
  */
@@ -37,6 +43,10 @@ int MediaPlayerController::streamOpen()
 {
     int ret;
     int seek_by_bytes = -1;
+    if (NULL == this->pipleLine) {
+        printf("MediaPlayerController:pipleLine is NULL fail\n");
+        return -1;
+    }
     SAFE_DELETE(mediaContext);
     // 先创建一个播放器上下文
     mediaContext = new MediaContext();
@@ -47,8 +57,12 @@ int MediaPlayerController::streamOpen()
         return false;
     }
     
+    // 设置中断函数，如果出错或者退出，就可以立刻退出
+    mediaContext->formatContext->interrupt_callback.callback = decode_interrupt_cb;
+    mediaContext->formatContext->interrupt_callback.opaque = mediaContext;
+    
     // 打开一个mediaPath文件并解析。可解析的内容包括：视频流、音频流、视频流参数、音频流参数、视频帧索引。
-    ret = avformat_open_input(&mediaContext->formatContext, mediaPath.c_str(), mediaContext->Informat, NULL);
+    ret = avformat_open_input(&mediaContext->formatContext, mediaPath.c_str(), mediaContext->informat, NULL);
     if (ret < 0) {
         printf(mediaPath.c_str(), ret);
         return false;
@@ -105,10 +119,16 @@ int MediaPlayerController::prepareAsync()
     
     demuxerThreadController = new ThreadController();
     if(demuxerThreadController->init()) {
-        printf("MediaStream: openDecoder decodeThreadController init fail\n");
+        printf("MediaPlayerController: decodeThreadController init fail\n");
         return -1;
     }
     mediaContext->demuxerThreadController = demuxerThreadController;
+    
+    this->decodec_node = MediaPipeline::get_video_decoder_node(this->pipleLine);
+    if (NULL == this->decodec_node) {
+        printf("MediaPlayerController: decodec_node is NULL fail\n");
+    }
+    mediaContext->decodec_node = this->decodec_node;
     
     for (int i = 0; i < nb_streams; i++) {
         AVCodecContext *CodecContext = avformatContext->streams[i]->codec;
@@ -147,6 +167,7 @@ int MediaPlayerController::prepareAsync()
             // 音频流数++
             mediaContext->audio_streams++;
         }
+        
         // 初始化当前流的解码器
         ret = mediaStream[i]->initDecoder(mediaContext, i, streamType);
         if (ret < 0) {
@@ -161,8 +182,21 @@ int MediaPlayerController::prepareAsync()
             SAFE_DELETE(mediaStream[i]);
             continue;
         }
+        
+        // 解码后更新音视频源参数信息
+        if ((CodecContext->codec_type == AVMEDIA_TYPE_VIDEO) && (stream_index[AVMEDIA_TYPE_VIDEO] >= 0)) {
+            // 更新源的视频格式信息
+            mediaContext->srcVideoParam.srcWidth = mediaStream[i]->codecContext->avctx->width;
+            mediaContext->srcVideoParam.srcHeight = mediaStream[i]->codecContext->avctx->height;
+            mediaContext->srcVideoParam.codecId = mediaStream[i]->codecContext->avctx->codec_id;
+            mediaContext->srcVideoParam.pixelFormat = mediaStream[i]->codecContext->avctx->pix_fmt;
+            // 猜测视频帧率
+            mediaContext->srcVideoParam.frameRate = av_guess_frame_rate(mediaContext->formatContext, mediaStream[i]->stream, NULL);
+        } else if ((CodecContext->codec_type == AVMEDIA_TYPE_AUDIO) && (stream_index[AVMEDIA_TYPE_AUDIO] >= 0)) {
+            
+        }
     }
-
+    
     // 启动demuxer
     SAFE_DELETE(demuxerThread);
     // 创建线程封装对象
@@ -195,6 +229,21 @@ int MediaPlayerController::start()
  */
 int MediaPlayerController::stop()
 {
+    if (this->pipleLine) {
+        delete this->pipleLine;
+        this->pipleLine = NULL;
+    }
+    
+    if (this->decodec_node) {
+        delete this->decodec_node;
+        this->decodec_node = NULL;
+    }
+    
+    if (this->aout_node) {
+        delete this->aout_node;
+        this->aout_node = NULL;
+    }
+    
     // flag标志位设置
     mediaContext->stopCodecThread = true;
     // 如果创建了demuxer线程 则销毁
