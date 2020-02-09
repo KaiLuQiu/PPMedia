@@ -1,6 +1,7 @@
 //
 //  PPThread.h
 //  PPMedia
+//  参考ijkplayer的ijksdl_thread
 //
 //  Created by 邱开禄 on 2020/02/02.
 //  Copyright © 2020 邱开禄. All rights reserved.
@@ -14,7 +15,7 @@ NS_MEDIA_BEGIN
 
 // 对线程的简单封装使用
 
-typedef void *(*ThreadFunc)(void *);
+typedef int (*ThreadFunc)(void *);
 enum THreadState {
     THREAD_STATE_INIT = 1,    //线程初始化状态
     THREAD_STATE_RUN,         //线程运行状态

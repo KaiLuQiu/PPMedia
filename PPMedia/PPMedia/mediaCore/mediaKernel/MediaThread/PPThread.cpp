@@ -10,12 +10,13 @@
 #include <pthread.h>
 NS_MEDIA_BEGIN
 
-static void *RunFunc(void *arg)
+static void *RunThread(void *arg)
 {
     ThreadInfo *info = (ThreadInfo *)arg;
     // 设置线程名字
     pthread_setname_np(info->Name.c_str());
-    return info->func(info->arg);
+    info->func(info->arg);
+    return NULL;
 }
 
 PPThread::PPThread()
@@ -43,7 +44,7 @@ int PPThread::start()
     if (NULL == pThreadInfo) {
         return -1;
     }
-    int ret = pthread_create(&pThreadInfo->pid, NULL, RunFunc, pThreadInfo);
+    int ret = pthread_create(&pThreadInfo->pid, NULL, RunThread, pThreadInfo);
     pThreadInfo->state = THREAD_STATE_RUN;
     return ret;
 }
@@ -77,4 +78,5 @@ int PPThread::exit()
 }
 
 NS_MEDIA_END
+
 
