@@ -28,24 +28,14 @@ void MediaPipeline::MediaPipeline_free(Media_Pipeline *pipeline)
     free(pipeline);
 }
 
-Media_Pipenode* MediaPipeline::init_video_decoder(Media_Pipeline *pipeline)
+Media_Pipenode* MediaPipeline::get_video_decoder_node(Media_Pipeline *pipeline)
 {
-    return pipeline->func_init_video_decoder(pipeline);
+    return pipeline->func_get_video_decoder_node(pipeline);
 }
 
-Media_Pipenode* MediaPipeline::open_video_decoder(Media_Pipeline *pipeline)
+SDL_Aout* MediaPipeline::get_audio_output_node(Media_Pipeline *pipeline)
 {
-    return pipeline->func_open_video_decoder(pipeline);
-}
-
-SDL_Aout* MediaPipeline::open_audio_output(Media_Pipeline *pipeline)
-{
-    return pipeline->func_open_audio_output(pipeline);
-}
-
-int MediaPipeline::config_video_decoder(Media_Pipeline *pipeline)
-{
-    return pipeline->func_config_video_decoder(pipeline);
+    return pipeline->func_get_audio_output_node(pipeline);
 }
 
 NS_MEDIA_END

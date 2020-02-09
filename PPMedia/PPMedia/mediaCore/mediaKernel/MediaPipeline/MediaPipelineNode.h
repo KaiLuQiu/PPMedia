@@ -20,8 +20,7 @@ typedef struct Media_Pipenode Media_Pipenode;
 struct Media_Pipenode {
     SDL_Class                   *opaque_class;
     void (*func_destroy)        (void);
-    int  (*func_video_decode)   (void *arg);
-    int  (*func_audio_out)      (void *arg);
+    int  (*func_execute)        (void *arg);
     int  (*func_flush)          (void); // optional
 };
 

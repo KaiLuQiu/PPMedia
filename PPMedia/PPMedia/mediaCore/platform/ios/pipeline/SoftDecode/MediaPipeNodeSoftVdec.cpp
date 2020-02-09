@@ -24,8 +24,8 @@ Media_Pipenode* MediaPipeNodeSoftVdec::pipenode_create_video_decoder_by_soft()
 
     node->func_destroy  = NULL;
     // 映射对应的软件解码函数
-    node->func_video_decode = DecoderThreadByffplay;
-    node->func_audio_out = NULL;
+    node->func_execute  = DecoderThreadBySoft;
+    node->func_flush    = NULL;
     return node;
 }
 NS_MEDIA_END
