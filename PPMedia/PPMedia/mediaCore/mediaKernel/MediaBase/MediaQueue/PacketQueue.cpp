@@ -7,7 +7,7 @@
 //
 
 #include "PacketQueue.h"
-#include "FFmpegInit.h"
+#include "MediaInit.h"
 #include <pthread.h>
 
 NS_MEDIA_BEGIN
@@ -69,7 +69,7 @@ void PacketQueue::packet_queue_start()
 {
     pthread_mutex_lock(this->mutex);
     this->abort_request = 0;
-    packet_queue_put_private(FFmpegInit::flushPkt);
+    packet_queue_put_private(MediaInit::getFlushPacket());
     pthread_mutex_unlock(this->mutex);
 }
 
@@ -134,7 +134,7 @@ int PacketQueue::packet_queue_put_private(AVPacket *pkt)
         return -1;
     p_pkt->pkt = *pkt;
     // 如果这个包是flushPkt，则让那个serial++,表示不连续
-    if(pkt == FFmpegInit::flushPkt)
+    if(pkt == MediaInit::getFlushPacket())
         this->serial++;
     // 使用同一个序列号
     p_pkt->serial = this->serial;
@@ -156,7 +156,7 @@ int PacketQueue::packet_queue_put(AVPacket *pkt)
     // 主要实现在这里
     ret = packet_queue_put_private(pkt);
     pthread_mutex_unlock(this->mutex);
-    if (pkt != FFmpegInit::flushPkt && ret < 0) {
+    if (pkt != MediaInit::getFlushPacket() && ret < 0) {
         // 放入失败，释放AVPacket
         av_packet_unref(pkt);
     }
