@@ -14,8 +14,14 @@
 NS_MEDIA_BEGIN
 
 // 对线程的简单封装使用
-
 typedef int (*ThreadFunc)(void *);
+
+typedef enum {
+    SDL_THREAD_PRIORITY_LOW,
+    SDL_THREAD_PRIORITY_NORMAL,
+    SDL_THREAD_PRIORITY_HIGH
+} ThreadPriority;
+
 enum THreadState {
     THREAD_STATE_INIT = 1,    //线程初始化状态
     THREAD_STATE_RUN,         //线程运行状态
@@ -45,14 +51,34 @@ public:
     
     ~PPThread();
     
-    void setFunc(ThreadFunc func, void *arg, std::string name);
+    /*
+     * 创建线程
+     */
+    void createThreadEx(ThreadFunc func, void *arg, std::string name);
     
+    /*
+     * 设置线程优先级
+     */
+    int setThreadPriority(ThreadPriority priority);
+    
+    /*
+     * 启动线程
+     */
     int start();
     
+    /*
+     * 添加到join队列
+     */
     int join();
     
+    /*
+     * detach线程
+     */
     int detach();
     
+    /*
+     * 设置当前线程为退出状态
+     */
     int exit();
 private:
     ThreadInfo          *pThreadInfo;        // 线程信息私有变量

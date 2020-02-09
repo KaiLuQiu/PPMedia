@@ -7,6 +7,7 @@
 //
 
 #include "PPThread.h"
+#include <stdint.h>
 #include <pthread.h>
 NS_MEDIA_BEGIN
 
@@ -29,7 +30,7 @@ PPThread::~PPThread()
     SAFE_DELETE(pThreadInfo);
 }
 
-void PPThread::setFunc(ThreadFunc func, void *arg, std::string name)
+void PPThread::createThreadEx(ThreadFunc func, void *arg, std::string name)
 {
     SAFE_DELETE(pThreadInfo);
     pThreadInfo = new ThreadInfo();
@@ -39,8 +40,36 @@ void PPThread::setFunc(ThreadFunc func, void *arg, std::string name)
     pThreadInfo->state = THREAD_STATE_INIT;
 }
 
+// 参考ijkplayer
+int PPThread::setThreadPriority(ThreadPriority priority)
+{
+    struct sched_param sched;
+    int policy;
+    pthread_t thread = pthread_self();
+
+    if (pthread_getschedparam(thread, &policy, &sched) < 0) {
+        printf("pthread_getschedparam() failed");
+        return -1;
+    }
+    if (priority == SDL_THREAD_PRIORITY_LOW) {
+        sched.sched_priority = sched_get_priority_min(policy);
+    } else if (priority == SDL_THREAD_PRIORITY_HIGH) {
+        sched.sched_priority = sched_get_priority_max(policy);
+    } else {
+        int min_priority = sched_get_priority_min(policy);
+        int max_priority = sched_get_priority_max(policy);
+        sched.sched_priority = (min_priority + (max_priority - min_priority) / 2);
+    }
+    if (pthread_setschedparam(thread, policy, &sched) < 0) {
+        printf("pthread_setschedparam() failed");
+        return -1;
+    }
+    return 0;
+}
+
 int PPThread::start()
 {
+    assert(pThreadInfo);
     if (NULL == pThreadInfo) {
         return -1;
     }
@@ -51,6 +80,7 @@ int PPThread::start()
 
 int PPThread::join()
 {
+    assert(pThreadInfo);
     if (NULL == pThreadInfo) {
         return -1;
     }
@@ -61,6 +91,7 @@ int PPThread::join()
 
 int PPThread::detach()
 {
+    assert(pThreadInfo);
     if (NULL == pThreadInfo) {
         return -1;
     }
@@ -70,6 +101,7 @@ int PPThread::detach()
 
 int PPThread::exit()
 {
+    assert(pThreadInfo);
     if (NULL == pThreadInfo) {
         return -1;
     }
