@@ -7,6 +7,7 @@
 //
 
 #include "MediaStream.h"
+#include "MediaSync.h"
 #include "DecodeThread.h"
 NS_MEDIA_BEGIN
 
@@ -19,7 +20,8 @@ mediaContext(NULL),
 codecContext(NULL),
 frameQueue(NULL),
 streamType(PP_STREAM_NONE),
-decodeThreadController(NULL)
+decodeThreadController(NULL),
+decodeFrame(NULL)
 {
 
 }
@@ -160,6 +162,18 @@ int MediaStream::openDecoder()
 {
     int ret = 0;
     PacketQueue*        packetQueue = NULL;
+    
+    if (NULL == decodeFrame) {
+        decodeFrame = new Frame();
+        if (NULL == decodeFrame->frame) {
+            decodeFrame->frame = av_frame_alloc();
+            if (NULL == decodeFrame->frame) {
+                printf("MediaStream: frame is NULL fail\n");
+                return -1;
+            }
+        }
+    }
+    
     SAFE_DELETE(decodeThread);
     decodeThread = new (std::nothrow)PPThread();
     if(NULL == decodeThread) {
@@ -198,7 +212,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(DecoderThread, this, "decodeThread");
+            decodeThread->setFunc(mediaContext->decodec_node->func_execute, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
@@ -208,7 +222,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(DecoderThread, this, "decodeThread");
+            decodeThread->setFunc(mediaContext->decodec_node->func_execute, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
@@ -230,6 +244,16 @@ int MediaStream::closeDecoder()
         printf("MediaStream: closeDecoder mediaContext is NULL fail\n");
         return -1;
     }
+    
+    if (decodeFrame) {
+        if (decodeFrame->frame) {
+            av_frame_free(&decodeFrame->frame);
+            decodeFrame->frame = NULL;
+        }
+        delete decodeFrame;
+        decodeFrame = NULL;
+    }
+    
     // 销毁frameQueue
     if (frameQueue) {
         frameQueue->frame_queue_destory();
@@ -271,15 +295,139 @@ int MediaStream::resume()
     return ret;
 }
   
-MediaFrame* MediaStream::getFrame()
+int MediaStream::getFrame(MediaFrame* mediaFrame)
 {
+    int ret = 0;
+    if (NULL == mediaFrame) {
+        return -1;
+    }
+    double last_duration, duration, delay;
+    Frame *vp, *lastvp;
+    // 每remaining_time运行一次循环（刷新一次屏幕）
+    double remaining_time = 0.0;
+    double time;
+
+    PacketQueue *packetQueue = mediaContext->GetPacketQueue(curStreamIndex);
+
     // 释放解码器信号量，让解码器开始解码
     if (decodeThreadController) {
         decodeThreadController->singal();
     }
-    return NULL;
+    
+    // 从frameQueue中获取一个当前需要显示的帧
+    for(;;) {
+        // 判断decoder queue中是否存在数据
+        if (frameQueue->frame_queue_nb_remaining() == 0) {
+            ret = -1;
+            goto out;
+        } else {
+            // 从frameQueue中获取当前播放器显示的帧
+            lastvp = frameQueue->frame_queue_peek_last();
+            // 获取下一笔要现实的帧
+            vp = frameQueue->frame_queue_peek();
+            // 当前的这笔数据流不连续，则跳过获取下一笔
+            if (vp->serial != packetQueue->serial) {
+               frameQueue->frame_queue_next();
+                continue;
+            }
+            // 如果上一笔和当前的这笔serial不对，表示不连续。这边应该从新获取frame_timer的时间
+            if (lastvp->serial != vp->serial)
+            {
+                mediaContext->frame_timer = av_gettime_relative() / 1000000.0; //
+            }
+            // 是否需要进行avsync
+            if (mediaContext->needSync) {
+                // 计算上笔应该持续的时间
+                last_duration = MediaSync::vp_duration(lastvp, vp, mediaContext);
+                
+                // 根据当前的视频和主时钟（audio时钟）计算差值diff,根据不同情况调整delay值
+                delay = MediaSync::compute_target_delay(last_duration, mediaContext);
+
+                // 获取当前的系统时间值
+                time = av_gettime_relative() / 1000000.0;
+                
+                // 如果上一帧显示时长未满，重复显示上一帧
+                // 判断当前frame_timer + delay值是否大于当前的系统时间，如果大于计算剩余时间，继续显示当前帧
+                if (time < mediaContext->frame_timer + delay) {
+                    // remaining_time剩余时间是，video超前了，需要delay的时间
+                    mediaContext->remaining_time = FFMIN(mediaContext->frame_timer + delay - time, remaining_time);
+                    // 获取上一笔显示
+                    decodeFrame = frameQueue->frame_queue_peek_last();
+                    printf("getFrame: video refresh thread show last frame time %f, frame_timer %f, delay %f\n", time, mediaContext->frame_timer, delay);
+                    break;
+                }
+                
+                // 更新frame_timer时间，frame_timer更新为上一帧结束时刻，也是当前帧开始时刻
+                mediaContext->frame_timer += delay;
+                
+                // 如果delay大于0
+                if (delay > 0 && time - mediaContext->frame_timer > AV_SYNC_THRESHOLD_MAX)
+                {
+                    printf("getFrame: video refresh thread AV SYNC THRESHOLD MAX \n");
+                    mediaContext->frame_timer = time;
+                }
+                if (!isnan(vp->pts))
+                {
+                    printf("getFrame: video refresh thread video Clock = %f\n", vp->pts);
+                    MediaSync::update_video_clock(vp->pts, vp->serial, mediaContext);
+                }
+
+                // 丢帧模式
+                if (frameQueue->frame_queue_nb_remaining() > 1)
+                {
+                    Frame *nextvp = frameQueue->frame_queue_peek_next();
+                    duration = MediaSync::vp_duration(vp, nextvp, mediaContext);
+                    // 如果当前时间要比这笔显示结束的时间（也就是下一笔开始时间）还大，则丢这一帧
+                    if(time > mediaContext->frame_timer + duration)
+                    {
+                        printf("getFrame: video refresh thread drop video frame_drops_late %d\n", mediaContext->frame_drops_late);
+                        mediaContext->frame_drops_late++;
+                        frameQueue->frame_queue_next();
+                        continue;
+                    }
+                }
+                // 则正常显示
+                frameQueue->frame_queue_next();
+                // 获取上一笔显示
+                decodeFrame = frameQueue->frame_queue_peek_last();
+                break;
+            } else {
+                if (!isnan(vp->pts))
+                {
+                    printf("getFrame: video refresh thread video Clock = %f\n", vp->pts);
+                    MediaSync::update_video_clock(vp->pts, vp->serial, mediaContext);
+                }
+                // 则正常显示
+                frameQueue->frame_queue_next();
+                // 获取上一笔显示
+                decodeFrame = frameQueue->frame_queue_peek_last();
+                break;
+            }
+        }
+    }
+    
+    switch (streamType) {
+        case PP_STREAM_VIDEO: {
+            // 如果是视频流
+            videoParamInfo srcVideoParm = mediaContext->srcVideoParam;
+            videoParamInfo dstVideoParm = mediaContext->dstVideoParam;
+            
+        }
+        break;
+        case PP_STREAM_AUDIO:{
+        }
+        break;
+        case PP_STREAM_SUBTITLE: {
+        
+        }
+        break;
+        default:
+            break;
+    }
+    
+out:
+    return ret;
 }
 
 NS_MEDIA_END
-
 

@@ -97,7 +97,7 @@ public:
     /*
      * 获取当前帧
      */
-    MediaFrame* getFrame();
+    int getFrame(MediaFrame* mediaFrame);
 public:
     // 媒体上下文
     MediaContext*           mediaContext;
@@ -118,6 +118,7 @@ private:
     AVCodec*                codec;
     // 解码后存放frame的队列
     FrameQueue*             frameQueue;
+    Frame*                  decodeFrame;
 };
 
 NS_MEDIA_END
