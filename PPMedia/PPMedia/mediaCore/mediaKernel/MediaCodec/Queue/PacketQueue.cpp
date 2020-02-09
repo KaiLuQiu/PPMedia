@@ -42,8 +42,9 @@ int PacketQueue::packet_queue_init()
     // 初始化mutex
     ret = pthread_mutex_init(mutex, NULL);
     if (ret < 0) {
-      SAFE_AV_FREE(mutex);
-      return ret;
+        av_free(&this->mutex);
+        this->mutex = NULL;
+        return ret;
     }
     // 创建条件变量
     if(NULL == cond) {
@@ -55,8 +56,9 @@ int PacketQueue::packet_queue_init()
     }
     ret = pthread_cond_init(cond, NULL);
     if (ret < 0) {
-      SAFE_AV_FREE(cond);
-      return ret;
+        av_free(&this->cond);
+        this->cond = NULL;
+        return ret;
     }
         
     this->abort_request = 1;

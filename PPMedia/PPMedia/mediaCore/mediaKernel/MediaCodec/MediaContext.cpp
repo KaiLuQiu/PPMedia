@@ -12,14 +12,13 @@ NS_MEDIA_BEGIN
 
 MediaContext::MediaContext():
 formatContext(NULL),
+informat(NULL),
 nbStreams(0),
 seek_request(0),
 seek_flags(0),
 seek_pos(0),
 seek_rel(0),
 keep_last(false),
-width(0),
-height(0),
 eof(0),
 last_vis_time(0),
 frame_timer(0.0),
@@ -39,7 +38,10 @@ videoClock(NULL),
 stopCodecThread(false),
 isLoop(false),
 demuxerThreadController(NULL),
-decodeThreadController(NULL)
+decodeThreadController(NULL),
+needSync(true),
+remaining_time(0.0),
+abort_request(false)
 {
     PacketQueueArray.reserve(8);
     for(int i = 0; i < max_stream_num ;i++) {
@@ -49,7 +51,13 @@ decodeThreadController(NULL)
 
 MediaContext::~MediaContext()
 {
-    
+    // 一般在哪个文件上申请，就在哪个文件下释放
+    if (audioCodecName) {
+        av_free(&audioCodecName);
+    }
+    if (videoCodecName) {
+        av_free(&audioCodecName);
+    }
 }
 
 bool MediaContext::CreatePacketQueue(int streamIndex)

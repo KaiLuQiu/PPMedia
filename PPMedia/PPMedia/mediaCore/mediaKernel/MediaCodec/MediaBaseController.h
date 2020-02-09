@@ -59,9 +59,10 @@ public:
      * 暂停
      */
     virtual int pause() {return 0;}
-protected:
+public:
     // 媒体播放上下文
     MediaContext                *mediaContext;
+protected:
     // 媒体播放URL
     std::string                 mediaPath;
 private:
