@@ -1,18 +1,18 @@
 //
-//  AudioThread.cpp
+//  AudioOutThread.cpp
 //  PPMedia
 //
 //  Created by 邱开禄 on 2020/02/15.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#include "AudioThread.h"
+#include "AudioOutThread.h"
 #include <pthread.h>
 NS_MEDIA_BEGIN
 
-void *AudioThread(void *arg)
+int AudioOutThread(void *arg)
 {
-    return NULL;
+    return 0;
 }
 
 NS_MEDIA_END

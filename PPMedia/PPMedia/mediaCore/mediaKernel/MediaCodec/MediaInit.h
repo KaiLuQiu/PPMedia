@@ -1,22 +1,22 @@
 //
-//  FFmpegInit.h
+//  MediaInit.h
 //  PPMedia
 //
 //  Created by 邱开禄 on 2020/02/02.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#ifndef FFmpegInit_H
-#define FFmpegInit_H
+#ifndef MediaInit_H
+#define MediaInit_H
 #include <string>
 #include "MediaCommon.h"
 NS_MEDIA_BEGIN
 
-class FFmpegInit {
+class MediaInit {
 public:
-    FFmpegInit();
+    MediaInit();
     
-    ~FFmpegInit();
+    ~MediaInit();
     
     static void init();
     
@@ -24,8 +24,10 @@ public:
     
     static bool Inited();
     
-    static AVPacket         *flushPkt;
+    static AVPacket* getFlushPacket();
 private:
+    static AVPacket         *flushPkt;
+
     static bool             isInited;
 
 };

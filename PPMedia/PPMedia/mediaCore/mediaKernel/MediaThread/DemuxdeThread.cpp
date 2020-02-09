@@ -11,7 +11,7 @@
 #include "MediaCommon.h"
 #include "MediaContext.h"
 #include "PacketQueue.h"
-#include "FFmpegInit.h"
+#include "MediaInit.h"
 #include "ThreadController.h"
 
 NS_MEDIA_BEGIN

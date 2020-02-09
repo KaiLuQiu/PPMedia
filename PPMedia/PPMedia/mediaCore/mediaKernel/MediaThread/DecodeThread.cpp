@@ -11,7 +11,7 @@
 #include <pthread.h>
 #include "FrameQueue.h"
 #include "PacketQueue.h"
-#include "FFmpegInit.h"
+#include "MediaInit.h"
 #include "MediaSync.h"
 #include "MediaClock.h"
 #include "ThreadController.h"
@@ -165,7 +165,7 @@ static int decoder_decode_frame(MediaStream *mediaStream, AVFrame *frame)
         } while (packetQueue->serial != codecContext->pkt_serial);
         
         // 读取到一包数据后，送入解码
-        if (pkt.data == FFmpegInit::flushPkt->data) {
+        if (pkt.data == MediaInit::getFlushPacket()->data) {
             // 如果当前的是flushPkt的话，则flush avcodec
             avcodec_flush_buffers(avctx);
             // 让packetQueue也flush掉，
