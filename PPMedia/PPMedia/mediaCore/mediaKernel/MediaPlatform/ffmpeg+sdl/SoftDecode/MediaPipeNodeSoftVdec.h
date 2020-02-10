@@ -15,7 +15,7 @@ NS_MEDIA_BEGIN
 
 class MediaPipeNodeSoftVdec {
 public:
-    static Media_Pipenode *pipenode_create_video_decoder_by_soft();
+    static Decode_Pipenode *pipenode_create_video_decoder_by_soft();
 private:
 };
 

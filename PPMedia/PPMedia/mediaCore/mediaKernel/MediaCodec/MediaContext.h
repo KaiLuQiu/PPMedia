@@ -31,6 +31,29 @@ public:
     PacketQueue *GetPacketQueue(int streamIndex);
 
 public:
+    /*********************************************************音视频同步相关*********************************************************/
+    // 是否进行avsync
+    bool                            needSync;
+    // 视频超前音频，需要等待的剩余时间
+    double                          remaining_time;
+    // 时钟信息设置
+    Clock*                          audioClock;
+    Clock*                          videoClock;
+    // 当前frame对应实际时间的累积值
+    double                          frame_timer;
+    // 上一次的播放时间
+    int                             last_vis_time;
+    // maximum duration of a frame - above this, we consider the jump a  timestamp discontinuity
+    double                          max_frame_duration;
+    // 记录drop video的数量
+    int                             frame_drops_late;
+    int                             frame_drops_early;
+    
+    /*********************************************************软解硬件解相关*********************************************************/
+    // 对应的解码器node可以映射到软件解码或者对应平台的硬件解码
+    Decode_Pipenode*                 decodec_node;
+    Aout_Pipenode*                   aout_node;
+    
     /********************************************************媒体流控制相关*********************************************/
     // FFmpeg上下文
     AVFormatContext*                formatContext;
@@ -96,28 +119,6 @@ public:
     // 多线程同步相关（控制decode线程）
     ThreadController*               decodeThreadController;
 
-    
-    /*********************************************************音视频同步相关*********************************************************/
-    // 是否进行avsync
-    bool                            needSync;
-    // 视频超前音频，需要等待的剩余时间
-    double                          remaining_time;
-    // 时钟信息设置
-    Clock*                          audioClock;
-    Clock*                          videoClock;
-    // 当前frame对应实际时间的累积值
-    double                          frame_timer;
-    // 上一次的播放时间
-    int                             last_vis_time;
-    // maximum duration of a frame - above this, we consider the jump a  timestamp discontinuity
-    double                          max_frame_duration;
-    // 记录drop video的数量
-    int                             frame_drops_late;
-    int                             frame_drops_early;
-    /*********************************************************软解硬件解相关*********************************************************/
-    // 对应的解码器node可以映射到软件解码或者对应平台的硬件解码
-    Media_Pipenode*                 decodec_node;
-    Media_Pipenode*                 aout_node;
 private:
 };
 

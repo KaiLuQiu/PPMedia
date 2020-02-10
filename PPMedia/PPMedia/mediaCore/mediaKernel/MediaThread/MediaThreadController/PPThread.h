@@ -11,6 +11,7 @@
 #define PPThread_H
 #include <string>
 #include "MediaCommon.h"
+#include <pthread.h>
 NS_MEDIA_BEGIN
 
 // 对线程的简单封装使用

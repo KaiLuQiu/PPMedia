@@ -28,12 +28,12 @@ void MediaPipeline::MediaPipeline_free(Media_Pipeline *pipeline)
     free(pipeline);
 }
 
-Media_Pipenode* MediaPipeline::get_video_decoder_node(Media_Pipeline *pipeline)
+Decode_Pipenode* MediaPipeline::get_video_decoder_node(Media_Pipeline *pipeline)
 {
     return pipeline->func_get_video_decoder_node(pipeline);
 }
 
-SDL_Aout* MediaPipeline::get_audio_output_node(Media_Pipeline *pipeline)
+Aout_Pipenode* MediaPipeline::get_audio_output_node(Media_Pipeline *pipeline)
 {
     return pipeline->func_get_audio_output_node(pipeline);
 }

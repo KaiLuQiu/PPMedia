@@ -12,7 +12,9 @@ NS_MEDIA_BEGIN
 
 MediaPlayerController::MediaPlayerController():
 demuxerThread(NULL),
-demuxerThreadController(NULL)
+demuxerThreadController(NULL),
+decodec_node(NULL),
+aout_node(NULL)
 {
     memset(stream_index, -1, sizeof(stream_index));
     for(int i = 0; i < MAX_DCODEC_STREAM_NUM; i++) {
@@ -130,6 +132,13 @@ int MediaPlayerController::prepareAsync()
     }
     mediaContext->decodec_node = this->decodec_node;
     
+    this->aout_node = MediaPipeline::get_audio_output_node(this->pipleLine);
+    if (NULL == this->aout_node) {
+        printf("MediaPlayerController: aout_node is NULL fail\n");
+    }
+    // audio输出的node
+    mediaContext->aout_node = this->aout_node;
+    
     for (int i = 0; i < nb_streams; i++) {
         AVCodecContext *CodecContext = avformatContext->streams[i]->codec;
         avStream = avformatContext->streams[i];
@@ -210,7 +219,7 @@ int MediaPlayerController::prepareAsync()
         return -1;
     }
     // 设置demuxer线程的参数信息
-    demuxerThread->setFunc(DemuxerThread, mediaContext, "demuxerThread");
+    demuxerThread->createThreadEx(DemuxerThread, mediaContext, "demuxerThread");
     // 启动demuxer
     demuxerThread->start();
     return 1;
@@ -234,14 +243,14 @@ int MediaPlayerController::stop()
         this->pipleLine = NULL;
     }
     
+    // 释放decodeNode
     if (this->decodec_node) {
-        delete this->decodec_node;
-        this->decodec_node = NULL;
+        MediaPipelineNode::PipeDecodeNode_free(this->decodec_node);
     }
     
+    // 释放aoutNode
     if (this->aout_node) {
-        delete this->aout_node;
-        this->aout_node = NULL;
+        MediaPipelineNode::PipeAudioOutNode_free(this->aout_node);
     }
     
     // flag标志位设置

@@ -26,9 +26,9 @@ class MeidaPipelineFactory{
 public:
     static Media_Pipeline *create_pipeline(NodeType type);
 private:
-    static Media_Pipenode *func_get_soft_video_decoder(Media_Pipeline *pipeline);
+    static Decode_Pipenode *func_get_soft_video_decoder(Media_Pipeline *pipeline);
 
-    static SDL_Aout* func_get_audio_output(Media_Pipeline *pipeline);
+    static Aout_Pipenode* func_get_audio_output(Media_Pipeline *pipeline);
 
 };
 

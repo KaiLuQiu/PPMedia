@@ -12,13 +12,13 @@
 NS_MEDIA_BEGIN
 
 static SDL_Class g_pipeline_class = {
-    .name = "MediaPipelineManger",
+    .name = "MediaPipeNodeSoftVdec",
 };
 
 // 以下部分是函数方法的映射
-Media_Pipenode* MediaPipeNodeSoftVdec::pipenode_create_video_decoder_by_soft()
+Decode_Pipenode* MediaPipeNodeSoftVdec::pipenode_create_video_decoder_by_soft()
 {
-    Media_Pipenode *node = MediaPipelineNode::pipenode_alloc(&g_pipeline_class);
+    Decode_Pipenode *node = MediaPipelineNode::PipeDecodeNode_alloc(&g_pipeline_class);
     if (!node)
         return node;
 

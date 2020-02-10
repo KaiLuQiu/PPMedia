@@ -84,8 +84,8 @@ private:
     ThreadController*           demuxerThreadController;
     /*********************************************************软解硬件解相关*********************************************************/
     // 对应的解码器node可以映射到软件解码或者对应平台的硬件解码
-    Media_Pipenode*             decodec_node;
-    Media_Pipenode*             aout_node;
+    Decode_Pipenode*             decodec_node;
+    Aout_Pipenode*               aout_node;
 };
 
 NS_MEDIA_END

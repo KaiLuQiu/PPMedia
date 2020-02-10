@@ -212,7 +212,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(mediaContext->decodec_node->func_execute, this, "decodeThread");
+            decodeThread->createThreadEx(mediaContext->decodec_node->func_execute, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
@@ -222,7 +222,7 @@ int MediaStream::openDecoder()
             // 初始化FrameQueue
             frameQueue->frame_queue_init(packetQueue, VIDEO_PICTURE_QUEUE_SIZE, 1);
             // 创建decoder线程
-            decodeThread->setFunc(mediaContext->decodec_node->func_execute, this, "decodeThread");
+            decodeThread->createThreadEx(mediaContext->decodec_node->func_execute, this, "decodeThread");
             // 启动解码线程
             decodeThread->start();
             // TODO
@@ -295,7 +295,7 @@ int MediaStream::resume()
     return ret;
 }
   
-int MediaStream::getFrame(MediaFrame* mediaFrame)
+int MediaStream::getDecodeFrame(MediaFrame* mediaFrame)
 {
     int ret = 0;
     if (NULL == mediaFrame) {

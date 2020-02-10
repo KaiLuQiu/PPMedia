@@ -313,10 +313,5 @@ int DecoderThreadBySoft(void *arg)
     return 1;
 }
 
-int DecoderThreadByIosVideotoolbox(void *arg)
-{
-    return 0;
-}
-
 NS_MEDIA_END
 

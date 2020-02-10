@@ -9,27 +9,20 @@
 
 #ifndef MediaPipelineNode_H
 #define MediaPipelineNode_H
-#include <string>
-#include "MediaCommon.h"
+#include <stdlib.h>
+#include "MediaDefine.h"
+#include "NodeDefine.h"
 
 NS_MEDIA_BEGIN
-
-
-typedef struct Media_Pipenode Media_Pipenode;
-// 映射到对应解码函数指针
-struct Media_Pipenode {
-    SDL_Class                   *opaque_class;
-    void (*func_destroy)        (void);
-    int  (*func_execute)        (void *arg);
-    int  (*func_flush)          (void); // optional
-};
-
 class MediaPipelineNode
 {
 public:
-    static Media_Pipenode *pipenode_alloc(SDL_Class *opaque_class);
-    
-    static void pipenode_free(Media_Pipenode *node);
+    static Decode_Pipenode *PipeDecodeNode_alloc(SDL_Class *opaque_class);
+    static void PipeDecodeNode_free(Decode_Pipenode *node);
+
+    static Aout_Pipenode *PipeAudioOutNode_alloc(SDL_Class *opaque_class, size_t opaque_size);
+    static void PipeAudioOutNode_free(Aout_Pipenode *node);
+
 };
 
 NS_MEDIA_END

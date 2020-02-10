@@ -8,6 +8,7 @@
 
 #include "AudioRefresh.h"
 #include "MediaPCMBuffer.h"
+#include "SDLCommon.h"
 
 NS_MEDIA_BEGIN
 
@@ -23,7 +24,8 @@ void AudioRefresh::audio_callback(void *arg, unsigned char *stream, int len)
 }
 
 AudioRefresh::AudioRefresh():
-volume(50)
+volume(50),
+aout(NULL)
 {
 }
 
@@ -39,6 +41,11 @@ int AudioRefresh::init(MediaContext* mediaContext)
 {
     // 获取目标参数，也就是输出的音频参数
     audioParam = mediaContext->dstAudioParam;
+    aout = mediaContext->aout_node;
+    if (NULL == aout) {
+        printf("AudioRefresh: aout is NULL\n");
+        return -1;
+    }
     int64_t wanted_channel_layout = audioParam.channel_layout;
     int wanted_nb_channels = audioParam.channels;
     int wanted_sample_rate = audioParam.sample_rate;
@@ -93,7 +100,7 @@ int AudioRefresh::init(MediaContext* mediaContext)
     wanted_spec.userdata =  (void *)this;
     
     // 打开audio 设备
-    while (SDL_OpenAudio(&wanted_spec, &spec) < 0) {
+    while (aout->open_audio(aout, &wanted_spec, &spec) < 0) {
         av_log(NULL, AV_LOG_WARNING, "SDL_OpenAudio (%d channels, %d Hz): %s\n",
                wanted_spec.channels, wanted_spec.freq, SDL_GetError());
         // 如果打开音频设备失败，则尝试用不同的声道数或采样率再试打开音频设备
@@ -149,6 +156,7 @@ int AudioRefresh::init(MediaContext* mediaContext)
  */
 void AudioRefresh::setVolume(int volume)
 {
+//    aout->set_volume(aout, volume, volume);
     this->volume = volume;
 }
 
@@ -157,7 +165,9 @@ void AudioRefresh::setVolume(int volume)
  */
 void AudioRefresh::pause(int pause_on)
 {
-    SDL_PauseAudio(pause_on);
+    if (aout) {
+        aout->pause_audio(aout, pause_on);
+    }
     // TODO
     // audio时钟设置暂停
 }
@@ -167,7 +177,9 @@ void AudioRefresh::pause(int pause_on)
  */
 void AudioRefresh::stop()
 {
-    SDL_CloseAudio();
+    if (aout) {
+        aout->close_audio(aout);
+    }
 }
 
 NS_MEDIA_END

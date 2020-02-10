@@ -17,12 +17,6 @@ NS_MEDIA_BEGIN
  */
 int DecoderThreadBySoft(void *arg);
 
-/*
- * 硬解
- */
-int DecoderThreadByIosVideotoolbox(void *arg);
-
-
 
 NS_MEDIA_END
 #endif // DecodeThread_H

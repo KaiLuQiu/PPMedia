@@ -95,9 +95,9 @@ public:
     int resume();
     
     /*
-     * 获取当前帧
+     * 获取解码后的帧
      */
-    int getFrame(MediaFrame* mediaFrame);
+    int getDecodeFrame(MediaFrame* mediaFrame);
 public:
     // 媒体上下文
     MediaContext*           mediaContext;

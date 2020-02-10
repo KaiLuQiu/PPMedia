@@ -9,6 +9,7 @@
 #ifndef PacketQueue_H
 #define PacketQueue_H
 #include "MediaCommon.h"
+#include <pthread.h>
 NS_MEDIA_BEGIN
 
 typedef struct P_AVPacket_T {
