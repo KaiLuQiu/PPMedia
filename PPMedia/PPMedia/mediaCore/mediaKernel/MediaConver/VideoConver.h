@@ -1,16 +1,16 @@
 //
-//  VideoTranfer.h
+//  VideoConver.h
 //  PPMedia
 //
 //  Created by 邱开禄 on 2020/02/03.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#ifndef VideoTranfer_H
-#define VideoTranfer_H
+#ifndef VideoConver_H
+#define VideoConver_H
 #include <string>
 #include "MediaCommon.h"
-#include "TranferBase.h"
+#include "ConverBase.h"
 
 NS_MEDIA_BEGIN
 
@@ -26,11 +26,12 @@ typedef struct videoParam_T {
     int             height;
 } videoParam;
 
-class VideoTranfer : public TranferBase
+
+class VideoConver : public ConverBase
 {
 public:
-    VideoTranfer();
-    ~VideoTranfer();
+    VideoConver();
+    ~VideoConver();
     /*
      * 初始化
      */
@@ -44,7 +45,7 @@ public:
     /*
      * 格式转换者
      */
-    virtual int tranfer(AVFrame *inframe, AVFrame *outframe);
+    virtual int Conver(AVFrame *inframe, AVFrame *outframe);
     
     /*
      * 设置输入输出的格式参数

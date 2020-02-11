@@ -1,21 +1,21 @@
 //
-//  VideoTranfer.cpp
+//  VideoConver.cpp
 //  PPMedia
 //
-//  Created by 邱开禄 on 2020/02/05.
+//  Created by 邱开禄 on 2020/02/10.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#include "VideoTranfer.h"
+#include "VideoConver.h"
 NS_MEDIA_BEGIN
 
-VideoTranfer::VideoTranfer():
+VideoConver::VideoConver():
 swsContex(NULL)
 {
     
 }
 
-VideoTranfer::~VideoTranfer()
+VideoConver::~VideoConver()
 {
     if (swsContex) {
         sws_freeContext(swsContex);
@@ -23,7 +23,7 @@ VideoTranfer::~VideoTranfer()
     }
 }
 
-void VideoTranfer::setVideoInfo(videoParam srcVideoParam, videoParam dstVideoParam)
+void VideoConver::setVideoInfo(videoParam srcVideoParam, videoParam dstVideoParam)
 {
     this->srcVideoParam = srcVideoParam;
     this->dstVideoParam = dstVideoParam;
@@ -32,7 +32,7 @@ void VideoTranfer::setVideoInfo(videoParam srcVideoParam, videoParam dstVideoPar
 /*
  * 初始化
  */
-int VideoTranfer::init()
+int VideoConver::init()
 {
     if (swsContex) {
         sws_freeContext(swsContex);
@@ -51,7 +51,7 @@ int VideoTranfer::init()
 /*
  * 初始化
  */
-int VideoTranfer::release()
+int VideoConver::release()
 {
     if (swsContex) {
         sws_freeContext(swsContex);
@@ -63,7 +63,7 @@ int VideoTranfer::release()
 /*
  * 格式转换者
  */
-int VideoTranfer::tranfer(AVFrame *inframe, AVFrame *outframe)
+int VideoConver::Conver(AVFrame *inframe, AVFrame *outframe)
 {
     if (NULL == swsContex || NULL == inframe || NULL == outframe) {
         printf("VideoTranfer: frame or sws_ctx is NULL\n");

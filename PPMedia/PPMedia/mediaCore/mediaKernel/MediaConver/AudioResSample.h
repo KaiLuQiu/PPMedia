@@ -10,12 +10,12 @@
 #define MediaFrame_H
 #include <string>
 #include "MediaCommon.h"
-#include "TranferBase.h"
+#include "ConverBase.h"
 #include "MediaParamInfo.h"
 
 NS_MEDIA_BEGIN
 
-class AudioResSample : public TranferBase
+class AudioResSample : public ConverBase
 {
 public:
     AudioResSample();

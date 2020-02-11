@@ -1,23 +1,23 @@
 //
-//  TranferBase.h
+//  ConverBase.h
 //  PPMedia
 //
-//  Created by 邱开禄 on 2020/02/05.
+//  Created by 邱开禄 on 2020/02/10.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#ifndef TranferBase_H
-#define TranferBase_H
+#ifndef ConverBase_H
+#define ConverBase_H
 #include <string>
 #include "MediaCommon.h"
 
 NS_MEDIA_BEGIN
 // 音频重采样&视频格式转换的基类
-class TranferBase
+class ConverBase
 {
 public:
-    TranferBase();
-    virtual ~TranferBase();
+    ConverBase();
+    virtual ~ConverBase();
     
     /*
      * 初始化
@@ -32,7 +32,7 @@ public:
     /*
      * 格式转换者
      */
-    virtual int tranfer(AVFrame *inframe, AVFrame *outframe)  {return 0;}
+    virtual int Conver(AVFrame *inframe, AVFrame *outframe)  {return 0;}
 
 private:
 };
