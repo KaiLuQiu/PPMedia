@@ -26,45 +26,45 @@
 		365936EC23880DA300C98247 /* compileShaderTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 365936E623880DA300C98247 /* compileShaderTool.m */; };
 		365936ED23880DA300C98247 /* mvp_vsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 365936E923880DA300C98247 /* mvp_vsh.glsl */; };
 		365936EE23880DA300C98247 /* YUV420P_fsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 365936EB23880DA300C98247 /* YUV420P_fsh.glsl */; };
-		36968A8523F18D6B0022BB91 /* ThreadController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A1623F18D6B0022BB91 /* ThreadController.cpp */; };
-		36968A8623F18D6B0022BB91 /* PPThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A1723F18D6B0022BB91 /* PPThread.cpp */; };
-		36968A8723F18D6B0022BB91 /* AudioOutThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A1923F18D6B0022BB91 /* AudioOutThread.cpp */; };
-		36968A8823F18D6B0022BB91 /* DemuxdeThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A1C23F18D6B0022BB91 /* DemuxdeThread.cpp */; };
-		36968A8923F18D6B0022BB91 /* SDLAudioOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2123F18D6B0022BB91 /* SDLAudioOut.cpp */; };
-		36968A8A23F18D6B0022BB91 /* AudioRefresh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2423F18D6B0022BB91 /* AudioRefresh.cpp */; };
-		36968A8B23F18D6B0022BB91 /* MediaPipeNodeSoftVdec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2823F18D6B0022BB91 /* MediaPipeNodeSoftVdec.cpp */; };
-		36968A8C23F18D6B0022BB91 /* DecodeThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2A23F18D6B0022BB91 /* DecodeThread.cpp */; };
-		36968A8D23F18D6B0022BB91 /* IJKSDLAudioQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2E23F18D6B0022BB91 /* IJKSDLAudioQueueController.m */; };
-		36968A8E23F18D6B0022BB91 /* IJKSDLAudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36968A2F23F18D6B0022BB91 /* IJKSDLAudioUnitController.m */; };
-		36968A8F23F18D6B0022BB91 /* IJKSDLAudioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 36968A3023F18D6B0022BB91 /* IJKSDLAudioKit.m */; };
-		36968A9023F18D6B0022BB91 /* sdl_mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 36968A3123F18D6B0022BB91 /* sdl_mutex.c */; };
-		36968A9123F18D6B0022BB91 /* AudioQueueOut.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36968A3323F18D6B0022BB91 /* AudioQueueOut.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		36968A9223F18D6B0022BB91 /* sdl_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 36968A3823F18D6B0022BB91 /* sdl_audio.c */; };
-		36968A9323F18D6B0022BB91 /* MediaPipelineNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A4223F18D6B0022BB91 /* MediaPipelineNode.cpp */; };
-		36968A9423F18D6B0022BB91 /* MediaPipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A4323F18D6B0022BB91 /* MediaPipeline.cpp */; };
-		36968A9523F18D6B0022BB91 /* MeidaPipelineFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A4623F18D6B0022BB91 /* MeidaPipelineFactory.cpp */; };
-		36968A9623F18D6B0022BB91 /* MediaSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A4923F18D6B0022BB91 /* MediaSync.cpp */; };
-		36968A9723F18D6B0022BB91 /* MediaClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A4C23F18D6B0022BB91 /* MediaClock.cpp */; };
-		36968A9823F18D6B0022BB91 /* MediaFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5123F18D6B0022BB91 /* MediaFrame.cpp */; };
-		36968A9923F18D6B0022BB91 /* MediaFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5623F18D6B0022BB91 /* MediaFactory.cpp */; };
-		36968A9A23F18D6B0022BB91 /* MediaEncoderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5823F18D6B0022BB91 /* MediaEncoderController.cpp */; };
-		36968A9B23F18D6B0022BB91 /* MediaInit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5D23F18D6B0022BB91 /* MediaInit.cpp */; };
-		36968A9C23F18D6B0022BB91 /* MediaContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5E23F18D6B0022BB91 /* MediaContext.cpp */; };
-		36968A9D23F18D6B0022BB91 /* MediaBaseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A5F23F18D6B0022BB91 /* MediaBaseController.cpp */; };
-		36968A9E23F18D6B0022BB91 /* MediaStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6223F18D6B0022BB91 /* MediaStream.cpp */; };
-		36968A9F23F18D6B0022BB91 /* MediaPlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6323F18D6B0022BB91 /* MediaPlayerController.cpp */; };
-		36968AA023F18D6B0022BB91 /* MediaMateData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6723F18D6B0022BB91 /* MediaMateData.cpp */; };
-		36968AA123F18D6B0022BB91 /* PacketQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6B23F18D6B0022BB91 /* PacketQueue.cpp */; };
-		36968AA223F18D6B0022BB91 /* MediaPCMBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6C23F18D6B0022BB91 /* MediaPCMBuffer.cpp */; };
-		36968AA323F18D6B0022BB91 /* FrameQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A6E23F18D6B0022BB91 /* FrameQueue.cpp */; };
-		36968AA423F18D6B0022BB91 /* AudioResSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A7023F18D6B0022BB91 /* AudioResSample.cpp */; };
-		36968AA523F18D6B0022BB91 /* VideoConver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A7123F18D6B0022BB91 /* VideoConver.cpp */; };
-		36968AA623F18D6B0022BB91 /* ConverBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A7423F18D6B0022BB91 /* ConverBase.cpp */; };
 		36968AA723F18D6B0022BB91 /* PPMediaMidlle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36968A7823F18D6B0022BB91 /* PPMediaMidlle.mm */; };
 		36968AA823F18D6B0022BB91 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 36968A7C23F18D6B0022BB91 /* README.md */; };
 		36968AA923F18D6B0022BB91 /* PPMedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A7E23F18D6B0022BB91 /* PPMedia.cpp */; };
 		36968AAA23F18D6B0022BB91 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A8023F18D6B0022BB91 /* Message.cpp */; };
 		36968AAB23F18D6B0022BB91 /* EventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36968A8423F18D6B0022BB91 /* EventHandler.cpp */; };
+		369F8BEF23F437340046D92C /* ThreadController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B8E23F437340046D92C /* ThreadController.cpp */; };
+		369F8BF023F437340046D92C /* PPThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B8F23F437340046D92C /* PPThread.cpp */; };
+		369F8BF123F437340046D92C /* AudioOutThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B9123F437340046D92C /* AudioOutThread.cpp */; };
+		369F8BF223F437340046D92C /* DemuxdeThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B9423F437340046D92C /* DemuxdeThread.cpp */; };
+		369F8BF323F437340046D92C /* SDLAudioOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B9923F437340046D92C /* SDLAudioOut.cpp */; };
+		369F8BF423F437340046D92C /* AudioRefresh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8B9C23F437340046D92C /* AudioRefresh.cpp */; };
+		369F8BF523F437340046D92C /* MediaPipeNodeSoftVdec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA023F437340046D92C /* MediaPipeNodeSoftVdec.cpp */; };
+		369F8BF623F437340046D92C /* DecodeThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA223F437340046D92C /* DecodeThread.cpp */; };
+		369F8BF723F437340046D92C /* IJKSDLAudioQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA623F437340046D92C /* IJKSDLAudioQueueController.m */; };
+		369F8BF823F437340046D92C /* IJKSDLAudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA723F437340046D92C /* IJKSDLAudioUnitController.m */; };
+		369F8BF923F437340046D92C /* IJKSDLAudioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA823F437340046D92C /* IJKSDLAudioKit.m */; };
+		369F8BFA23F437340046D92C /* sdl_mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA923F437340046D92C /* sdl_mutex.c */; };
+		369F8BFB23F437340046D92C /* AudioQueueOut.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BAB23F437340046D92C /* AudioQueueOut.mm */; };
+		369F8BFC23F437340046D92C /* sdl_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BB023F437340046D92C /* sdl_audio.c */; };
+		369F8BFD23F437340046D92C /* MediaPipelineNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BBA23F437340046D92C /* MediaPipelineNode.cpp */; };
+		369F8BFE23F437340046D92C /* MediaPipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BBB23F437340046D92C /* MediaPipeline.cpp */; };
+		369F8BFF23F437340046D92C /* MeidaPipelineFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BBE23F437340046D92C /* MeidaPipelineFactory.cpp */; };
+		369F8C0023F437340046D92C /* MediaSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BC123F437340046D92C /* MediaSync.cpp */; };
+		369F8C0123F437340046D92C /* MediaClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BC423F437340046D92C /* MediaClock.cpp */; };
+		369F8C0223F437340046D92C /* MediaFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BC923F437340046D92C /* MediaFrame.cpp */; };
+		369F8C0323F437340046D92C /* MediaFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BCE23F437340046D92C /* MediaFactory.cpp */; };
+		369F8C0423F437340046D92C /* MediaEncoderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BD023F437340046D92C /* MediaEncoderController.cpp */; };
+		369F8C0523F437340046D92C /* MediaInit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BD523F437340046D92C /* MediaInit.cpp */; };
+		369F8C0623F437340046D92C /* MediaContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BD623F437340046D92C /* MediaContext.cpp */; };
+		369F8C0723F437340046D92C /* MediaBaseController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BD723F437340046D92C /* MediaBaseController.cpp */; };
+		369F8C0823F437340046D92C /* MediaStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BDA23F437340046D92C /* MediaStream.cpp */; };
+		369F8C0923F437340046D92C /* MediaPlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BDB23F437340046D92C /* MediaPlayerController.cpp */; };
+		369F8C0A23F437340046D92C /* MediaMateData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BDF23F437340046D92C /* MediaMateData.cpp */; };
+		369F8C0B23F437340046D92C /* PacketQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BE423F437340046D92C /* PacketQueue.cpp */; };
+		369F8C0C23F437340046D92C /* MediaPCMBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BE523F437340046D92C /* MediaPCMBuffer.cpp */; };
+		369F8C0D23F437340046D92C /* FrameQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BE723F437340046D92C /* FrameQueue.cpp */; };
+		369F8C0E23F437340046D92C /* AudioResSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BE923F437340046D92C /* AudioResSample.cpp */; };
+		369F8C0F23F437340046D92C /* VideoConver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BEA23F437340046D92C /* VideoConver.cpp */; };
+		369F8C1023F437340046D92C /* ConverBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BED23F437340046D92C /* ConverBase.cpp */; };
 		36C7A73D238C0C14003250C1 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C7A73C238C0C14003250C1 /* OpenGLView.m */; };
 		36C7A743238C0C6D003250C1 /* render_frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C7A740238C0C6C003250C1 /* render_frame.m */; };
 		36C7A744238C0C6D003250C1 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C7A741238C0C6C003250C1 /* OpenGLView.m */; };
@@ -214,82 +214,6 @@
 		365936E723880DA300C98247 /* compileShaderTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compileShaderTool.h; sourceTree = "<group>"; };
 		365936E923880DA300C98247 /* mvp_vsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mvp_vsh.glsl; sourceTree = "<group>"; };
 		365936EB23880DA300C98247 /* YUV420P_fsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUV420P_fsh.glsl; sourceTree = "<group>"; };
-		36968A1523F18D6B0022BB91 /* ThreadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
-		36968A1623F18D6B0022BB91 /* ThreadController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadController.cpp; sourceTree = "<group>"; };
-		36968A1723F18D6B0022BB91 /* PPThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPThread.cpp; sourceTree = "<group>"; };
-		36968A1823F18D6B0022BB91 /* PPThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPThread.h; sourceTree = "<group>"; };
-		36968A1923F18D6B0022BB91 /* AudioOutThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioOutThread.cpp; sourceTree = "<group>"; };
-		36968A1A23F18D6B0022BB91 /* AudioOutThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioOutThread.h; sourceTree = "<group>"; };
-		36968A1B23F18D6B0022BB91 /* DemuxdeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemuxdeThread.h; sourceTree = "<group>"; };
-		36968A1C23F18D6B0022BB91 /* DemuxdeThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemuxdeThread.cpp; sourceTree = "<group>"; };
-		36968A2023F18D6B0022BB91 /* SDLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLCommon.h; sourceTree = "<group>"; };
-		36968A2123F18D6B0022BB91 /* SDLAudioOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLAudioOut.cpp; sourceTree = "<group>"; };
-		36968A2323F18D6B0022BB91 /* AudioRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRefresh.h; sourceTree = "<group>"; };
-		36968A2423F18D6B0022BB91 /* AudioRefresh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioRefresh.cpp; sourceTree = "<group>"; };
-		36968A2523F18D6B0022BB91 /* SDLAudioOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLAudioOut.h; sourceTree = "<group>"; };
-		36968A2723F18D6B0022BB91 /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
-		36968A2823F18D6B0022BB91 /* MediaPipeNodeSoftVdec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipeNodeSoftVdec.cpp; sourceTree = "<group>"; };
-		36968A2923F18D6B0022BB91 /* MediaPipeNodeSoftVdec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipeNodeSoftVdec.h; sourceTree = "<group>"; };
-		36968A2A23F18D6B0022BB91 /* DecodeThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecodeThread.cpp; sourceTree = "<group>"; };
-		36968A2D23F18D6B0022BB91 /* AudioQueueOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueOut.h; sourceTree = "<group>"; };
-		36968A2E23F18D6B0022BB91 /* IJKSDLAudioQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioQueueController.m; sourceTree = "<group>"; };
-		36968A2F23F18D6B0022BB91 /* IJKSDLAudioUnitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioUnitController.m; sourceTree = "<group>"; };
-		36968A3023F18D6B0022BB91 /* IJKSDLAudioKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioKit.m; sourceTree = "<group>"; };
-		36968A3123F18D6B0022BB91 /* sdl_mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_mutex.c; sourceTree = "<group>"; };
-		36968A3223F18D6B0022BB91 /* sdl_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdl_audio.h; sourceTree = "<group>"; };
-		36968A3323F18D6B0022BB91 /* AudioQueueOut.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioQueueOut.mm; sourceTree = "<group>"; };
-		36968A3423F18D6B0022BB91 /* IJKSDLAudioUnitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioUnitController.h; sourceTree = "<group>"; };
-		36968A3523F18D6B0022BB91 /* IJKSDLAudioQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioQueueController.h; sourceTree = "<group>"; };
-		36968A3623F18D6B0022BB91 /* sdl_mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdl_mutex.h; sourceTree = "<group>"; };
-		36968A3723F18D6B0022BB91 /* IJKSDLAudioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioKit.h; sourceTree = "<group>"; };
-		36968A3823F18D6B0022BB91 /* sdl_audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_audio.c; sourceTree = "<group>"; };
-		36968A3A23F18D6B0022BB91 /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
-		36968A3D23F18D6B0022BB91 /* AudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTrack.h; sourceTree = "<group>"; };
-		36968A3F23F18D6B0022BB91 /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
-		36968A4123F18D6B0022BB91 /* MediaPipelineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipelineNode.h; sourceTree = "<group>"; };
-		36968A4223F18D6B0022BB91 /* MediaPipelineNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipelineNode.cpp; sourceTree = "<group>"; };
-		36968A4323F18D6B0022BB91 /* MediaPipeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipeline.cpp; sourceTree = "<group>"; };
-		36968A4423F18D6B0022BB91 /* NodeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeDefine.h; sourceTree = "<group>"; };
-		36968A4523F18D6B0022BB91 /* MeidaPipelineFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeidaPipelineFactory.h; sourceTree = "<group>"; };
-		36968A4623F18D6B0022BB91 /* MeidaPipelineFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeidaPipelineFactory.cpp; sourceTree = "<group>"; };
-		36968A4723F18D6B0022BB91 /* MediaPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipeline.h; sourceTree = "<group>"; };
-		36968A4923F18D6B0022BB91 /* MediaSync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaSync.cpp; sourceTree = "<group>"; };
-		36968A4B23F18D6B0022BB91 /* MediaClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaClock.h; sourceTree = "<group>"; };
-		36968A4C23F18D6B0022BB91 /* MediaClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaClock.cpp; sourceTree = "<group>"; };
-		36968A4D23F18D6B0022BB91 /* MediaSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaSync.h; sourceTree = "<group>"; };
-		36968A4F23F18D6B0022BB91 /* MediaParamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaParamInfo.h; sourceTree = "<group>"; };
-		36968A5023F18D6B0022BB91 /* MediaFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFrame.h; sourceTree = "<group>"; };
-		36968A5123F18D6B0022BB91 /* MediaFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaFrame.cpp; sourceTree = "<group>"; };
-		36968A5323F18D6B0022BB91 /* MediaDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDefine.h; sourceTree = "<group>"; };
-		36968A5423F18D6B0022BB91 /* MediaCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCommon.h; sourceTree = "<group>"; };
-		36968A5623F18D6B0022BB91 /* MediaFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaFactory.cpp; sourceTree = "<group>"; };
-		36968A5723F18D6B0022BB91 /* MediaInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaInit.h; sourceTree = "<group>"; };
-		36968A5823F18D6B0022BB91 /* MediaEncoderController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaEncoderController.cpp; sourceTree = "<group>"; };
-		36968A5923F18D6B0022BB91 /* MediaBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaBaseController.h; sourceTree = "<group>"; };
-		36968A5A23F18D6B0022BB91 /* MediaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFactory.h; sourceTree = "<group>"; };
-		36968A5B23F18D6B0022BB91 /* MediaEncoderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaEncoderController.h; sourceTree = "<group>"; };
-		36968A5C23F18D6B0022BB91 /* MediaPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerController.h; sourceTree = "<group>"; };
-		36968A5D23F18D6B0022BB91 /* MediaInit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaInit.cpp; sourceTree = "<group>"; };
-		36968A5E23F18D6B0022BB91 /* MediaContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaContext.cpp; sourceTree = "<group>"; };
-		36968A5F23F18D6B0022BB91 /* MediaBaseController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaBaseController.cpp; sourceTree = "<group>"; };
-		36968A6123F18D6B0022BB91 /* MediaStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStream.h; sourceTree = "<group>"; };
-		36968A6223F18D6B0022BB91 /* MediaStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaStream.cpp; sourceTree = "<group>"; };
-		36968A6323F18D6B0022BB91 /* MediaPlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPlayerController.cpp; sourceTree = "<group>"; };
-		36968A6423F18D6B0022BB91 /* MediaContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContext.h; sourceTree = "<group>"; };
-		36968A6623F18D6B0022BB91 /* MediaMateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaMateData.h; sourceTree = "<group>"; };
-		36968A6723F18D6B0022BB91 /* MediaMateData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaMateData.cpp; sourceTree = "<group>"; };
-		36968A6923F18D6B0022BB91 /* FrameQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameQueue.h; sourceTree = "<group>"; };
-		36968A6A23F18D6B0022BB91 /* MediaPCMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPCMBuffer.h; sourceTree = "<group>"; };
-		36968A6B23F18D6B0022BB91 /* PacketQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketQueue.cpp; sourceTree = "<group>"; };
-		36968A6C23F18D6B0022BB91 /* MediaPCMBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPCMBuffer.cpp; sourceTree = "<group>"; };
-		36968A6D23F18D6B0022BB91 /* PacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketQueue.h; sourceTree = "<group>"; };
-		36968A6E23F18D6B0022BB91 /* FrameQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameQueue.cpp; sourceTree = "<group>"; };
-		36968A7023F18D6B0022BB91 /* AudioResSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioResSample.cpp; sourceTree = "<group>"; };
-		36968A7123F18D6B0022BB91 /* VideoConver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoConver.cpp; sourceTree = "<group>"; };
-		36968A7223F18D6B0022BB91 /* VideoConver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoConver.h; sourceTree = "<group>"; };
-		36968A7323F18D6B0022BB91 /* AudioResSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioResSample.h; sourceTree = "<group>"; };
-		36968A7423F18D6B0022BB91 /* ConverBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConverBase.cpp; sourceTree = "<group>"; };
-		36968A7523F18D6B0022BB91 /* ConverBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConverBase.h; sourceTree = "<group>"; };
 		36968A7823F18D6B0022BB91 /* PPMediaMidlle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PPMediaMidlle.mm; sourceTree = "<group>"; };
 		36968A7923F18D6B0022BB91 /* PPMediaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMediaDelegate.h; sourceTree = "<group>"; };
 		36968A7A23F18D6B0022BB91 /* PPMediaMidlle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMediaMidlle.h; sourceTree = "<group>"; };
@@ -301,6 +225,82 @@
 		36968A8223F18D6B0022BB91 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		36968A8323F18D6B0022BB91 /* PPMedia_C_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMedia_C_Interface.h; sourceTree = "<group>"; };
 		36968A8423F18D6B0022BB91 /* EventHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventHandler.cpp; sourceTree = "<group>"; };
+		369F8B8D23F437340046D92C /* ThreadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadController.h; sourceTree = "<group>"; };
+		369F8B8E23F437340046D92C /* ThreadController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadController.cpp; sourceTree = "<group>"; };
+		369F8B8F23F437340046D92C /* PPThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PPThread.cpp; sourceTree = "<group>"; };
+		369F8B9023F437340046D92C /* PPThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPThread.h; sourceTree = "<group>"; };
+		369F8B9123F437340046D92C /* AudioOutThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioOutThread.cpp; sourceTree = "<group>"; };
+		369F8B9223F437340046D92C /* AudioOutThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioOutThread.h; sourceTree = "<group>"; };
+		369F8B9323F437340046D92C /* DemuxdeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemuxdeThread.h; sourceTree = "<group>"; };
+		369F8B9423F437340046D92C /* DemuxdeThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemuxdeThread.cpp; sourceTree = "<group>"; };
+		369F8B9823F437340046D92C /* SDLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLCommon.h; sourceTree = "<group>"; };
+		369F8B9923F437340046D92C /* SDLAudioOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLAudioOut.cpp; sourceTree = "<group>"; };
+		369F8B9B23F437340046D92C /* AudioRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRefresh.h; sourceTree = "<group>"; };
+		369F8B9C23F437340046D92C /* AudioRefresh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioRefresh.cpp; sourceTree = "<group>"; };
+		369F8B9D23F437340046D92C /* SDLAudioOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLAudioOut.h; sourceTree = "<group>"; };
+		369F8B9F23F437340046D92C /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
+		369F8BA023F437340046D92C /* MediaPipeNodeSoftVdec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipeNodeSoftVdec.cpp; sourceTree = "<group>"; };
+		369F8BA123F437340046D92C /* MediaPipeNodeSoftVdec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipeNodeSoftVdec.h; sourceTree = "<group>"; };
+		369F8BA223F437340046D92C /* DecodeThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecodeThread.cpp; sourceTree = "<group>"; };
+		369F8BA523F437340046D92C /* AudioQueueOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueOut.h; sourceTree = "<group>"; };
+		369F8BA623F437340046D92C /* IJKSDLAudioQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioQueueController.m; sourceTree = "<group>"; };
+		369F8BA723F437340046D92C /* IJKSDLAudioUnitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioUnitController.m; sourceTree = "<group>"; };
+		369F8BA823F437340046D92C /* IJKSDLAudioKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKSDLAudioKit.m; sourceTree = "<group>"; };
+		369F8BA923F437340046D92C /* sdl_mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_mutex.c; sourceTree = "<group>"; };
+		369F8BAA23F437340046D92C /* sdl_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdl_audio.h; sourceTree = "<group>"; };
+		369F8BAB23F437340046D92C /* AudioQueueOut.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioQueueOut.mm; sourceTree = "<group>"; };
+		369F8BAC23F437340046D92C /* IJKSDLAudioUnitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioUnitController.h; sourceTree = "<group>"; };
+		369F8BAD23F437340046D92C /* IJKSDLAudioQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioQueueController.h; sourceTree = "<group>"; };
+		369F8BAE23F437340046D92C /* sdl_mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdl_mutex.h; sourceTree = "<group>"; };
+		369F8BAF23F437340046D92C /* IJKSDLAudioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKSDLAudioKit.h; sourceTree = "<group>"; };
+		369F8BB023F437340046D92C /* sdl_audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdl_audio.c; sourceTree = "<group>"; };
+		369F8BB223F437340046D92C /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
+		369F8BB523F437340046D92C /* AudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTrack.h; sourceTree = "<group>"; };
+		369F8BB723F437340046D92C /* DecodeThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeThread.h; sourceTree = "<group>"; };
+		369F8BB923F437340046D92C /* MediaPipelineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipelineNode.h; sourceTree = "<group>"; };
+		369F8BBA23F437340046D92C /* MediaPipelineNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipelineNode.cpp; sourceTree = "<group>"; };
+		369F8BBB23F437340046D92C /* MediaPipeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPipeline.cpp; sourceTree = "<group>"; };
+		369F8BBC23F437340046D92C /* NodeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeDefine.h; sourceTree = "<group>"; };
+		369F8BBD23F437340046D92C /* MeidaPipelineFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeidaPipelineFactory.h; sourceTree = "<group>"; };
+		369F8BBE23F437340046D92C /* MeidaPipelineFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeidaPipelineFactory.cpp; sourceTree = "<group>"; };
+		369F8BBF23F437340046D92C /* MediaPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPipeline.h; sourceTree = "<group>"; };
+		369F8BC123F437340046D92C /* MediaSync.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaSync.cpp; sourceTree = "<group>"; };
+		369F8BC323F437340046D92C /* MediaClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaClock.h; sourceTree = "<group>"; };
+		369F8BC423F437340046D92C /* MediaClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaClock.cpp; sourceTree = "<group>"; };
+		369F8BC523F437340046D92C /* MediaSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaSync.h; sourceTree = "<group>"; };
+		369F8BC723F437340046D92C /* MediaParamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaParamInfo.h; sourceTree = "<group>"; };
+		369F8BC823F437340046D92C /* MediaFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFrame.h; sourceTree = "<group>"; };
+		369F8BC923F437340046D92C /* MediaFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaFrame.cpp; sourceTree = "<group>"; };
+		369F8BCB23F437340046D92C /* MediaDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDefine.h; sourceTree = "<group>"; };
+		369F8BCC23F437340046D92C /* MediaCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCommon.h; sourceTree = "<group>"; };
+		369F8BCE23F437340046D92C /* MediaFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaFactory.cpp; sourceTree = "<group>"; };
+		369F8BCF23F437340046D92C /* MediaInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaInit.h; sourceTree = "<group>"; };
+		369F8BD023F437340046D92C /* MediaEncoderController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaEncoderController.cpp; sourceTree = "<group>"; };
+		369F8BD123F437340046D92C /* MediaBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaBaseController.h; sourceTree = "<group>"; };
+		369F8BD223F437340046D92C /* MediaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFactory.h; sourceTree = "<group>"; };
+		369F8BD323F437340046D92C /* MediaEncoderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaEncoderController.h; sourceTree = "<group>"; };
+		369F8BD423F437340046D92C /* MediaPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerController.h; sourceTree = "<group>"; };
+		369F8BD523F437340046D92C /* MediaInit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaInit.cpp; sourceTree = "<group>"; };
+		369F8BD623F437340046D92C /* MediaContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaContext.cpp; sourceTree = "<group>"; };
+		369F8BD723F437340046D92C /* MediaBaseController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaBaseController.cpp; sourceTree = "<group>"; };
+		369F8BD923F437340046D92C /* MediaStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStream.h; sourceTree = "<group>"; };
+		369F8BDA23F437340046D92C /* MediaStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaStream.cpp; sourceTree = "<group>"; };
+		369F8BDB23F437340046D92C /* MediaPlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPlayerController.cpp; sourceTree = "<group>"; };
+		369F8BDC23F437340046D92C /* MediaContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaContext.h; sourceTree = "<group>"; };
+		369F8BDE23F437340046D92C /* MediaMateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaMateData.h; sourceTree = "<group>"; };
+		369F8BDF23F437340046D92C /* MediaMateData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaMateData.cpp; sourceTree = "<group>"; };
+		369F8BE223F437340046D92C /* FrameQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameQueue.h; sourceTree = "<group>"; };
+		369F8BE323F437340046D92C /* MediaPCMBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPCMBuffer.h; sourceTree = "<group>"; };
+		369F8BE423F437340046D92C /* PacketQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketQueue.cpp; sourceTree = "<group>"; };
+		369F8BE523F437340046D92C /* MediaPCMBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaPCMBuffer.cpp; sourceTree = "<group>"; };
+		369F8BE623F437340046D92C /* PacketQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketQueue.h; sourceTree = "<group>"; };
+		369F8BE723F437340046D92C /* FrameQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameQueue.cpp; sourceTree = "<group>"; };
+		369F8BE923F437340046D92C /* AudioResSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioResSample.cpp; sourceTree = "<group>"; };
+		369F8BEA23F437340046D92C /* VideoConver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoConver.cpp; sourceTree = "<group>"; };
+		369F8BEB23F437340046D92C /* VideoConver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoConver.h; sourceTree = "<group>"; };
+		369F8BEC23F437340046D92C /* AudioResSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioResSample.h; sourceTree = "<group>"; };
+		369F8BED23F437340046D92C /* ConverBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConverBase.cpp; sourceTree = "<group>"; };
+		369F8BEE23F437340046D92C /* ConverBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConverBase.h; sourceTree = "<group>"; };
 		36C7A73B238C0C14003250C1 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		36C7A73C238C0C14003250C1 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
 		36C7A73F238C0C6C003250C1 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
@@ -713,278 +713,11 @@
 		36968A1123F18D6B0022BB91 /* mediaCore */ = {
 			isa = PBXGroup;
 			children = (
-				36968A1223F18D6B0022BB91 /* mediaKernel */,
+				369F8B8A23F437340046D92C /* mediaKernel */,
 				36968A7623F18D6B0022BB91 /* platform */,
 				36968A7D23F18D6B0022BB91 /* mediaMiddle */,
 			);
 			path = mediaCore;
-			sourceTree = "<group>";
-		};
-		36968A1223F18D6B0022BB91 /* mediaKernel */ = {
-			isa = PBXGroup;
-			children = (
-				36968A1323F18D6B0022BB91 /* MediaThread */,
-				36968A1D23F18D6B0022BB91 /* MediaPlatform */,
-				36968A4023F18D6B0022BB91 /* MediaPipeline */,
-				36968A4823F18D6B0022BB91 /* MediaAVSync */,
-				36968A4E23F18D6B0022BB91 /* MediaData */,
-				36968A5223F18D6B0022BB91 /* MediaCommon */,
-				36968A5523F18D6B0022BB91 /* MediaController */,
-				36968A6823F18D6B0022BB91 /* MediaQueue */,
-				36968A6F23F18D6B0022BB91 /* MediaConver */,
-			);
-			path = mediaKernel;
-			sourceTree = "<group>";
-		};
-		36968A1323F18D6B0022BB91 /* MediaThread */ = {
-			isa = PBXGroup;
-			children = (
-				36968A1423F18D6B0022BB91 /* ThreadController */,
-				36968A1A23F18D6B0022BB91 /* AudioOutThread.h */,
-				36968A1923F18D6B0022BB91 /* AudioOutThread.cpp */,
-				36968A1B23F18D6B0022BB91 /* DemuxdeThread.h */,
-				36968A1C23F18D6B0022BB91 /* DemuxdeThread.cpp */,
-			);
-			path = MediaThread;
-			sourceTree = "<group>";
-		};
-		36968A1423F18D6B0022BB91 /* ThreadController */ = {
-			isa = PBXGroup;
-			children = (
-				36968A1523F18D6B0022BB91 /* ThreadController.h */,
-				36968A1623F18D6B0022BB91 /* ThreadController.cpp */,
-				36968A1723F18D6B0022BB91 /* PPThread.cpp */,
-				36968A1823F18D6B0022BB91 /* PPThread.h */,
-			);
-			path = ThreadController;
-			sourceTree = "<group>";
-		};
-		36968A1D23F18D6B0022BB91 /* MediaPlatform */ = {
-			isa = PBXGroup;
-			children = (
-				36968A1E23F18D6B0022BB91 /* ffmpeg+sdl */,
-				36968A2B23F18D6B0022BB91 /* ios */,
-				36968A3B23F18D6B0022BB91 /* android */,
-			);
-			path = MediaPlatform;
-			sourceTree = "<group>";
-		};
-		36968A1E23F18D6B0022BB91 /* ffmpeg+sdl */ = {
-			isa = PBXGroup;
-			children = (
-				36968A1F23F18D6B0022BB91 /* AudioSDL */,
-				36968A2623F18D6B0022BB91 /* SoftDecode */,
-			);
-			path = "ffmpeg+sdl";
-			sourceTree = "<group>";
-		};
-		36968A1F23F18D6B0022BB91 /* AudioSDL */ = {
-			isa = PBXGroup;
-			children = (
-				36968A2023F18D6B0022BB91 /* SDLCommon.h */,
-				36968A2223F18D6B0022BB91 /* AudioOutput */,
-				36968A2523F18D6B0022BB91 /* SDLAudioOut.h */,
-				36968A2123F18D6B0022BB91 /* SDLAudioOut.cpp */,
-			);
-			path = AudioSDL;
-			sourceTree = "<group>";
-		};
-		36968A2223F18D6B0022BB91 /* AudioOutput */ = {
-			isa = PBXGroup;
-			children = (
-				36968A2323F18D6B0022BB91 /* AudioRefresh.h */,
-				36968A2423F18D6B0022BB91 /* AudioRefresh.cpp */,
-			);
-			path = AudioOutput;
-			sourceTree = "<group>";
-		};
-		36968A2623F18D6B0022BB91 /* SoftDecode */ = {
-			isa = PBXGroup;
-			children = (
-				36968A2823F18D6B0022BB91 /* MediaPipeNodeSoftVdec.cpp */,
-				36968A2923F18D6B0022BB91 /* MediaPipeNodeSoftVdec.h */,
-				36968A2723F18D6B0022BB91 /* DecodeThread.h */,
-				36968A2A23F18D6B0022BB91 /* DecodeThread.cpp */,
-			);
-			path = SoftDecode;
-			sourceTree = "<group>";
-		};
-		36968A2B23F18D6B0022BB91 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				36968A2C23F18D6B0022BB91 /* AudioQueue */,
-				36968A3923F18D6B0022BB91 /* HardWareDecode */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
-		36968A2C23F18D6B0022BB91 /* AudioQueue */ = {
-			isa = PBXGroup;
-			children = (
-				36968A2D23F18D6B0022BB91 /* AudioQueueOut.h */,
-				36968A3323F18D6B0022BB91 /* AudioQueueOut.mm */,
-				36968A3723F18D6B0022BB91 /* IJKSDLAudioKit.h */,
-				36968A3023F18D6B0022BB91 /* IJKSDLAudioKit.m */,
-				36968A3423F18D6B0022BB91 /* IJKSDLAudioUnitController.h */,
-				36968A2F23F18D6B0022BB91 /* IJKSDLAudioUnitController.m */,
-				36968A3523F18D6B0022BB91 /* IJKSDLAudioQueueController.h */,
-				36968A2E23F18D6B0022BB91 /* IJKSDLAudioQueueController.m */,
-				36968A3623F18D6B0022BB91 /* sdl_mutex.h */,
-				36968A3123F18D6B0022BB91 /* sdl_mutex.c */,
-				36968A3223F18D6B0022BB91 /* sdl_audio.h */,
-				36968A3823F18D6B0022BB91 /* sdl_audio.c */,
-			);
-			path = AudioQueue;
-			sourceTree = "<group>";
-		};
-		36968A3923F18D6B0022BB91 /* HardWareDecode */ = {
-			isa = PBXGroup;
-			children = (
-				36968A3A23F18D6B0022BB91 /* DecodeThread.h */,
-			);
-			path = HardWareDecode;
-			sourceTree = "<group>";
-		};
-		36968A3B23F18D6B0022BB91 /* android */ = {
-			isa = PBXGroup;
-			children = (
-				36968A3C23F18D6B0022BB91 /* AudioTrack */,
-				36968A3E23F18D6B0022BB91 /* HardWareDecode */,
-			);
-			path = android;
-			sourceTree = "<group>";
-		};
-		36968A3C23F18D6B0022BB91 /* AudioTrack */ = {
-			isa = PBXGroup;
-			children = (
-				36968A3D23F18D6B0022BB91 /* AudioTrack.h */,
-			);
-			path = AudioTrack;
-			sourceTree = "<group>";
-		};
-		36968A3E23F18D6B0022BB91 /* HardWareDecode */ = {
-			isa = PBXGroup;
-			children = (
-				36968A3F23F18D6B0022BB91 /* DecodeThread.h */,
-			);
-			path = HardWareDecode;
-			sourceTree = "<group>";
-		};
-		36968A4023F18D6B0022BB91 /* MediaPipeline */ = {
-			isa = PBXGroup;
-			children = (
-				36968A4123F18D6B0022BB91 /* MediaPipelineNode.h */,
-				36968A4223F18D6B0022BB91 /* MediaPipelineNode.cpp */,
-				36968A4323F18D6B0022BB91 /* MediaPipeline.cpp */,
-				36968A4423F18D6B0022BB91 /* NodeDefine.h */,
-				36968A4523F18D6B0022BB91 /* MeidaPipelineFactory.h */,
-				36968A4623F18D6B0022BB91 /* MeidaPipelineFactory.cpp */,
-				36968A4723F18D6B0022BB91 /* MediaPipeline.h */,
-			);
-			path = MediaPipeline;
-			sourceTree = "<group>";
-		};
-		36968A4823F18D6B0022BB91 /* MediaAVSync */ = {
-			isa = PBXGroup;
-			children = (
-				36968A4A23F18D6B0022BB91 /* MediaClock */,
-				36968A4D23F18D6B0022BB91 /* MediaSync.h */,
-				36968A4923F18D6B0022BB91 /* MediaSync.cpp */,
-			);
-			path = MediaAVSync;
-			sourceTree = "<group>";
-		};
-		36968A4A23F18D6B0022BB91 /* MediaClock */ = {
-			isa = PBXGroup;
-			children = (
-				36968A4B23F18D6B0022BB91 /* MediaClock.h */,
-				36968A4C23F18D6B0022BB91 /* MediaClock.cpp */,
-			);
-			path = MediaClock;
-			sourceTree = "<group>";
-		};
-		36968A4E23F18D6B0022BB91 /* MediaData */ = {
-			isa = PBXGroup;
-			children = (
-				36968A4F23F18D6B0022BB91 /* MediaParamInfo.h */,
-				36968A5023F18D6B0022BB91 /* MediaFrame.h */,
-				36968A5123F18D6B0022BB91 /* MediaFrame.cpp */,
-			);
-			path = MediaData;
-			sourceTree = "<group>";
-		};
-		36968A5223F18D6B0022BB91 /* MediaCommon */ = {
-			isa = PBXGroup;
-			children = (
-				36968A5323F18D6B0022BB91 /* MediaDefine.h */,
-				36968A5423F18D6B0022BB91 /* MediaCommon.h */,
-			);
-			path = MediaCommon;
-			sourceTree = "<group>";
-		};
-		36968A5523F18D6B0022BB91 /* MediaController */ = {
-			isa = PBXGroup;
-			children = (
-				36968A5A23F18D6B0022BB91 /* MediaFactory.h */,
-				36968A5623F18D6B0022BB91 /* MediaFactory.cpp */,
-				36968A5F23F18D6B0022BB91 /* MediaBaseController.cpp */,
-				36968A5923F18D6B0022BB91 /* MediaBaseController.h */,
-				36968A5B23F18D6B0022BB91 /* MediaEncoderController.h */,
-				36968A5823F18D6B0022BB91 /* MediaEncoderController.cpp */,
-				36968A5C23F18D6B0022BB91 /* MediaPlayerController.h */,
-				36968A6323F18D6B0022BB91 /* MediaPlayerController.cpp */,
-				36968A5723F18D6B0022BB91 /* MediaInit.h */,
-				36968A5D23F18D6B0022BB91 /* MediaInit.cpp */,
-				36968A6023F18D6B0022BB91 /* MediaStream */,
-				36968A6423F18D6B0022BB91 /* MediaContext.h */,
-				36968A5E23F18D6B0022BB91 /* MediaContext.cpp */,
-				36968A6523F18D6B0022BB91 /* MateData */,
-			);
-			path = MediaController;
-			sourceTree = "<group>";
-		};
-		36968A6023F18D6B0022BB91 /* MediaStream */ = {
-			isa = PBXGroup;
-			children = (
-				36968A6123F18D6B0022BB91 /* MediaStream.h */,
-				36968A6223F18D6B0022BB91 /* MediaStream.cpp */,
-			);
-			path = MediaStream;
-			sourceTree = "<group>";
-		};
-		36968A6523F18D6B0022BB91 /* MateData */ = {
-			isa = PBXGroup;
-			children = (
-				36968A6623F18D6B0022BB91 /* MediaMateData.h */,
-				36968A6723F18D6B0022BB91 /* MediaMateData.cpp */,
-			);
-			path = MateData;
-			sourceTree = "<group>";
-		};
-		36968A6823F18D6B0022BB91 /* MediaQueue */ = {
-			isa = PBXGroup;
-			children = (
-				36968A6A23F18D6B0022BB91 /* MediaPCMBuffer.h */,
-				36968A6C23F18D6B0022BB91 /* MediaPCMBuffer.cpp */,
-				36968A6D23F18D6B0022BB91 /* PacketQueue.h */,
-				36968A6B23F18D6B0022BB91 /* PacketQueue.cpp */,
-				36968A6923F18D6B0022BB91 /* FrameQueue.h */,
-				36968A6E23F18D6B0022BB91 /* FrameQueue.cpp */,
-			);
-			path = MediaQueue;
-			sourceTree = "<group>";
-		};
-		36968A6F23F18D6B0022BB91 /* MediaConver */ = {
-			isa = PBXGroup;
-			children = (
-				36968A7223F18D6B0022BB91 /* VideoConver.h */,
-				36968A7123F18D6B0022BB91 /* VideoConver.cpp */,
-				36968A7323F18D6B0022BB91 /* AudioResSample.h */,
-				36968A7023F18D6B0022BB91 /* AudioResSample.cpp */,
-				36968A7523F18D6B0022BB91 /* ConverBase.h */,
-				36968A7423F18D6B0022BB91 /* ConverBase.cpp */,
-			);
-			path = MediaConver;
 			sourceTree = "<group>";
 		};
 		36968A7623F18D6B0022BB91 /* platform */ = {
@@ -1026,6 +759,281 @@
 				36968A8423F18D6B0022BB91 /* EventHandler.cpp */,
 			);
 			path = mediaMiddle;
+			sourceTree = "<group>";
+		};
+		369F8B8A23F437340046D92C /* mediaKernel */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B8B23F437340046D92C /* MediaThread */,
+				369F8B9523F437340046D92C /* MediaPlatform */,
+				369F8BB823F437340046D92C /* MediaPipeline */,
+				369F8BC023F437340046D92C /* MediaAVSync */,
+				369F8BC623F437340046D92C /* MediaData */,
+				369F8BCA23F437340046D92C /* MediaCommon */,
+				369F8BCD23F437340046D92C /* MediaController */,
+				369F8BE023F437340046D92C /* MediaUitl */,
+			);
+			path = mediaKernel;
+			sourceTree = "<group>";
+		};
+		369F8B8B23F437340046D92C /* MediaThread */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B8C23F437340046D92C /* ThreadController */,
+				369F8B9123F437340046D92C /* AudioOutThread.cpp */,
+				369F8B9223F437340046D92C /* AudioOutThread.h */,
+				369F8B9323F437340046D92C /* DemuxdeThread.h */,
+				369F8B9423F437340046D92C /* DemuxdeThread.cpp */,
+			);
+			path = MediaThread;
+			sourceTree = "<group>";
+		};
+		369F8B8C23F437340046D92C /* ThreadController */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B8D23F437340046D92C /* ThreadController.h */,
+				369F8B8E23F437340046D92C /* ThreadController.cpp */,
+				369F8B8F23F437340046D92C /* PPThread.cpp */,
+				369F8B9023F437340046D92C /* PPThread.h */,
+			);
+			path = ThreadController;
+			sourceTree = "<group>";
+		};
+		369F8B9523F437340046D92C /* MediaPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B9623F437340046D92C /* ffmpeg+sdl */,
+				369F8BA323F437340046D92C /* ios */,
+				369F8BB323F437340046D92C /* android */,
+			);
+			path = MediaPlatform;
+			sourceTree = "<group>";
+		};
+		369F8B9623F437340046D92C /* ffmpeg+sdl */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B9723F437340046D92C /* AudioSDL */,
+				369F8B9E23F437340046D92C /* SoftDecode */,
+			);
+			path = "ffmpeg+sdl";
+			sourceTree = "<group>";
+		};
+		369F8B9723F437340046D92C /* AudioSDL */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B9823F437340046D92C /* SDLCommon.h */,
+				369F8B9923F437340046D92C /* SDLAudioOut.cpp */,
+				369F8B9A23F437340046D92C /* AudioOutput */,
+				369F8B9D23F437340046D92C /* SDLAudioOut.h */,
+			);
+			path = AudioSDL;
+			sourceTree = "<group>";
+		};
+		369F8B9A23F437340046D92C /* AudioOutput */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B9B23F437340046D92C /* AudioRefresh.h */,
+				369F8B9C23F437340046D92C /* AudioRefresh.cpp */,
+			);
+			path = AudioOutput;
+			sourceTree = "<group>";
+		};
+		369F8B9E23F437340046D92C /* SoftDecode */ = {
+			isa = PBXGroup;
+			children = (
+				369F8B9F23F437340046D92C /* DecodeThread.h */,
+				369F8BA023F437340046D92C /* MediaPipeNodeSoftVdec.cpp */,
+				369F8BA123F437340046D92C /* MediaPipeNodeSoftVdec.h */,
+				369F8BA223F437340046D92C /* DecodeThread.cpp */,
+			);
+			path = SoftDecode;
+			sourceTree = "<group>";
+		};
+		369F8BA323F437340046D92C /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BA423F437340046D92C /* AudioQueue */,
+				369F8BB123F437340046D92C /* HardWareDecode */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		369F8BA423F437340046D92C /* AudioQueue */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BA523F437340046D92C /* AudioQueueOut.h */,
+				369F8BA623F437340046D92C /* IJKSDLAudioQueueController.m */,
+				369F8BA723F437340046D92C /* IJKSDLAudioUnitController.m */,
+				369F8BA823F437340046D92C /* IJKSDLAudioKit.m */,
+				369F8BA923F437340046D92C /* sdl_mutex.c */,
+				369F8BAA23F437340046D92C /* sdl_audio.h */,
+				369F8BAB23F437340046D92C /* AudioQueueOut.mm */,
+				369F8BAC23F437340046D92C /* IJKSDLAudioUnitController.h */,
+				369F8BAD23F437340046D92C /* IJKSDLAudioQueueController.h */,
+				369F8BAE23F437340046D92C /* sdl_mutex.h */,
+				369F8BAF23F437340046D92C /* IJKSDLAudioKit.h */,
+				369F8BB023F437340046D92C /* sdl_audio.c */,
+			);
+			path = AudioQueue;
+			sourceTree = "<group>";
+		};
+		369F8BB123F437340046D92C /* HardWareDecode */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BB223F437340046D92C /* DecodeThread.h */,
+			);
+			path = HardWareDecode;
+			sourceTree = "<group>";
+		};
+		369F8BB323F437340046D92C /* android */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BB423F437340046D92C /* AudioTrack */,
+				369F8BB623F437340046D92C /* HardWareDecode */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		369F8BB423F437340046D92C /* AudioTrack */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BB523F437340046D92C /* AudioTrack.h */,
+			);
+			path = AudioTrack;
+			sourceTree = "<group>";
+		};
+		369F8BB623F437340046D92C /* HardWareDecode */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BB723F437340046D92C /* DecodeThread.h */,
+			);
+			path = HardWareDecode;
+			sourceTree = "<group>";
+		};
+		369F8BB823F437340046D92C /* MediaPipeline */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BB923F437340046D92C /* MediaPipelineNode.h */,
+				369F8BBA23F437340046D92C /* MediaPipelineNode.cpp */,
+				369F8BBB23F437340046D92C /* MediaPipeline.cpp */,
+				369F8BBC23F437340046D92C /* NodeDefine.h */,
+				369F8BBD23F437340046D92C /* MeidaPipelineFactory.h */,
+				369F8BBE23F437340046D92C /* MeidaPipelineFactory.cpp */,
+				369F8BBF23F437340046D92C /* MediaPipeline.h */,
+			);
+			path = MediaPipeline;
+			sourceTree = "<group>";
+		};
+		369F8BC023F437340046D92C /* MediaAVSync */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BC123F437340046D92C /* MediaSync.cpp */,
+				369F8BC223F437340046D92C /* MediaClock */,
+				369F8BC523F437340046D92C /* MediaSync.h */,
+			);
+			path = MediaAVSync;
+			sourceTree = "<group>";
+		};
+		369F8BC223F437340046D92C /* MediaClock */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BC323F437340046D92C /* MediaClock.h */,
+				369F8BC423F437340046D92C /* MediaClock.cpp */,
+			);
+			path = MediaClock;
+			sourceTree = "<group>";
+		};
+		369F8BC623F437340046D92C /* MediaData */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BC723F437340046D92C /* MediaParamInfo.h */,
+				369F8BC823F437340046D92C /* MediaFrame.h */,
+				369F8BC923F437340046D92C /* MediaFrame.cpp */,
+			);
+			path = MediaData;
+			sourceTree = "<group>";
+		};
+		369F8BCA23F437340046D92C /* MediaCommon */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BCB23F437340046D92C /* MediaDefine.h */,
+				369F8BCC23F437340046D92C /* MediaCommon.h */,
+			);
+			path = MediaCommon;
+			sourceTree = "<group>";
+		};
+		369F8BCD23F437340046D92C /* MediaController */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BCE23F437340046D92C /* MediaFactory.cpp */,
+				369F8BCF23F437340046D92C /* MediaInit.h */,
+				369F8BD023F437340046D92C /* MediaEncoderController.cpp */,
+				369F8BD123F437340046D92C /* MediaBaseController.h */,
+				369F8BD223F437340046D92C /* MediaFactory.h */,
+				369F8BD323F437340046D92C /* MediaEncoderController.h */,
+				369F8BD423F437340046D92C /* MediaPlayerController.h */,
+				369F8BD523F437340046D92C /* MediaInit.cpp */,
+				369F8BD623F437340046D92C /* MediaContext.cpp */,
+				369F8BD723F437340046D92C /* MediaBaseController.cpp */,
+				369F8BD823F437340046D92C /* MediaStream */,
+				369F8BDB23F437340046D92C /* MediaPlayerController.cpp */,
+				369F8BDC23F437340046D92C /* MediaContext.h */,
+				369F8BDD23F437340046D92C /* MateData */,
+			);
+			path = MediaController;
+			sourceTree = "<group>";
+		};
+		369F8BD823F437340046D92C /* MediaStream */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BD923F437340046D92C /* MediaStream.h */,
+				369F8BDA23F437340046D92C /* MediaStream.cpp */,
+			);
+			path = MediaStream;
+			sourceTree = "<group>";
+		};
+		369F8BDD23F437340046D92C /* MateData */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BDE23F437340046D92C /* MediaMateData.h */,
+				369F8BDF23F437340046D92C /* MediaMateData.cpp */,
+			);
+			path = MateData;
+			sourceTree = "<group>";
+		};
+		369F8BE023F437340046D92C /* MediaUitl */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BE123F437340046D92C /* MediaQueue */,
+				369F8BE823F437340046D92C /* MediaConver */,
+			);
+			path = MediaUitl;
+			sourceTree = "<group>";
+		};
+		369F8BE123F437340046D92C /* MediaQueue */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BE523F437340046D92C /* MediaPCMBuffer.cpp */,
+				369F8BE323F437340046D92C /* MediaPCMBuffer.h */,
+				369F8BE223F437340046D92C /* FrameQueue.h */,
+				369F8BE423F437340046D92C /* PacketQueue.cpp */,
+				369F8BE623F437340046D92C /* PacketQueue.h */,
+				369F8BE723F437340046D92C /* FrameQueue.cpp */,
+			);
+			path = MediaQueue;
+			sourceTree = "<group>";
+		};
+		369F8BE823F437340046D92C /* MediaConver */ = {
+			isa = PBXGroup;
+			children = (
+				369F8BEA23F437340046D92C /* VideoConver.cpp */,
+				369F8BEB23F437340046D92C /* VideoConver.h */,
+				369F8BE923F437340046D92C /* AudioResSample.cpp */,
+				369F8BEC23F437340046D92C /* AudioResSample.h */,
+				369F8BED23F437340046D92C /* ConverBase.cpp */,
+				369F8BEE23F437340046D92C /* ConverBase.h */,
+			);
+			path = MediaConver;
 			sourceTree = "<group>";
 		};
 		36C7A73A238C0C14003250C1 /* OpenGL */ = {
@@ -1468,57 +1476,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36968A8623F18D6B0022BB91 /* PPThread.cpp in Sources */,
-				36968A9023F18D6B0022BB91 /* sdl_mutex.c in Sources */,
-				36968A9B23F18D6B0022BB91 /* MediaInit.cpp in Sources */,
-				36968A9D23F18D6B0022BB91 /* MediaBaseController.cpp in Sources */,
-				36968A8C23F18D6B0022BB91 /* DecodeThread.cpp in Sources */,
 				36968AAB23F18D6B0022BB91 /* EventHandler.cpp in Sources */,
+				369F8C0B23F437340046D92C /* PacketQueue.cpp in Sources */,
+				369F8C0F23F437340046D92C /* VideoConver.cpp in Sources */,
+				369F8BEF23F437340046D92C /* ThreadController.cpp in Sources */,
+				369F8C0623F437340046D92C /* MediaContext.cpp in Sources */,
+				369F8BFD23F437340046D92C /* MediaPipelineNode.cpp in Sources */,
 				36FAD2D023B89A66007B4144 /* WPhotoViewController.m in Sources */,
-				36968A8823F18D6B0022BB91 /* DemuxdeThread.cpp in Sources */,
-				36968AA423F18D6B0022BB91 /* AudioResSample.cpp in Sources */,
-				36968A9623F18D6B0022BB91 /* MediaSync.cpp in Sources */,
+				369F8BF023F437340046D92C /* PPThread.cpp in Sources */,
+				369F8BFF23F437340046D92C /* MeidaPipelineFactory.cpp in Sources */,
+				369F8BFC23F437340046D92C /* sdl_audio.c in Sources */,
+				369F8C1023F437340046D92C /* ConverBase.cpp in Sources */,
 				197EF9A4221AAF850015F02F /* PPMediaController.m in Sources */,
-				36968AA023F18D6B0022BB91 /* MediaMateData.cpp in Sources */,
-				36968A9223F18D6B0022BB91 /* sdl_audio.c in Sources */,
-				36968A8D23F18D6B0022BB91 /* IJKSDLAudioQueueController.m in Sources */,
-				36968A9423F18D6B0022BB91 /* MediaPipeline.cpp in Sources */,
+				369F8BFB23F437340046D92C /* AudioQueueOut.mm in Sources */,
 				36FAD2CF23B89A66007B4144 /* myPhotoCell.m in Sources */,
-				36968AA623F18D6B0022BB91 /* ConverBase.cpp in Sources */,
-				36968A9C23F18D6B0022BB91 /* MediaContext.cpp in Sources */,
-				36968A9723F18D6B0022BB91 /* MediaClock.cpp in Sources */,
-				36968A8523F18D6B0022BB91 /* ThreadController.cpp in Sources */,
-				36968A9E23F18D6B0022BB91 /* MediaStream.cpp in Sources */,
-				36968A8723F18D6B0022BB91 /* AudioOutThread.cpp in Sources */,
-				36968A9823F18D6B0022BB91 /* MediaFrame.cpp in Sources */,
-				36968A9F23F18D6B0022BB91 /* MediaPlayerController.cpp in Sources */,
-				36968A8923F18D6B0022BB91 /* SDLAudioOut.cpp in Sources */,
+				369F8C0923F437340046D92C /* MediaPlayerController.cpp in Sources */,
+				369F8C0523F437340046D92C /* MediaInit.cpp in Sources */,
+				369F8BF923F437340046D92C /* IJKSDLAudioKit.m in Sources */,
 				36FAD2D123B89A66007B4144 /* NavView.m in Sources */,
+				369F8BF323F437340046D92C /* SDLAudioOut.cpp in Sources */,
+				369F8BF823F437340046D92C /* IJKSDLAudioUnitController.m in Sources */,
+				369F8C0423F437340046D92C /* MediaEncoderController.cpp in Sources */,
 				36C7A744238C0C6D003250C1 /* OpenGLView.m in Sources */,
-				36968A9523F18D6B0022BB91 /* MeidaPipelineFactory.cpp in Sources */,
-				36968AA523F18D6B0022BB91 /* VideoConver.cpp in Sources */,
+				369F8BFE23F437340046D92C /* MediaPipeline.cpp in Sources */,
+				369F8C0C23F437340046D92C /* MediaPCMBuffer.cpp in Sources */,
 				19200BD3216F65B100EF7D6F /* ViewController.m in Sources */,
+				369F8BF623F437340046D92C /* DecodeThread.cpp in Sources */,
+				369F8C0023F437340046D92C /* MediaSync.cpp in Sources */,
 				19200BDE216F65B200EF7D6F /* main.m in Sources */,
-				36968A8F23F18D6B0022BB91 /* IJKSDLAudioKit.m in Sources */,
 				36968AA723F18D6B0022BB91 /* PPMediaMidlle.mm in Sources */,
-				36968A8B23F18D6B0022BB91 /* MediaPipeNodeSoftVdec.cpp in Sources */,
-				36968A8E23F18D6B0022BB91 /* IJKSDLAudioUnitController.m in Sources */,
-				36968A9A23F18D6B0022BB91 /* MediaEncoderController.cpp in Sources */,
-				36968AA323F18D6B0022BB91 /* FrameQueue.cpp in Sources */,
 				19200BD0216F65B000EF7D6F /* AppDelegate.m in Sources */,
+				369F8C0823F437340046D92C /* MediaStream.cpp in Sources */,
+				369F8C0723F437340046D92C /* MediaBaseController.cpp in Sources */,
+				369F8C0223F437340046D92C /* MediaFrame.cpp in Sources */,
 				36C7A743238C0C6D003250C1 /* render_frame.m in Sources */,
+				369F8BF123F437340046D92C /* AudioOutThread.cpp in Sources */,
 				36FAD2D623B89A66007B4144 /* UIImage+fixOrientation.m in Sources */,
+				369F8C0A23F437340046D92C /* MediaMateData.cpp in Sources */,
 				36968AAA23F18D6B0022BB91 /* Message.cpp in Sources */,
-				36968AA223F18D6B0022BB91 /* MediaPCMBuffer.cpp in Sources */,
-				36968A9323F18D6B0022BB91 /* MediaPipelineNode.cpp in Sources */,
 				36968AA923F18D6B0022BB91 /* PPMedia.cpp in Sources */,
-				36968AA123F18D6B0022BB91 /* PacketQueue.cpp in Sources */,
+				369F8C0123F437340046D92C /* MediaClock.cpp in Sources */,
+				369F8BF723F437340046D92C /* IJKSDLAudioQueueController.m in Sources */,
 				365936EC23880DA300C98247 /* compileShaderTool.m in Sources */,
-				36968A9923F18D6B0022BB91 /* MediaFactory.cpp in Sources */,
+				369F8C0323F437340046D92C /* MediaFactory.cpp in Sources */,
+				369F8BFA23F437340046D92C /* sdl_mutex.c in Sources */,
 				36C7A73D238C0C14003250C1 /* OpenGLView.m in Sources */,
+				369F8C0E23F437340046D92C /* AudioResSample.cpp in Sources */,
+				369F8BF523F437340046D92C /* MediaPipeNodeSoftVdec.cpp in Sources */,
+				369F8BF223F437340046D92C /* DemuxdeThread.cpp in Sources */,
+				369F8BF423F437340046D92C /* AudioRefresh.cpp in Sources */,
 				36FAD2D523B89A66007B4144 /* WPFunctionView.m in Sources */,
-				36968A8A23F18D6B0022BB91 /* AudioRefresh.cpp in Sources */,
-				36968A9123F18D6B0022BB91 /* AudioQueueOut.mm in Sources */,
+				369F8C0D23F437340046D92C /* FrameQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

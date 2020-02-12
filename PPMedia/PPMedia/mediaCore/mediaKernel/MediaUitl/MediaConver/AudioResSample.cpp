@@ -74,7 +74,7 @@ void AudioResSample::updateSrcAudioInfo(AudioParamInfo params)
     this->srcParam = params;
 }
 
-int AudioResSample::tranfer(uint8_t **out, int out_samples, AVFrame* frame)
+int AudioResSample::Conver(uint8_t **out, int out_samples, AVFrame* frame)
 {
     int resampled_data_size;
     
@@ -98,7 +98,7 @@ int AudioResSample::tranfer(uint8_t **out, int out_samples, AVFrame* frame)
 /*
  * 格式转换者(这个用于编码)
  */
-int AudioResSample::tranfer(AVFrame *inframe, AVFrame *outframe)
+int AudioResSample::Conver(AVFrame *inframe, AVFrame *outframe)
 {
     int ret;
     if (NULL == swrContex || NULL == outframe || NULL == inframe) {
@@ -115,7 +115,7 @@ int AudioResSample::tranfer(AVFrame *inframe, AVFrame *outframe)
 /*
 * 格式转换者
 */
-int AudioResSample::tranfer(uint8_t *out, uint8_t* in)
+int AudioResSample::Conver(uint8_t *out, uint8_t* in)
 {
     int ret;
     if (NULL == swrContex || NULL == out || NULL == in) {

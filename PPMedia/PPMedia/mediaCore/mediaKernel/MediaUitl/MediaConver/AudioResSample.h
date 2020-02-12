@@ -6,10 +6,10 @@
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
-#ifndef MediaFrame_H
-#define MediaFrame_H
+#ifndef AudioResSample_H
+#define AudioResSample_H
 #include <string>
-#include "MediaCommon.h"
+#include "MediaDefine.h"
 #include "ConverBase.h"
 #include "MediaParamInfo.h"
 
@@ -34,17 +34,17 @@ public:
     /*
      * 格式转换者
      */
-    virtual int tranfer(AVFrame *inframe, AVFrame *outframe);
+    virtual int Conver(AVFrame *inframe, AVFrame *outframe);
     
     /*
      * 格式转换者
      */
-    int tranfer(uint8_t **out, int out_samples, AVFrame* frame);
+    int Conver(uint8_t **out, int out_samples, AVFrame* frame);
 
     /*
      * 格式转换者
      */
-    int tranfer(uint8_t *out, uint8_t* in);
+    int Conver(uint8_t *out, uint8_t* in);
     
     /*
      * 设置输入输出的格式参数
@@ -62,8 +62,7 @@ private:
     SwrContext          *swrContex;
     AudioParamInfo      srcParam;
     AudioParamInfo      dstParam;
-    
 };
 
 NS_MEDIA_END
-#endif // MediaFrame_H
+#endif // AudioResSample_H
