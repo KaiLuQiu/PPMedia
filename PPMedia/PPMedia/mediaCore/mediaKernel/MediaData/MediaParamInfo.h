@@ -60,14 +60,14 @@ typedef struct VideoParamInfo_T
     VideoParamInfo_T()
     {
         pixelFormat = AV_PIX_FMT_NONE;
-        srcWidth = 0;
-        srcHeight = 0;
+        width = 0;
+        height = 0;
         codecId = AV_CODEC_ID_NONE;
         frameRate = {1, 30};
     }
     AVPixelFormat   pixelFormat;
-    int             srcWidth;
-    int             srcHeight;
+    int             width;
+    int             height;
     AVCodecID       codecId;
     AVRational      frameRate;
 }videoParamInfo;
