@@ -24,7 +24,7 @@ public:
     /*
      * 初始化
      */
-    virtual int init();
+    virtual int init(AudioParamInfo srcAudioParam, AudioParamInfo dstAudioParam);
     
     /*
      * 初始化
@@ -45,11 +45,6 @@ public:
      * 格式转换者
      */
     int Conver(uint8_t *out, uint8_t* in);
-    
-    /*
-     * 设置输入输出的格式参数
-     */
-    void setAudioInfo(AudioParamInfo srcAudioParam, AudioParamInfo dstAudioParam);
     
     /*
      * 更新输入的音频参数

@@ -26,8 +26,11 @@ AudioResSample::~AudioResSample()
 /*
  * 初始化
  */
-int AudioResSample::init()
+int AudioResSample::init(AudioParamInfo srcAudioParam, AudioParamInfo dstAudioParam)
 {
+    this->srcParam = srcAudioParam;
+    this->dstParam = dstAudioParam;
+    
     if(swrContex == NULL) {
         swrContex = swr_alloc();
     }
@@ -58,15 +61,6 @@ int AudioResSample::release()
         swrContex = NULL;
     }
     return 1;
-}
-
-/*
- * 设置输入输出的格式参数
- */
-void AudioResSample::setAudioInfo(AudioParamInfo srcAudioParam, AudioParamInfo dstAudioParam)
-{
-    this->srcParam = srcAudioParam;
-    this->dstParam = dstAudioParam;
 }
 
 void AudioResSample::updateSrcAudioInfo(AudioParamInfo params)

@@ -23,7 +23,7 @@ VideoConver::~VideoConver()
     }
 }
 
-void VideoConver::setVideoInfo(videoParam srcVideoParam, videoParam dstVideoParam)
+void VideoConver::setVideoInfo(videoParamInfo srcVideoParam, videoParamInfo dstVideoParam)
 {
     this->srcVideoParam = srcVideoParam;
     this->dstVideoParam = dstVideoParam;

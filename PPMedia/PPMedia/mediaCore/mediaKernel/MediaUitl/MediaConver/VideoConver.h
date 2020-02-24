@@ -11,21 +11,9 @@
 #include <string>
 #include "MediaCommon.h"
 #include "ConverBase.h"
+#include "MediaParamInfo.h"
 
 NS_MEDIA_BEGIN
-
-typedef struct videoParam_T {
-    videoParam_T()
-    {
-        pixelFormat = AV_PIX_FMT_NONE;
-        width = -1;
-        height = -1;
-    }
-    AVPixelFormat   pixelFormat;
-    int             width;
-    int             height;
-} videoParam;
-
 
 class VideoConver : public ConverBase
 {
@@ -50,12 +38,12 @@ public:
     /*
      * 设置输入输出的格式参数
      */
-    void setVideoInfo(videoParam srcVideoParam, videoParam dstVideoParam);
+    void setVideoInfo(videoParamInfo srcVideoParam, videoParamInfo dstVideoParam);
 private:
     // 视频图片转换上下文
-    SwsContext          *swsContex;
-    videoParam          srcVideoParam;
-    videoParam          dstVideoParam;
+    SwsContext              *swsContex;
+    videoParamInfo          srcVideoParam;
+    videoParamInfo          dstVideoParam;
 };
 
 NS_MEDIA_END
