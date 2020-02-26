@@ -36,9 +36,6 @@ void MediaFrame::setSrcAudioParam(AudioParamInfo srcParam)
         audioConver = new AudioResSample();
         // 对重采样器设置输入输出的音频参数
         audioConver->init(srcParam, dstAudioParam);
-        
-        
-        
     }
 //    srcAudioParam = srcParam;
 
@@ -47,7 +44,7 @@ void MediaFrame::setSrcAudioParam(AudioParamInfo srcParam)
 
 void MediaFrame::setDstAudioParam(AudioParamInfo srcParam)
 {
-    
+    dstAudioParam = srcParam;
 }
 
 void MediaFrame::setVideoParam(videoParamInfo srcParam, videoParamInfo dstParam)
