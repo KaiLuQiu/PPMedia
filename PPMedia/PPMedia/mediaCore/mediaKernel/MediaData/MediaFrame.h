@@ -28,19 +28,25 @@ class MediaFrame
 public:
     MediaFrame();
     ~MediaFrame();
+    
+    void setMediaType(FrameType type);
 /************audio*************/
     /*
      * 设置输入输出的音频参数信息
      */
-    void setSrcAudioParam(AudioParamInfo srcParam);
+    void setSrcAudioParam(AudioParamInfo srcParam, AudioParamInfo dstParam);
     
-    void setDstAudioParam(AudioParamInfo srcParam);
-
 /************video*************/
     /*
      * 设置输入输出的视频参数信息
      */
     void setVideoParam(videoParamInfo srcParam, videoParamInfo dstParam);
+    
+    int writeFrameData(uint8_t* data, int64_t dataSize);
+    
+    uint8_t* readFrameData(int64_t& dataSize);
+
+    bool Conver();
 
 
 private:
@@ -51,15 +57,24 @@ private:
     // 音频重采样转换者
     AudioResSample*             audioConver;
     // 数据
-    uint8_t*                    data;
+    uint8_t*                    srcData;
+    // 数据
+    uint8_t*                    dstData;
     // 数据大小
-    int64_t                     size;
+    int64_t                     srcSize;
+    // 数据大小
+    int64_t                     dstSize;
+    // 数据大小
+    int64_t                     outSize;
     // 音视频输入输出参数
     AudioParamInfo              srcAudioParam;
     AudioParamInfo              dstAudioParam;
     videoParamInfo              srcVideoParam;
     videoParamInfo              dstVideoParam;
-    //
+    
+    bool                        isInitVideoParam;
+    bool                        isInitAudioParam;
+
 };
 
 NS_MEDIA_END

@@ -157,7 +157,7 @@ int AudioResSample::Conver(uint8_t *out, uint8_t* in)
         printf("AudioResSample: swr_convert fail\n");
         return -1;
     }
-    return 0;
+    return ret;
 }
 
 int AudioResSample::flush(uint8_t *out, int dst_nb_samples)
