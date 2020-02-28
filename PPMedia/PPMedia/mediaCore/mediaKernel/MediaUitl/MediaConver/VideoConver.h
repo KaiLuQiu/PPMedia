@@ -35,11 +35,15 @@ public:
      */
     virtual int Conver(AVFrame *inframe, AVFrame *outframe);
     
+    int Conver(uint8_t** outData, int outlineSize[], uint8_t** intData, int inlineSize[]);
+    
     /*
      * 设置输入输出的格式参数
      */
     void setVideoInfo(videoParamInfo srcVideoParam, videoParamInfo dstVideoParam);
 private:
+    
+    void fill_yuv_image(uint8_t *data[4], int linesize[4], int width, int height, int frame_index);
     // 视频图片转换上下文
     SwsContext              *swsContex;
     videoParamInfo          srcVideoParam;
