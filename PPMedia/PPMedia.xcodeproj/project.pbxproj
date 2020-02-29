@@ -43,7 +43,7 @@
 		369F8BF823F437340046D92C /* IJKSDLAudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA723F437340046D92C /* IJKSDLAudioUnitController.m */; };
 		369F8BF923F437340046D92C /* IJKSDLAudioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA823F437340046D92C /* IJKSDLAudioKit.m */; };
 		369F8BFA23F437340046D92C /* sdl_mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BA923F437340046D92C /* sdl_mutex.c */; };
-		369F8BFB23F437340046D92C /* AudioQueueOut.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BAB23F437340046D92C /* AudioQueueOut.mm */; };
+		369F8BFB23F437340046D92C /* AudioQueueOut.mm in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BAB23F437340046D92C /* AudioQueueOut.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		369F8BFC23F437340046D92C /* sdl_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BB023F437340046D92C /* sdl_audio.c */; };
 		369F8BFD23F437340046D92C /* MediaPipelineNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BBA23F437340046D92C /* MediaPipelineNode.cpp */; };
 		369F8BFE23F437340046D92C /* MediaPipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F8BBB23F437340046D92C /* MediaPipeline.cpp */; };
@@ -928,8 +928,8 @@
 			isa = PBXGroup;
 			children = (
 				369F8BC123F437340046D92C /* MediaSync.cpp */,
-				369F8BC223F437340046D92C /* MediaClock */,
 				369F8BC523F437340046D92C /* MediaSync.h */,
+				369F8BC223F437340046D92C /* MediaClock */,
 			);
 			path = MediaAVSync;
 			sourceTree = "<group>";
