@@ -195,8 +195,8 @@ int MediaPlayerController::prepareAsync()
         // 解码后更新音视频源参数信息
         if ((CodecContext->codec_type == AVMEDIA_TYPE_VIDEO) && (stream_index[AVMEDIA_TYPE_VIDEO] >= 0)) {
             // 更新源的视频格式信息
-            mediaContext->srcVideoParam.srcWidth = mediaStream[i]->codecContext->avctx->width;
-            mediaContext->srcVideoParam.srcHeight = mediaStream[i]->codecContext->avctx->height;
+            mediaContext->srcVideoParam.width = mediaStream[i]->codecContext->avctx->width;
+            mediaContext->srcVideoParam.height = mediaStream[i]->codecContext->avctx->height;
             mediaContext->srcVideoParam.codecId = mediaStream[i]->codecContext->avctx->codec_id;
             mediaContext->srcVideoParam.pixelFormat = mediaStream[i]->codecContext->avctx->pix_fmt;
             // 猜测视频帧率

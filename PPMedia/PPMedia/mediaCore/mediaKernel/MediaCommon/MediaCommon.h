@@ -20,7 +20,9 @@ extern "C"{
     #include <libswresample/swresample.h>
     #include <libavutil/rational.h>
     #include <libavutil/time.h>
+    #include <libavutil/imgutils.h>
     #include <libavutil/samplefmt.h>
+    #include <libavutil/audio_fifo.h>
 }
 #include "MediaDefine.h"
 
