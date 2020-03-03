@@ -2,7 +2,7 @@
 //  MediaFrame.h
 //  PPMedia
 //
-//  Created by 邱开禄 on 2020/02/11.
+//  Created by 邱开禄 on 2020/02/29.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
@@ -34,20 +34,25 @@ public:
     /*
      * 设置输入输出的音频参数信息
      */
-    void setSrcAudioParam(AudioParamInfo srcParam, AudioParamInfo dstParam);
+    bool setSrcAudioParam(AudioParamInfo srcParam);
     
+    bool setDstAudioParam(AudioParamInfo dstParam);
+
 /************video*************/
     /*
      * 设置输入输出的视频参数信息
      */
-    void setVideoParam(videoParamInfo srcParam, videoParamInfo dstParam);
-    
+    bool setSrcVideoParam(videoParamInfo srcParam);
+
+    bool setDstVideoParam(videoParamInfo dstParam);
+
     int writeFrameData(uint8_t* data, int64_t dataSize);
     
+    int writeFrame(AVFrame* frame);
+    
     uint8_t* readFrameData(int64_t& dataSize);
-
+    
     bool Conver();
-
 
 private:
     // 当前媒体的类型
@@ -56,6 +61,12 @@ private:
     VideoConver*                videoConver;
     // 音频重采样转换者
     AudioResSample*             audioConver;
+    /************************Frame**************************/
+    // srcFrame
+    AVFrame*                    srcFrame;
+    // srcFrame
+    AVFrame*                    dstFrame;
+    /**************************Data**************************/
     // 数据
     uint8_t*                    srcData;
     // 数据
@@ -72,9 +83,13 @@ private:
     videoParamInfo              srcVideoParam;
     videoParamInfo              dstVideoParam;
     
-    bool                        isInitVideoParam;
-    bool                        isInitAudioParam;
-
+    bool                        isInitSrcVideoParam;
+    bool                        isInitSrcAudioParam;
+    
+    bool                        isInitDstVideoParam;
+    bool                        isInitDstAudioParam;
+    
+    AVAudioFifo*                AudioFIFO;
 };
 
 NS_MEDIA_END

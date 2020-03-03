@@ -44,7 +44,7 @@ public:
     /*
      * 格式转换者
      */
-    int Conver(uint8_t *out, uint8_t* in);
+    int Conver(uint8_t* in, uint8_t *out);
     
     /*
      * 更新输入的音频参数

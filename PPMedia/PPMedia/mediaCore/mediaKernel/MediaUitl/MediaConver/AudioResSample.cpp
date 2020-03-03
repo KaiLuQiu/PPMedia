@@ -109,7 +109,7 @@ int AudioResSample::Conver(AVFrame *inframe, AVFrame *outframe)
 /*
 * 格式转换者
 */
-int AudioResSample::Conver(uint8_t *out, uint8_t* in)
+int AudioResSample::Conver(uint8_t* in, uint8_t *out)
 {
     int ret;
     if (NULL == swrContex || NULL == out || NULL == in) {
