@@ -2,13 +2,16 @@
 //  MediaStream.cpp
 //  PPMedia
 //
-//  Created by 邱开禄 on 2020/02/03.
+//  Created by 邱开禄 on 2020/02/29.
 //  Copyright © 2020 邱开禄. All rights reserved.
 //
 
 #include "MediaStream.h"
 #include "MediaSync.h"
 #include "DecodeThread.h"
+#include "AudioResSample.h"
+#include "VideoConver.h"
+
 NS_MEDIA_BEGIN
 
 MediaStream::MediaStream():
@@ -306,7 +309,7 @@ int MediaStream::getDecodeFrame(MediaFrame* mediaFrame)
     // 每remaining_time运行一次循环（刷新一次屏幕）
     double remaining_time = 0.0;
     double time;
-
+    
     PacketQueue *packetQueue = mediaContext->GetPacketQueue(curStreamIndex);
 
     // 释放解码器信号量，让解码器开始解码
@@ -409,12 +412,34 @@ int MediaStream::getDecodeFrame(MediaFrame* mediaFrame)
     switch (streamType) {
         case PP_STREAM_VIDEO: {
             // 如果是视频流
-            videoParamInfo srcVideoParm = mediaContext->srcVideoParam;
-            videoParamInfo dstVideoParm = mediaContext->dstVideoParam;
+            videoParamInfo srcVideoParm;
+            srcVideoParm.codecId = codecContext->avctx->codec_id;
+            srcVideoParm.frameRate = codecContext->avctx->framerate;
+            srcVideoParm.height = codecContext->avctx->height;
+            srcVideoParm.width = codecContext->avctx->width;
+            srcVideoParm.pixelFormat = codecContext->avctx->pix_fmt;
             
+            mediaContext->srcVideoParam = srcVideoParm;
+            // 设置当前的媒体帧为video帧
+            mediaFrame->setMediaType(PP_FRAME_VIDEO);
+            // 设置输入输出参数
+            mediaFrame->setSrcVideoParam(srcVideoParm);
         }
         break;
         case PP_STREAM_AUDIO:{
+            // 如果是音频流
+            AudioParamInfo srcAudioParm;
+            srcAudioParm.sample_rate = decodeFrame->frame->sample_rate;
+            srcAudioParm.channel_layout = decodeFrame->frame->channel_layout;
+            srcAudioParm.channels = decodeFrame->frame->channels;
+            srcAudioParm.fmt = (AVSampleFormat)decodeFrame->frame->format;
+            srcAudioParm.frame_size = decodeFrame->frame->nb_samples;
+            // 更新srcAudioParam
+            mediaContext->srcAudioParam = srcAudioParm;
+            // 设置当前的媒体帧为audio帧
+            mediaFrame->setMediaType(PP_FRAME_AUDIO);
+            // 设置输入输出参数
+            mediaFrame->setSrcAudioParam(srcAudioParm);
         }
         break;
         case PP_STREAM_SUBTITLE: {
@@ -424,6 +449,8 @@ int MediaStream::getDecodeFrame(MediaFrame* mediaFrame)
         default:
             break;
     }
+    // 将frame写入mediaFrame中
+    mediaFrame->writeFrame(decodeFrame->frame);
     
 out:
     return ret;
