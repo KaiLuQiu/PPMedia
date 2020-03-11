@@ -201,7 +201,7 @@ int MediaStream::openDecoder()
         printf("MediaStream: openDecoder frameQueue is fail\n");
         return -1;
     }
-    packetQueue = mediaContext->GetPacketQueue(curStreamIndex);
+    packetQueue = mediaContext->queueManger->GetPacketQueue(curStreamIndex);
     if(NULL == packetQueue) {
         SAFE_DELETE(decodeThread);
         SAFE_DELETE(frameQueue);
@@ -264,10 +264,10 @@ int MediaStream::closeDecoder()
         frameQueue = NULL;
     }
     // 销毁packetQueue
-    if(mediaContext->GetPacketQueue(curStreamIndex)) {
-        mediaContext->GetPacketQueue(curStreamIndex)->packet_queue_abort();
+    if(mediaContext->queueManger->GetPacketQueue(curStreamIndex)) {
+        mediaContext->queueManger->GetPacketQueue(curStreamIndex)->packet_queue_abort();
         // 销毁当前的这个packetQueue
-        mediaContext->ReleasePacketQueue(curStreamIndex);
+        mediaContext->queueManger->ReleasePacketQueue(curStreamIndex);
     }
 
     // 销毁线程

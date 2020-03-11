@@ -99,7 +99,7 @@ static int decoder_decode_frame(MediaStream *mediaStream, AVFrame *frame)
     MediaDecoderContext* codecContext = mediaStream->codecContext;
     AVCodecContext* avctx = codecContext->avctx;
     // 获取当前的packetQueue
-    PacketQueue* packetQueue = mediaContext->GetPacketQueue(streamIndex);
+    PacketQueue* packetQueue = mediaContext->queueManger->GetPacketQueue(streamIndex);
     ThreadController* demuxerThreadController = mediaContext->demuxerThreadController;
     ThreadController* decodeThreadController = mediaContext->demuxerThreadController;
     if (NULL == demuxerThreadController || NULL == decodeThreadController) {
@@ -206,7 +206,7 @@ static int get_video_frame(MediaStream *mediaStream, AVFrame *frame)
     MediaDecoderContext* codecContext = mediaStream->codecContext;
     Clock* videoClock = mediaContext->videoClock;
     // 获取当前的packetQueue
-    PacketQueue* videoPacketQueue = mediaContext->GetPacketQueue(mediaStream->curStreamIndex);
+    PacketQueue* videoPacketQueue = mediaContext->queueManger->GetPacketQueue(mediaStream->curStreamIndex);
     if ((got_picture = decoder_decode_frame(mediaStream, frame)) < 0)
         return -1;
 

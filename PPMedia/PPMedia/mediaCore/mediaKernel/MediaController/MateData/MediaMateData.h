@@ -1,6 +1,7 @@
 //
 //  MediaMateData.h
 //  PPMedia
+//  参考ijkplayer的metaData模块
 //
 //  Created by 邱开禄 on 2020/02/13.
 //  Copyright © 2020 邱开禄. All rights reserved.

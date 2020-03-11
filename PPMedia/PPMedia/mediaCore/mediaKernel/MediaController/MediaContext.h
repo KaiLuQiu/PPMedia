@@ -15,7 +15,7 @@
 #include "ThreadController.h"
 #include "MediaPipeline.h"
 #include "MediaPipelineNode.h"
-
+#include "PacketQueueManger.h"
 NS_MEDIA_BEGIN
 
 class MediaContext {
@@ -23,12 +23,6 @@ public:
     MediaContext();
     
     ~MediaContext();
-    
-    bool CreatePacketQueue(int streamIndex);
-    
-    bool ReleasePacketQueue(int streamIndex);
-    
-    PacketQueue *GetPacketQueue(int streamIndex);
 
 public:
     /*********************************************************音视频同步相关*********************************************************/
@@ -90,10 +84,6 @@ public:
     int                             audio_streams;
     // video流的数量
     int                             video_streams;
-    // 最大的流数量
-    int                             max_stream_num;
-    // 不同流对应的流packetQueue
-    std::vector<PacketQueue *>      PacketQueueArray;
 
     /********************************************************音视频参数信息相关*************************************************/
     // 音频参数信息
@@ -118,6 +108,8 @@ public:
     ThreadController*               demuxerThreadController;
     // 多线程同步相关（控制decode线程）
     ThreadController*               decodeThreadController;
+    /********************************************************pkt队列的管理者*********************************************************/
+    PacketQueueManger               *queueManger;
 
 private:
 };
