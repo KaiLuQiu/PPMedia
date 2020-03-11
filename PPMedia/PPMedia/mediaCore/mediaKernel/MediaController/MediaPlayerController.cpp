@@ -145,7 +145,7 @@ int MediaPlayerController::prepareAsync()
         // 如果当前的流是video or audio的话则创建对应的packetQueue
         if (CodecContext->codec_type == AVMEDIA_TYPE_VIDEO ||
             CodecContext->codec_type == AVMEDIA_TYPE_AUDIO) {
-            if (false == mediaContext->CreatePacketQueue(i)) {
+            if (false == mediaContext->queueManger->CreatePacketQueue(i)) {
                 printf("MediaPlayerController: CreatePacketQueue fail\n");
                 return -1;
             }

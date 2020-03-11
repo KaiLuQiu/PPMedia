@@ -40,7 +40,7 @@ demuxerThreadController(NULL),
 decodeThreadController(NULL),
 needSync(true),
 remaining_time(0.0),
-abort_request(false),
+abort_request(false)
 {
     queueManger = new (std::nothrow)PacketQueueManger();
 }

@@ -310,7 +310,7 @@ int MediaStream::getDecodeFrame(MediaFrame* mediaFrame)
     double remaining_time = 0.0;
     double time;
     
-    PacketQueue *packetQueue = mediaContext->GetPacketQueue(curStreamIndex);
+    PacketQueue *packetQueue = mediaContext->queueManger->GetPacketQueue(curStreamIndex);
 
     // 释放解码器信号量，让解码器开始解码
     if (decodeThreadController) {

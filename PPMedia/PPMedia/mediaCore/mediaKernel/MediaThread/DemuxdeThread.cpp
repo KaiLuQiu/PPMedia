@@ -63,7 +63,7 @@ int DemuxerThread(void *arg)
         // 遍历每一条流计算总的packet包大小,如果大于一个阈值需要暂停demuxer，让这个线程挂起
         allPacketQueueSize = 0;
         for (int i = 0; i < nb_streams; i++) {
-            packetQueue = mediaContext->GetPacketQueue(i);
+            packetQueue = mediaContext->queueManger->GetPacketQueue(i);
             if(NULL == packetQueue)
                 continue;
             allPacketQueueSize += packetQueue->size;
@@ -79,7 +79,7 @@ int DemuxerThread(void *arg)
             if ((ret == AVERROR_EOF || avio_feof(formatContext->pb)) && !mediaContext->eof) {
                 // 说明已经读取到结尾位置了
                 for (int i = 0; i < nb_streams; i++) {
-                    packetQueue = mediaContext->GetPacketQueue(i);
+                    packetQueue = mediaContext->queueManger->GetPacketQueue(i);
                     if(NULL == packetQueue)
                         continue;
                     // 这边推2笔空buff是因为，第一笔是为了获取eof，第二笔只是暂时处理decodeThread的bug
@@ -100,7 +100,7 @@ int DemuxerThread(void *arg)
             continue;
         }
         int streamIndex = pkt.stream_index;
-        packetQueue = mediaContext->GetPacketQueue(streamIndex);
+        packetQueue = mediaContext->queueManger->GetPacketQueue(streamIndex);
         if (packetQueue) {
             packetQueue->packet_queue_put(&pkt);
         } else {
